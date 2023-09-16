@@ -29,17 +29,22 @@ class AdminController extends Controller
         $role_id = $request->role_id;
         $access_token = rand();
         
-        $result = Usermaster::insert(
+        $UserCheck = Usermaster::where('umEmail', $email)->get();
+
+        if($UserCheck->isEmpty()) {
+             $result = Usermaster::insert(
                    ['umUserName' => $first_name,
                     'umFirstName' => $first_name,
                     'umLastName' => $last_name,
                     'umPassword' => Hash::make($password),
+                    'umEmail' => $email,
                     'umUserCode' => rand(0000,9999),
                     'umGuid' => rand(00000,99999),
                     'umTS' => date('Y-m-d H:i:s'),
                     'role_id' => $role_id,
                     'access_token' => $access_token,
-                    'umIsActive' => 1
+                    'umIsActive' => 1,
+                    'umCreationDate' => date('Y-m-d H:i:s')
                    ]);
         
         $returndata = [
@@ -50,12 +55,16 @@ class AdminController extends Controller
             'isActive' => 1
         ];
 
-        if($result->isEmpty()){
+        if($result == null){
              return response()->json(['status' => 0, 'message' => 'Sign up failed']);
         }
         else {
             return response()->json(['status' => 1, 'message' => 'Successfully Signed up', 'data' => $returndata]);
         }
+      } else {
+           return response()->json(['status' => -1, 'message' => 'User already exists']);
+      }
+       
     } 
 
   
