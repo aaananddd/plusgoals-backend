@@ -5,30 +5,44 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usermaster;
 use Illuminate\Support\Facades\Hash;
+use Validator;
+use Illuminate\Support\Facades\Auth; 
 
 class AdminController extends Controller
 {
+
+    public $successStatus = 200;
     //Login
-    public function login(Request $request){
+    public function login(){
 
         $email = $request->email;
         $password = $request->password;
 
         $result = Usermaster::select('email', $email)->get();
         dd($result);
+
+    
     }
-
+    
     //Sign Up
-    public function SignUp(Request $request){
-
-        $first_name = $request->first_name;
-        $last_name = $request->last_name;
-        $email = $request->email;
-        $password = $request->password;
-        $confirm_password = $request->confirm_password;
-        $role_id = $request->role_id;
-        $access_token = rand();
+    public function SignUp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            $first_name = $request->first_name,
+            $last_name = $request->last_name,
+            $email = $request->email,
+            $password = $request->password,
+            $confirm_password = $request->confirm_password 
+        ]);
         
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+        
+        //  $role_id = $request->role_id;
+   
+        $access_token = rand();
+        $role_id = 1; //Admin
         $UserCheck = Usermaster::where('umEmail', $email)->get();
 
         if($UserCheck->isEmpty()) {
