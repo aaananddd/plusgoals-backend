@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -32,6 +34,7 @@ class AuthController extends Controller
         return response()->json($response, $status);
     }
 
+    //// Signup
     public function register(Request $request) 
     {
         $input = $request->only('first_name', 'email', 'password', 'c_password');
@@ -56,6 +59,7 @@ class AuthController extends Controller
 
     }
 
+    /// Login
     public function login(Request $request)
     {
         $input = $request->only('email', 'password');
@@ -98,4 +102,29 @@ class AuthController extends Controller
 
         return $this->sendResponse($user, "user data retrieved", 200);
     }
+
+    //Refresh
+    public function refresh()
+    {
+        return response()->json([
+            'status' => 'success',
+            'user' => Auth::user(),
+            'authorisation' => [
+                'token' => Auth::refresh(),
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+
+    ///Logout
+    public function logout()
+    {
+        Auth::logout();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully logged out',
+        ]);
+    }
+
+   
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usermaster;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Support\Facades\Auth; 
@@ -11,75 +11,52 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
 
-    public $successStatus = 200;
-    //Login
-    public function login(){
-
-        $email = $request->email;
-        $password = $request->password;
-
-        $result = Usermaster::select('email', $email)->get();
-        dd($result);
-
-    
-    }
-    
-    //Sign Up
-    public function SignUp(Request $request)
+    // Update User details
+    public function updateProfile(Request $request)
     {
-        $validator = Validator::make($request->all(), [ 
-            $first_name = $request->first_name,
-            $last_name = $request->last_name,
-            $email = $request->email,
-            $password = $request->password,
-            $confirm_password = $request->confirm_password 
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'address1' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'country' => 'required',
+            'pincode' => 'required'
         ]);
-        
-        if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
-        
-        //  $role_id = $request->role_id;
-   
-        $access_token = rand();
-        $role_id = 1; //Admin
-        $UserCheck = Usermaster::where('umEmail', $email)->get();
 
-        if($UserCheck->isEmpty()) {
-             $result = Usermaster::insert(
-                   ['umUserName' => $first_name,
-                    'umFirstName' => $first_name,
-                    'umLastName' => $last_name,
-                    'umPassword' => Hash::make($password),
-                    'umEmail' => $email,
-                    'umUserCode' => rand(0000,9999),
-                    'umGuid' => rand(00000,99999),
-                    'umTS' => date('Y-m-d H:i:s'),
-                    'role_id' => $role_id,
-                    'access_token' => $access_token,
-                    'umIsActive' => 1,
-                    'umCreationDate' => date('Y-m-d H:i:s')
-                   ]);
-        
-        $returndata = [
-            'username' => $first_name,
-            'email' => $email,
-            'token' => $access_token,
-            'roleId' => $role_id,
-            'isActive' => 1
-        ];
+        if ($validator->fails()) {
+            $msg = $validator->messages()->first();
 
-        if($result == null){
-             return response()->json(['status' => 0, 'message' => 'Sign up failed']);
+            return response()->json(['response_code' => 0, 'message' => $msg]);
         }
-        else {
-            return response()->json(['status' => 1, 'message' => 'Successfully Signed up', 'data' => $returndata]);
-        }
-      } else {
-           return response()->json(['status' => -1, 'message' => 'User already exists']);
-      }
+        $user_id = $request->user_id;
+        $first_name = $request->first_name;
+        $last_name = $request->last_name;
+        $address1 = $request->address1;
+        $address2 = $request->address2;
+        $city = $request->city;
+        $district = $request->district;
+        $state = $request->state;
+        $country = $request->country;
+        $phone = $request->phone;
+        $user_access_token  = $request->token ? $request->token : null;
        
-    } 
+        $UpdateProfile = User::where('id', $user_id)->first();
 
-  
+      
+            $update = User::where('id', $user_id)->update([
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'address1' => $address1,
+                    'address2' => $address2,
+                    'city' => $city,
+                    'district' => $district,
+                    'state' => $state,
+                    'country' => $country,
+                    'phone' => $phone
+            ]);
+            
+          
+                return response()->json(['status' => 1, 'message'=> "Updated user details successfully"]);
+            }
+       
 }
