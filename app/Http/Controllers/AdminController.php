@@ -49,39 +49,77 @@ class AdminController extends Controller
 
             return response()->json(['response_code' => 0, 'message' => $msg]);
         }
-        $user_id = $request->user_id;
-        $first_name = $request->first_name;
-        $last_name = $request->last_name;
-        $address1 = $request->address1;
-        $address2 = $request->address2;
-        $city = $request->city;
-        $district = $request->district ? $request->district:null;
-        $state = $request->state ? $request->state:null;
-        $country = $request->country ? $request->country:null;
-        $phone = $request->phone ? $request->phone:null;
-        $pincode = $request->pincode ? $request->pincode:null;
-        $user_access_token  = $request->token ? $request->token : null;
-        
-       
-        $UpdateProfile = User::where('id', $user_id)->first();
 
-      
-            $update = User::where('id', $user_id)->update([
-                    'first_name' => $first_name,
-                    'last_name' => $last_name,
-                    'address1' => $address1,
-                    'address2' => $address2,
-                    'city' => $city,
-                    'district' => $district,
-                    'state' => $state,
-                    'country' => $country,
-                    'phone' => $phone,
-                    'pincode' => $pincode,
-                    'is_active' => '1'
-            ]);
+        $user_id = $request->user_id;
+
+        $UserCheck = User::select('*')->where('id', $user_id)->first();
+
+        if($UserCheck != null) {
+            $first_name = $request->first_name ? $request->first_name:$UserCheck[0]->first_name;
+            $last_name = $request->last_name  ? $request->last_name:$UserCheck[0]->last_name;
+            $address1 = $request->address1  ? $request->address1:$UserCheck[0]->address1;
+            $address2 = $request->address2  ? $request->address2:$UserCheck[0]->address2;
+            $city = $request->city  ? $request->city:$UserCheck[0]->city;
+            $district = $request->district ? $request->district:$UserCheck[0]->district;
+            $state = $request->state ? $request->state:$UserCheck[0]->state;
+            $country = $request->country ? $request->country:$UserCheck[0]->country;
+            $phone = $request->phone ? $request->phone:$UserCheck[0]->phone;
+            $pincode = $request->pincode ? $request->pincode:$UserCheck[0]->phone;
+            $user_access_token  = $request->token;
             
-          
-                return response()->json(['status' => 1, 'message'=> "Updated user details successfully"]);
-            }
-       
+            $UpdateProfile = User::where('id', $user_id)->first();
+            $update = User::where('id', $user_id)->update([
+                        'first_name' => $first_name,
+                        'last_name' => $last_name,
+                        'address1' => $address1,
+                        'address2' => $address2,
+                        'city' => $city,
+                        'district' => $district,
+                        'state' => $state,
+                        'country' => $country,
+                        'phone' => $phone,
+                        'pincode' => $pincode,
+                        'is_active' => '1'
+                ]);
+                
+              
+                    return response()->json(['status' => 1, 'message'=> "Updated user details successfully"]);
+                }else {
+                    return response()->json(['status' => false, 'message' => "No such user exists"]);
+                }
+        }
+        
+     // Get users list
+     public function GetUsers(){
+
+         $result = User::select('*')->get();
+
+         if($result == true){
+            return response()->json(['status' => true, 'message' => "Data retreived successfully", 'data' => $result]);
+         } else {
+            return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
+         }
+     }  
+
+     /// Get user by Id
+     public function GetUserbyId(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            'user_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            $msg = $validator->messages()->first();
+
+            return response()->json(['response_code' => 0, 'message' => $msg]);
+        }
+
+        $user_id = $request->user_id;
+        $result = User::select('*')->where('id', $user_id)->first();
+        if($result == true){
+            return response()->json(['status' => true, 'message' => "Data retreived successfully", 'data' => $result]);
+        }else {
+            return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
+        }
+     }
 }

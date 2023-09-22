@@ -25,6 +25,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
     });
 Route::post('update_profile',[AdminController::class, 'updateProfile']);
+Route::post('get_users', [AdminController::class, 'GetUsers']);
+Route::post('get_user_byId', [AdminController::class, 'GetUserbyId']);
 
 //Levels
 Route::post('insert_level', [LevelController::class, 'InsertLevel']);
