@@ -55,11 +55,13 @@ class AdminController extends Controller
         $address1 = $request->address1;
         $address2 = $request->address2;
         $city = $request->city;
-        $district = $request->district;
-        $state = $request->state;
-        $country = $request->country;
-        $phone = $request->phone;
+        $district = $request->district ? $request->district:null;
+        $state = $request->state ? $request->state:null;
+        $country = $request->country ? $request->country:null;
+        $phone = $request->phone ? $request->phone:null;
+        $pincode = $request->pincode ? $request->pincode:null;
         $user_access_token  = $request->token ? $request->token : null;
+        
        
         $UpdateProfile = User::where('id', $user_id)->first();
 
@@ -73,7 +75,9 @@ class AdminController extends Controller
                     'district' => $district,
                     'state' => $state,
                     'country' => $country,
-                    'phone' => $phone
+                    'phone' => $phone,
+                    'pincode' => $pincode,
+                    'is_active' => '1'
             ]);
             
           

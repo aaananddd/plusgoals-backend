@@ -90,33 +90,41 @@ class TaskController extends Controller
         }
 
         $task_name = $request->task_name;
-        $task_desc = $request->task_desc;
-        $updated_by = $request->updated_by;
-        $task_level = $request->task_level ? $request->task_level:null;
-        $is_active = 1;
-        $time_limit = $request->time_limit ? $request->time_limit:null;
-        $task_date = $request->task_date ? $request->task_date:null;
-        $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
-        $save_template = $request->save_template ? $request->save_template:null;
-        $token = $request->token;
 
-        $result = Task::where('task_name', $task_name)->update([
-            'task_name' => $task_name,
-            'task_desc' => $task_desc,
-            'updated_by' => $updated_by,
-            'task_level' => $task_level,
-            'is_active' => $is_active,
-            'time_limit' => $time_limit,
-            'task_date' => $task_date,
-            'difficulty_level' => $difficulty_level,
-            'save_template' => $save_template,
-        ]);
-
-        if($result == true){
-            return response()->json(['status' => true, 'message' => "Task added successfully"]);
-        } else {
-            return response()->json(['status' => false, ' message' => "Failed to add task"]);
+        $TaskCheck = Task::select('*')->where('task_name', $task_name)->first();
+       
+        if($TaskCheck != null){
+            $task_desc = $request->task_desc ? $request->task_desc:$TaskCheck[0]->task_desc;
+            $updated_by = $request->updated_by;
+            $task_level = $request->task_level ? $request->task_level:$TaskCheck[0]->task_level;
+            $is_active = 1;
+            $time_limit = $request->time_limit ? $request->time_limit:$TaskCheck[0]->time_limit;
+            $task_date = $request->task_date ? $request->task_date:$TaskCheck[0]->task_date;
+            $difficulty_level = $request->difficulty_level ? $request->difficulty_level:$TaskCheck[0]->difficulty_level;
+            $save_template = $request->save_template ? $request->save_template:$TaskCheck[0]->save_template;
+            $token = $request->token;
+    
+            $result = Task::where('task_name', $task_name)->update([
+                'task_name' => $task_name,
+                'task_desc' => $task_desc,
+                'updated_by' => $updated_by,
+                'task_level' => $task_level,
+                'is_active' => $is_active,
+                'time_limit' => $time_limit,
+                'task_date' => $task_date,
+                'difficulty_level' => $difficulty_level,
+                'save_template' => $save_template,
+            ]);
+    
+            if($result == true){
+                return response()->json(['status' => true, 'message' => "Task added successfully"]);
+            } else {
+                return response()->json(['status' => false, ' message' => "Failed to add task"]);
+            }
+        } else{
+            return response()->json(['status' => false, 'message' => "No such task found"]);
         }
+        
     }
 
     //Get tasks

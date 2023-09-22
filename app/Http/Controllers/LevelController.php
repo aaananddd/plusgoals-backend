@@ -60,7 +60,9 @@ class LevelController extends Controller
                 'easy_task' => $easyTask,
                 'medium_task' => $mediumTask,
                 'difficult_task' => $difficultTask,
-                'updated_by' => $updatedBy
+                'updated_by' => $updatedBy,
+                'created_date' => date('Y-m-d h:m:s'),
+              //  'updated_date' => date('Y-m-d h:m:s')
             ]);
 
              if($result == true){
@@ -86,28 +88,44 @@ class LevelController extends Controller
         if($validator->fails()){
             return $this->sendError($validator->errors(), 'Validation Error', 422);
         }
-       // $level_id = $request->id;
+        
         $level_name = $request->level_name;
-        $levelMode = $request->mode;
-        $easyTask = $request->easyTask ? $request->easyTask:null;
-        $mediumTask = $request->mediumTask ? $request->mediumTask:null;
-        $difficultTask = $request->difficultTask ? $request->difficultTask:null;
+        $values = Level::where('level_name', $level_name)->get();
+        $OldMode = $values[0]->mode;
+        $OldEasy_task = $values[0]->easy_task;
+        $OldMedium_task = $values[0]->medium_task;
+        $OldDifficult_task = $values[0]->difficult_task;
+       
+        // $level_id = $request->id; 
+        $levelMode = $request->mode ? $request->mode:$OldMode;
+        $easyTask = $request->easyTask ? $request->easyTask:$OldEasy_task;
+        $mediumTask = $request->mediumTask ? $request->mediumTask:$OldMedium_task;
+        $difficultTask = $request->difficultTask ? $request->difficultTask:$OldDifficult_task;
         $updatedBy = $request->updatedBy;
         $token = $request->token;
 
         if($updatedBy == '1'){
-            $result = Level::where('level_name', $level_name)->update([
-                'mode' => $levelMode,
-                'updated_by' => $updatedBy
-            ]);
+            $LevelCheck = Level::select('*')->where('level_name', $level_name)->get();
 
-         if($result == true){
-           return response()->json(['status'=> "true", 'message' => "Updated successfully"]);
-         } else {
-           return response()->json(['status'=> "false", 'message' => "Failed to update"]);
-         }
-        }
-       else {
+            if($LevelCheck != null){
+                $result = Level::where('level_name', $level_name)->update([
+                    'mode' => $levelMode,
+                    'easy_task' => $easyTask,
+                    'medium_task' => $mediumTask,
+                    'difficult_task' => $difficultTask,
+                    'updated_by' => $updatedBy,
+                  //  'updated_at' => date('Y-m-d h:m:s')
+                ]);
+    
+             if($result == true){
+               return response()->json(['status'=> "true", 'message' => "Updated successfully"]);
+             } else {
+               return response()->json(['status'=> "false", 'message' => "Failed to update"]);
+             }
+            } else {
+                return response()->json(['status' => false, 'message'=> "No such level found"]);
+            }   
+        } else {
         return response()->json(['status' => "failed", 'message' => "Access denied"]);
        }
        
@@ -131,14 +149,19 @@ class LevelController extends Controller
         $token = $request->token;
 
         if($role == '1'){
-            $result = Level::where('level_name', $level_name)->delete();
-
-            if($result == 1){
-                return response()->json(['status' => "true", 'message'=> "Deleted level successfully"]);
+            $LevelCheck = Level::select('*')->where('level_name', $level_name)->first();
+          
+             if($LevelCheck != null) {
+                $result = Level::where('level_name', $level_name)->delete();
+                if($result == true){
+                    return response()->json(['status' => "true", 'message'=> "Deleted level successfully"]);
+                } else {
+                    return response()->json(['status' =>"false", 'message' => "Failed to delete level"]);
+                }
+             } else {
+                return response()->json(['status' => false, 'message' => "No such level found"]);
+             }
             } else {
-                return response()->json(['status' =>"false", 'message' => "Failed to delete level"]);
-            }
-        } else {
             return response()->json(['status' => "failed", 'message' => "Access denied"]);
         }
     }
@@ -147,7 +170,7 @@ class LevelController extends Controller
     public function GetLevels(){
            
         $result = Level::select('*')->get();
-
+       
         if($result == true){
             return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
         } else {
@@ -157,7 +180,7 @@ class LevelController extends Controller
 
     //Get level by Id
     public function GetLevelbyId(Request $request){
-        $validator = Validator::make($result->all(),[
+        $validator = Validator::make($request->all(),[
             'level_id' => 'required'
         ]);
 
