@@ -122,4 +122,24 @@ class AdminController extends Controller
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
         }
      }
+        //Delete a user
+     public function DeleteUser(Request $request){
+        $validator = Validator::make($request->all(),[
+            'user_id' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+             $msg = $validator->messages()->first();
+    
+            return response()->json(['response_code' => 0, 'message' => $msg]);
+        }
+        $user_id = $request->user_id;
+        $result = User::select('*')->where('id', $user_id)->delete();
+        if($result == true){
+            return response()->json(['status' => true, 'message' => "Deleted the user successfully"]);
+        } else {
+            return response()->json(['status' => false, 'message' => "Failed to delete the user or no such user exists"]);
+        }
+    }
+     
 }
