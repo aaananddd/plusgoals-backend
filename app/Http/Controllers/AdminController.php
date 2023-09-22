@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Support\Facades\Auth; 
@@ -142,4 +143,89 @@ class AdminController extends Controller
         }
     }
      
+
+    //Roles
+    public function InsertRoles(Request $request){
+        $validator = Validator::make($request->all(),[
+            'role_name' => 'required',
+            'created_by' => 'required'
+        ]);
+    
+        if ($validator->fails()) {
+             $msg = $validator->messages()->first();
+    
+            return response()->json(['response_code' => 0, 'message' => $msg]);
+        }
+        $role_name = $request->role_name;
+        $created_by = $request->created_by;
+        if($created_by == 1) {
+            $RoleCheck = Role::select('*')->where('role_name', $role_name)->first();
+            if($RoleCheck == null){
+               $role_desc = $request->role_desc;
+               $is_active = 1;
+
+            $result = Role::insert([
+                'role_name' => $role_name,
+                'role_description' => $role_desc,
+                'is_active' => $is_active,
+                'created_by' => $created_by
+            ]);
+
+            if($result == true) {
+                return response()->json(['status' => true, 'message' => "Role created succesfully", 'data' => $result]);
+            }else {
+                return response()->json(['status' => false, 'message' => "Failed to create role"]);
+            }
+            }else {
+                return response()->json(['status' => false, 'message' => "Role already exists"]);
+            }
+        }else {
+            return response()->json(['status' => false, 'message' => "Access denied"]);
+        }
+        
+    }
+
+    //Update Roles
+    public function UpdateRole(Request $request){
+        $validator = Validator::make($request->all(),[
+            'role_id' => 'required',
+            'created_by' => 'required'
+        ]);
+    
+        if ($validator->fails()) {
+             $msg = $validator->messages()->first();
+    
+            return response()->json(['response_code' => 0, 'message' => $msg]);
+        }
+
+        $role_id = $request->role_id;
+        $OldRole = Role::select('*')->where('role_id', $role_id)->first();
+        if($OldRole != null){
+
+            $OldRolename = $OldRole[0]->role_name;
+            $OldRoledesc = $OldRole[0]->role_description;
+            $Oldis_active = $OldRole[0]->is_active;
+            $Oldcreated_by = $OldRole[0]->created_by;
+
+            $role_name = $request->role_name ? $request->role_name:$OldRolename;
+            $role_desc =  $request->role_desc ? $request->role_desc:$OldRoledesc;
+            $is_active = $request->is_active ? $request->is_active:$Oldis_active;
+            $created_by = $request->created_by ? $request->created_by:$Oldcreated_by;
+
+            $result = Role::where('role_id', $role_id)->update([
+                'role_name' => $role_name,
+                'role_description' => $role_desc,
+                'is_active' => $is_active,
+                'created_by' => $created_by
+            ]);
+            if($result == true){
+                return response()->json(['status' => true, 'message' => "Updated role successfully"]);
+            }else {
+                return response()->json(['status' => false, 'message' => "Failed to update role"]);
+            }
+        } else {
+            return response()->json(['status' => false, 'message' => "No such role found"]);
+        }
+       
+    }
 }
