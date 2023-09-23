@@ -117,9 +117,9 @@ class TaskController extends Controller
             ]);
     
             if($result == true){
-                return response()->json(['status' => true, 'message' => "Task added successfully"]);
+                return response()->json(['status' => true, 'message' => "Task updated successfully"]);
             } else {
-                return response()->json(['status' => false, ' message' => "Failed to add task"]);
+                return response()->json(['status' => false, ' message' => "Failed to update task"]);
             }
         } else{
             return response()->json(['status' => false, 'message' => "No such task found"]);
