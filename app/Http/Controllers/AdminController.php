@@ -168,11 +168,12 @@ class AdminController extends Controller
                 'role_name' => $role_name,
                 'role_description' => $role_desc,
                 'is_active' => $is_active,
-                'created_by' => $created_by
+                'created_by' => $created_by,
+                'created_at' => date('Y-m-d h:m:s')
             ]);
 
             if($result == true) {
-                return response()->json(['status' => true, 'message' => "Role created succesfully", 'data' => $result]);
+                return response()->json(['status' => true, 'message' => "Role created succesfully"]);
             }else {
                 return response()->json(['status' => false, 'message' => "Failed to create role"]);
             }
@@ -197,35 +198,65 @@ class AdminController extends Controller
     
             return response()->json(['response_code' => 0, 'message' => $msg]);
         }
+        $created_by = $request->created_by;
+        if($created_by == 1){
+            $role_id = $request->role_id;
+            $OldRole = Role::select('*')->where('role_id', $role_id)->first();
+            if($OldRole != null){
+    
+                $OldRolename = $OldRole[0]->role_name;
+                $OldRoledesc = $OldRole[0]->role_description;
+                $Oldis_active = $OldRole[0]->is_active;
+    
+                $role_name = $request->role_name ? $request->role_name:$OldRolename;
+                $role_desc =  $request->role_desc ? $request->role_desc:$OldRoledesc;
+                $is_active = $request->is_active ? $request->is_active:$Oldis_active;
+    
+                $result = Role::where('role_id', $role_id)->update([
+                    'role_name' => $role_name,
+                    'role_description' => $role_desc,
+                    'is_active' => $is_active,
+                    'created_by' => $created_by
+                ]);
+                if($result == true){
+                    return response()->json(['status' => true, 'message' => "Updated role successfully"]);
+                }else {
+                    return response()->json(['status' => false, 'message' => "Failed to update role"]);
+                }
+            } else {
+                return response()->json(['status' => false, 'message' => "No such role found"]);
+            }   
+        } else {
+            return response()->json(['status' => false, 'message' => "Access denied"]);
+        }
+        
+    }
 
+    //Delete role
+    public function DeleteRole(Request $request){
+        $validator = Validator::make($request->all(),[
+            'role_id' => 'required',
+            'created_by' => 'required'
+        ]);
+    
+        if ($validator->fails()) {
+             $msg = $validator->messages()->first();
+    
+            return response()->json(['response_code' => 0, 'message' => $msg]);
+        }
+        
+        $created_by = $request->created_by;
         $role_id = $request->role_id;
-        $OldRole = Role::select('*')->where('role_id', $role_id)->first();
-        if($OldRole != null){
 
-            $OldRolename = $OldRole[0]->role_name;
-            $OldRoledesc = $OldRole[0]->role_description;
-            $Oldis_active = $OldRole[0]->is_active;
-            $Oldcreated_by = $OldRole[0]->created_by;
-
-            $role_name = $request->role_name ? $request->role_name:$OldRolename;
-            $role_desc =  $request->role_desc ? $request->role_desc:$OldRoledesc;
-            $is_active = $request->is_active ? $request->is_active:$Oldis_active;
-            $created_by = $request->created_by ? $request->created_by:$Oldcreated_by;
-
-            $result = Role::where('role_id', $role_id)->update([
-                'role_name' => $role_name,
-                'role_description' => $role_desc,
-                'is_active' => $is_active,
-                'created_by' => $created_by
-            ]);
+        if($created_by == '1'){
+            $result = Role::select('*')->where('role_id', $role_id)->delete();
             if($result == true){
-                return response()->json(['status' => true, 'message' => "Updated role successfully"]);
-            }else {
-                return response()->json(['status' => false, 'message' => "Failed to update role"]);
+                return response()->json(['status'=>true, 'message'=>"Role deleted successfully"]);
+            } else{
+                return response()->json(['status'=>false, 'message'=>"Failed to delete"]);
             }
         } else {
-            return response()->json(['status' => false, 'message' => "No such role found"]);
+            return response()->json(['status'=>false, 'message'=>"Access denied"]);
         }
-       
     }
 }

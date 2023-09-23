@@ -29,6 +29,11 @@ Route::post('get_users', [AdminController::class, 'GetUsers']);
 Route::post('get_user_byId', [AdminController::class, 'GetUserbyId']);
 Route::post('delete_user', [AdminController::class, 'DeleteUser']);
 
+//Roles
+Route::post('insert_role', [AdminController::class, 'InsertRoles']);
+Route::post('update_role', [AdminController::class, 'UpdateRole']);
+Route::post('delete_role', [AdminController::class, 'DeleteRole']);
+
 //Levels
 Route::post('insert_level', [LevelController::class, 'InsertLevel']);
 Route::post('update_level', [LevelController::class, 'UpdateLevel']);
