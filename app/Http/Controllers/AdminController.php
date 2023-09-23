@@ -48,7 +48,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
             $msg = $validator->messages()->first();
 
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
 
         $user_id = $request->user_id;
@@ -84,7 +84,7 @@ class AdminController extends Controller
                 ]);
                 
               
-                    return response()->json(['status' => 1, 'message'=> "Updated user details successfully"]);
+                    return response()->json(['status' => true, 'message'=> "Updated user details successfully"]);
                 }else {
                     return response()->json(['status' => false, 'message' => "No such user exists"]);
                 }
@@ -112,7 +112,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
             $msg = $validator->messages()->first();
 
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
 
         $user_id = $request->user_id;
@@ -132,7 +132,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
              $msg = $validator->messages()->first();
     
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
         $user_id = $request->user_id;
         $result = User::select('*')->where('id', $user_id)->delete();
@@ -154,7 +154,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
              $msg = $validator->messages()->first();
     
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
         $role_name = $request->role_name;
         $created_by = $request->created_by;
@@ -196,26 +196,26 @@ class AdminController extends Controller
         if ($validator->fails()) {
              $msg = $validator->messages()->first();
     
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
         $created_by = $request->created_by;
         if($created_by == 1){
             $role_id = $request->role_id;
-            $OldRole = Role::select('*')->where('role_id', $role_id)->first();
+            $OldRole = Role::select('*')->where('role_id', $role_id)->get();
             if($OldRole != null){
-    
+  
                 $OldRolename = $OldRole[0]->role_name;
                 $OldRoledesc = $OldRole[0]->role_description;
                 $Oldis_active = $OldRole[0]->is_active;
     
                 $role_name = $request->role_name ? $request->role_name:$OldRolename;
                 $role_desc =  $request->role_desc ? $request->role_desc:$OldRoledesc;
-                $is_active = $request->is_active ? $request->is_active:$Oldis_active;
+               // $is_active = $request->is_active ? $request->is_active:$Oldis_active;
     
                 $result = Role::where('role_id', $role_id)->update([
                     'role_name' => $role_name,
                     'role_description' => $role_desc,
-                    'is_active' => $is_active,
+                  //  'is_active' => $is_active,
                     'created_by' => $created_by
                 ]);
                 if($result == true){
@@ -242,7 +242,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
              $msg = $validator->messages()->first();
     
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
         
         $created_by = $request->created_by;
@@ -258,5 +258,37 @@ class AdminController extends Controller
         } else {
             return response()->json(['status'=>false, 'message'=>"Access denied"]);
         }
+    }
+
+    //Ativate and deactivate role
+    public function ActivateRole(Request $request){
+        $validator = Validator::make($request->all(),[
+            'role_id' => 'required',
+            'created_by' => 'required',
+            'is_active' => 'required'
+        ]);
+    
+        if ($validator->fails()) {
+             $msg = $validator->messages()->first();
+    
+            return response()->json(['response_code' => false, 'message' => $msg]);
+        }
+
+        $role_id = $request->role_id;
+        $created_by = $request->created_by;
+        $is_active = $request->is_active;
+       
+        if($created_by == 1){
+            $result = Role::where('role_id', $role_id)->update([ 'is_active' => $is_active]);
+            $resultData = Role::select('*')->where('role_id', $role_id)->first();
+            if($resultData->is_active == '1') {
+                return response()->json(['status' => true, 'message' => "Role activated"]);
+            } else {
+                return response()->json(['status' => false, 'message' => "Role deactivated"]);
+            }    
+        } else {
+            return response()->json(['status' => false, 'message' => "Access denied"]);
+        }
+        
     }
 }

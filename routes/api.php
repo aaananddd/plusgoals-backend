@@ -33,6 +33,7 @@ Route::post('delete_user', [AdminController::class, 'DeleteUser']);
 Route::post('insert_role', [AdminController::class, 'InsertRoles']);
 Route::post('update_role', [AdminController::class, 'UpdateRole']);
 Route::post('delete_role', [AdminController::class, 'DeleteRole']);
+Route::post('activate_role', [AdminController::class, 'ActivateRole']);
 
 //Levels
 Route::post('insert_level', [LevelController::class, 'InsertLevel']);

@@ -41,7 +41,7 @@ class TaskController extends Controller
 
         if($validator->fails()){
             $msg = $validator->messages()->first();
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
 
         $task_name = $request->task_name;
@@ -86,7 +86,7 @@ class TaskController extends Controller
 
         if($validator->fails()){
             $msg = $validator->messages()->first();
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
 
         $task_name = $request->task_name;
@@ -147,7 +147,7 @@ class TaskController extends Controller
 
         if($validator->fails()){
             $msg = $validator->messages()->first();
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
         
         $task_id = $request->task_id;
@@ -168,7 +168,7 @@ class TaskController extends Controller
 
         if($validator->fails()){
             $msg = $validator->messages()->first();
-            return response()->json(['response_code' => 0, 'message' => $msg]);
+            return response()->json(['response_code' => false, 'message' => $msg]);
         }
 
         $result = Task::where('task_name', $task_name)->delete();

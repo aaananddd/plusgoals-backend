@@ -66,12 +66,12 @@ class LevelController extends Controller
             ]);
 
              if($result == true){
-                return response()->json(['status' => 'true', 'message' => "Level added succesfully"]);
+                return response()->json(['status' => true, 'message' => "Level added succesfully"]);
              }else{
-                return response()->json(['status' => 'false', 'message' => "Failed to add level"]);
+                return response()->json(['status' => false, 'message' => "Failed to add level"]);
              }
         } else {
-            return response()->json(['status' => "failed", 'message' => "Access denied"]);
+            return response()->json(['status' => false , 'message' => "Access denied"]);
         }
         
     }
@@ -118,15 +118,15 @@ class LevelController extends Controller
                 ]);
     
              if($result == true){
-               return response()->json(['status'=> "true", 'message' => "Updated successfully"]);
+               return response()->json(['status'=> true, 'message' => "Updated successfully"]);
              } else {
-               return response()->json(['status'=> "false", 'message' => "Failed to update"]);
+               return response()->json(['status'=> false, 'message' => "Failed to update"]);
              }
             } else {
                 return response()->json(['status' => false, 'message'=> "No such level found"]);
             }   
         } else {
-        return response()->json(['status' => "failed", 'message' => "Access denied"]);
+        return response()->json(['status' => false, 'message' => "Access denied"]);
        }
        
     }
@@ -154,15 +154,15 @@ class LevelController extends Controller
              if($LevelCheck != null) {
                 $result = Level::where('level_name', $level_name)->delete();
                 if($result == true){
-                    return response()->json(['status' => "true", 'message'=> "Deleted level successfully"]);
+                    return response()->json(['status' => true, 'message'=> "Deleted level successfully"]);
                 } else {
-                    return response()->json(['status' =>"false", 'message' => "Failed to delete level"]);
+                    return response()->json(['status' => false, 'message' => "Failed to delete level"]);
                 }
              } else {
                 return response()->json(['status' => false, 'message' => "No such level found"]);
              }
             } else {
-            return response()->json(['status' => "failed", 'message' => "Access denied"]);
+            return response()->json(['status' => false, 'message' => "Access denied"]);
         }
     }
 
