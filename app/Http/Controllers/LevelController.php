@@ -50,17 +50,17 @@ class LevelController extends Controller
         $easyTask = $request->easyTask ? $request->easyTask:null;
         $mediumTask = $request->mediumTask ? $request->mediumTask:null;
         $difficultTask = $request->difficultTask ? $request->difficultTask:null;
-        $updatedBy = $request->updatedBy;
+        $role_id = $request->role_id;
         $token = $request->token;
 
-        if($updatedBy == '1'){
+        if($role_id == '1'){
             $result = Level::insert([
                 'level_name' => $levelName,
                 'mode' => $levelMode,
                 'easy_task' => $easyTask,
                 'medium_task' => $mediumTask,
                 'difficult_task' => $difficultTask,
-                'updated_by' => $updatedBy,
+                'updated_by' => $role_id,
                 'created_date' => date('Y-m-d h:m:s'),
               //  'updated_date' => date('Y-m-d h:m:s')
             ]);
@@ -101,10 +101,10 @@ class LevelController extends Controller
         $easyTask = $request->easyTask ? $request->easyTask:$OldEasy_task;
         $mediumTask = $request->mediumTask ? $request->mediumTask:$OldMedium_task;
         $difficultTask = $request->difficultTask ? $request->difficultTask:$OldDifficult_task;
-        $updatedBy = $request->updatedBy;
+        $role_id = $request->role_id;
         $token = $request->token;
 
-        if($updatedBy == '1'){
+        if($role_id == '1'){
             $LevelCheck = Level::select('*')->where('level_name', $level_name)->get();
 
             if($LevelCheck != null){
@@ -113,7 +113,7 @@ class LevelController extends Controller
                     'easy_task' => $easyTask,
                     'medium_task' => $mediumTask,
                     'difficult_task' => $difficultTask,
-                    'updated_by' => $updatedBy,
+                    'updated_by' => $role_id,
                   //  'updated_at' => date('Y-m-d h:m:s')
                 ]);
     
