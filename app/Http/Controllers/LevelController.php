@@ -137,7 +137,7 @@ class LevelController extends Controller
         $validator = Validator::make($request->all(), [
             'level_name' => 'required',
             'role_id' => 'required',
-            'token' => 'required'
+         //   'token' => 'required'
         ]);
    
         if($validator->fails()){
@@ -146,7 +146,7 @@ class LevelController extends Controller
 
         $level_name = $request->level_name;
         $role = $request->role_id;
-        $token = $request->token;
+       // $token = $request->token;
 
         if($role == '1'){
             $LevelCheck = Level::select('*')->where('level_name', $level_name)->first();
