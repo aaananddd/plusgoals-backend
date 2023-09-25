@@ -50,49 +50,59 @@ class AdminController extends Controller
 
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
-
         $user_id = $request->user_id;
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $user_id)->first();
+        $DB_token = $TokenCheck->remember_token;
+        if($DB_token == $user_access_token){
+            $UserCheck = User::select('*')->where('id', $user_id)->first();
 
-        $UserCheck = User::select('*')->where('id', $user_id)->first();
-
-        if($UserCheck != null) {
-            $first_name = $request->first_name ? $request->first_name:$UserCheck[0]->first_name;
-            $last_name = $request->last_name  ? $request->last_name:$UserCheck[0]->last_name;
-            $address1 = $request->address1  ? $request->address1:$UserCheck[0]->address1;
-            $address2 = $request->address2  ? $request->address2:$UserCheck[0]->address2;
-            $city = $request->city  ? $request->city:$UserCheck[0]->city;
-            $district = $request->district ? $request->district:$UserCheck[0]->district;
-            $state = $request->state ? $request->state:$UserCheck[0]->state;
-            $country = $request->country ? $request->country:$UserCheck[0]->country;
-            $phone = $request->phone ? $request->phone:$UserCheck[0]->phone;
-            $pincode = $request->pincode ? $request->pincode:$UserCheck[0]->phone;
-            $user_access_token  = $request->token;
-            
-            $UpdateProfile = User::where('id', $user_id)->first();
-            $update = User::where('id', $user_id)->update([
-                        'first_name' => $first_name,
-                        'last_name' => $last_name,
-                        'address1' => $address1,
-                        'address2' => $address2,
-                        'city' => $city,
-                        'district' => $district,
-                        'state' => $state,
-                        'country' => $country,
-                        'phone' => $phone,
-                        'pincode' => $pincode,
-                        'is_active' => '1'
-                ]);
+            if($UserCheck != null) {
+                $first_name = $request->first_name ? $request->first_name:$UserCheck[0]->first_name;
+                $last_name = $request->last_name  ? $request->last_name:$UserCheck[0]->last_name;
+                $address1 = $request->address1  ? $request->address1:$UserCheck[0]->address1;
+                $address2 = $request->address2  ? $request->address2:$UserCheck[0]->address2;
+                $city = $request->city  ? $request->city:$UserCheck[0]->city;
+                $district = $request->district ? $request->district:$UserCheck[0]->district;
+                $state = $request->state ? $request->state:$UserCheck[0]->state;
+                $country = $request->country ? $request->country:$UserCheck[0]->country;
+                $phone = $request->phone ? $request->phone:$UserCheck[0]->phone;
+                $pincode = $request->pincode ? $request->pincode:$UserCheck[0]->phone;
                 
-              
-                    return response()->json(['status' => true, 'message'=> "Updated user details successfully"]);
-                }else {
-                    return response()->json(['status' => false, 'message' => "No such user exists"]);
-                }
+                
+                $UpdateProfile = User::where('id', $user_id)->first();
+                $update = User::where('id', $user_id)->update([
+                            'first_name' => $first_name,
+                            'last_name' => $last_name,
+                            'address1' => $address1,
+                            'address2' => $address2,
+                            'city' => $city,
+                            'district' => $district,
+                            'state' => $state,
+                            'country' => $country,
+                            'phone' => $phone,
+                            'pincode' => $pincode,
+                            'is_active' => '1'
+                    ]);
+                    
+                  
+                        return response()->json(['status' => true, 'message'=> "Updated user details successfully"]);
+                    }else {
+                        return response()->json(['status' => false, 'message' => "No such user exists"]);
+                    }
+        } else {
+            return response()->json(['status'=>false,'message'=>'Invalid token']);
+        }
+       
         }
         
      // Get users list
-     public function GetUsers(){
-
+     public function GetUsers(Request $request){
+        $user_id = $request->user_id;
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $user_id)->first();
+        $DB_token = $TokenCheck->remember_token;
+        if($DB_token == $user_access_token){
          $result = User::select('*')->get();
 
          if($result == true){
@@ -100,7 +110,10 @@ class AdminController extends Controller
          } else {
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
          }
-     }  
+       }else {
+          return response()->json(['status'=>false,'message'=>'Invalid token']);
+       }  
+     }
 
      /// Get user by Id
      public function GetUserbyId(Request $request){
@@ -116,13 +129,21 @@ class AdminController extends Controller
         }
 
         $user_id = $request->user_id;
-        $result = User::select('*')->where('id', $user_id)->first();
-        if($result == true){
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $user_id)->first();
+        $DB_token = $TokenCheck->remember_token;
+        if($DB_token == $user_access_token){
+         $result = User::select('*')->where('id', $user_id)->first();
+         if($result == true){
             return response()->json(['status' => true, 'message' => "Data retreived successfully", 'data' => $result]);
-        }else {
+         }else {
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
-        }
-     }
+         }
+       }else {
+         return response()->json(['status'=>false,'message'=>'Invalid token']);
+       }
+    }
+
         //Delete a user
      public function DeleteUser(Request $request){
         $validator = Validator::make($request->all(),[
@@ -135,14 +156,20 @@ class AdminController extends Controller
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
         $user_id = $request->user_id;
-        $result = User::select('*')->where('id', $user_id)->delete();
-        if($result == true){
-            return response()->json(['status' => true, 'message' => "Deleted the user successfully"]);
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $user_id)->first();
+        $DB_token = $TokenCheck->remember_token;
+        if($DB_token == $user_access_token){
+            $result = User::select('*')->where('id', $user_id)->delete();
+             if($result == true){
+                return response()->json(['status' => true, 'message' => "Deleted the user successfully"]);
+              } else {
+                 return response()->json(['status' => false, 'message' => "Failed to delete the user or no such user exists"]);
+              }   
         } else {
-            return response()->json(['status' => false, 'message' => "Failed to delete the user or no such user exists"]);
+            return response()->json(['status'=>false,'message'=>'Invalid token']);
         }
     }
-     
 
     //Roles
     public function InsertRoles(Request $request){
@@ -156,13 +183,18 @@ class AdminController extends Controller
     
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
-        $role_name = $request->role_name;
-        $created_by = $request->created_by;
-        if($created_by == 1) {
-            $RoleCheck = Role::select('*')->where('role_name', $role_name)->first();
-            if($RoleCheck == null){
-               $role_desc = $request->role_desc;
-               $is_active = 1;
+        $user_id = $request->created_by;
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $user_id)->first();
+        $DB_token = $TokenCheck->remember_token;
+        if($DB_token == $user_access_token){
+            $role_name = $request->role_name;
+            $created_by = $request->created_by;
+            if($created_by == 1) {
+                 $RoleCheck = Role::select('*')->where('role_name', $role_name)->first();
+                     if($RoleCheck == null){
+                         $role_desc = $request->role_desc;
+                         $is_active = 1;
 
             $result = Role::insert([
                 'role_name' => $role_name,
@@ -172,18 +204,20 @@ class AdminController extends Controller
                 'created_at' => date('Y-m-d h:m:s')
             ]);
 
-            if($result == true) {
-                return response()->json(['status' => true, 'message' => "Role created succesfully"]);
-            }else {
-                return response()->json(['status' => false, 'message' => "Failed to create role"]);
-            }
+                  if($result == true) {
+                     return response()->json(['status' => true, 'message' => "Role created succesfully"]);
+                   }else {
+                     return response()->json(['status' => false, 'message' => "Failed to create role"]);
+                 }
             }else {
                 return response()->json(['status' => false, 'message' => "Role already exists"]);
             }
         }else {
             return response()->json(['status' => false, 'message' => "Access denied"]);
         }
-        
+      } else {
+        return response()->json(['status'=>false, 'message'=>'Invalid token']);
+      }
     }
 
     //Update Roles
@@ -198,11 +232,16 @@ class AdminController extends Controller
     
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
+        $user_id = $request->user_id;
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $user_id)->first();
+        $DB_token = $TokenCheck->remember_token;
+        if($DB_token == $user_access_token){
         $created_by = $request->created_by;
-        if($created_by == 1){
-            $role_id = $request->role_id;
-            $OldRole = Role::select('*')->where('role_id', $role_id)->get();
-            if($OldRole != null){
+            if($created_by == 1){
+                 $role_id = $request->role_id;
+                $OldRole = Role::select('*')->where('role_id', $role_id)->get();
+                 if($OldRole != null){
   
                 $OldRolename = $OldRole[0]->role_name;
                 $OldRoledesc = $OldRole[0]->role_description;
@@ -218,18 +257,20 @@ class AdminController extends Controller
                   //  'is_active' => $is_active,
                     'created_by' => $created_by
                 ]);
-                if($result == true){
-                    return response()->json(['status' => true, 'message' => "Updated role successfully"]);
-                }else {
-                    return response()->json(['status' => false, 'message' => "Failed to update role"]);
-                }
+                    if($result == true){
+                         return response()->json(['status' => true, 'message' => "Updated role successfully"]);
+                    }else {
+                         return response()->json(['status' => false, 'message' => "Failed to update role"]);
+                     }
+              } else {
+                 return response()->json(['status' => false, 'message' => "No such role found"]);
+              }   
             } else {
-                return response()->json(['status' => false, 'message' => "No such role found"]);
-            }   
+                 return response()->json(['status' => false, 'message' => "Access denied"]);
+           }
         } else {
-            return response()->json(['status' => false, 'message' => "Access denied"]);
+            return response()->json(['status'=>false,'message'=>'Invalid token']);
         }
-        
     }
 
     //Delete role
@@ -244,19 +285,26 @@ class AdminController extends Controller
     
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
-        
-        $created_by = $request->created_by;
-        $role_id = $request->role_id;
+        $user_id = $request->created_by;
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $user_id)->first();
+        $DB_token = $TokenCheck->remember_token;
+         if($DB_token == $user_access_token){
+            $created_by = $request->created_by;
+            $role_id = $request->role_id;
 
-        if($created_by == '1'){
-            $result = Role::select('*')->where('role_id', $role_id)->delete();
-            if($result == true){
-                return response()->json(['status'=>true, 'message'=>"Role deleted successfully"]);
-            } else{
-                return response()->json(['status'=>false, 'message'=>"Failed to delete"]);
-            }
-        } else {
+            if($created_by == '1'){
+              $result = Role::select('*')->where('role_id', $role_id)->delete();
+                 if($result == true){
+                    return response()->json(['status'=>true, 'message'=>"Role deleted successfully"]);
+                 } else{
+                      return response()->json(['status'=>false, 'message'=>"Failed to delete"]);
+                 }
+          } else {
             return response()->json(['status'=>false, 'message'=>"Access denied"]);
+         }
+        } else {
+            return response()->json(['status' => false, 'message' => "Invalid token"]);
         }
     }
 
@@ -273,22 +321,28 @@ class AdminController extends Controller
     
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
-
-        $role_id = $request->role_id;
-        $created_by = $request->created_by;
-        $is_active = $request->is_active;
+        $user_id = $request->created_by;
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $user_id)->first();
+        $DB_token = $TokenCheck->remember_token;
+         if($DB_token == $user_access_token){
+            $role_id = $request->role_id;
+            $created_by = $request->created_by;
+            $is_active = $request->is_active;
        
-        if($created_by == 1){
-            $result = Role::where('role_id', $role_id)->update([ 'is_active' => $is_active]);
-            $resultData = Role::select('*')->where('role_id', $role_id)->first();
-            if($resultData->is_active == '1') {
-                return response()->json(['status' => true, 'message' => "Role activated"]);
+            if($created_by == 1){
+                $result = Role::where('role_id', $role_id)->update([ 'is_active' => $is_active]);
+                $resultData = Role::select('*')->where('role_id', $role_id)->first();
+                if($resultData->is_active == '1') {
+                     return response()->json(['status' => true, 'message' => "Role activated"]);
+                } else {
+                    return response()->json(['status' => false, 'message' => "Role deactivated"]);
+                }    
             } else {
-                return response()->json(['status' => false, 'message' => "Role deactivated"]);
-            }    
-        } else {
-            return response()->json(['status' => false, 'message' => "Access denied"]);
-        }
-        
+                return response()->json(['status' => false, 'message' => "Access denied"]);
+            }
+         } else {
+             return response()->json(['status' => false, 'message' => "Invalid token"]);
+         }
     }
 }
