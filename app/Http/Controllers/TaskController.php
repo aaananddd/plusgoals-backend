@@ -197,7 +197,9 @@ class TaskController extends Controller
             $msg = $validator->messages()->first();
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
+
         $task_name = $request->task_name;
+
         $result = Task::where('task_name', $task_name)->delete();
 
         if($result == true){
