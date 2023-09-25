@@ -81,7 +81,8 @@ class AuthController extends Controller
         } catch (JWTException $e) {
             return $this->sendError([], $e->getMessage(), 500);
         }
-
+        
+        $result = User::where('email', $request->email)->update(['remember_token' => $token]);
         $success = [
             'token' => $token,
             'email' => $request->email
