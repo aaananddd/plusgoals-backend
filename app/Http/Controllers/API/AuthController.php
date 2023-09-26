@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,13 +37,13 @@ class AuthController extends Controller
     //// Signup
     public function register(Request $request) 
     {
-        $input = $request->only('first_name', 'email', 'password', 'c_password');
+        $input = $request->only('first_name', 'email', 'password');
 
         $validator = Validator::make($input, [
             'first_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'c_password' => 'required|same:password',
+           // 'c_password' => 'required|same:password',
         ]);
    
         if($validator->fails()){
@@ -82,7 +82,7 @@ dd($input);
             return $this->sendError([], $e->getMessage(), 500);
         }
         
-        $result = User::where('email', $request->email)->update(['remember_token' => $token]);
+        User::where('email', $request->email)->update(['remember_token' => $token]);
         $success = [
             'token' => $token,
             'email' => $request->email
