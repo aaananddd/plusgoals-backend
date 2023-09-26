@@ -61,20 +61,25 @@
                 </a>
                 <h5 class="m-0 mt-5 text-center">Login to access your Account </h5>
             </div>           
-            <form action="index.html"
+            <form action="loginCheck" method="post"
                   novalidate>
                 <div class="form-group">
                     <label class="text-label"
                            for="email_2">Email Address:</label>
                     <div class="input-group input-group-merge">
-                        <input id="email_2"
+                        <input id="email"
                                type="email"
                                required=""
+                               name ="email"
                                class="form-control form-control-prepended"
                                placeholder="Enter Your Email Id">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <span class="far fa-envelope"></span>
+                            <span class="far fa-envelope"> </span>
+                                @if ($errors->has('email'))
+                                <span class="far fa-envelope">{{ $errors->first('email') }}</span>
+                                  @endif
+                               
                             </div>
                         </div>
                     </div>
@@ -83,14 +88,19 @@
                     <label class="text-label"
                            for="password_2">Password:</label>
                     <div class="input-group input-group-merge">
-                        <input id="password_2"
+                        <input id="password"
                                type="password"
                                required=""
+                               name="password"
                                class="form-control form-control-prepended"
                                placeholder="Enter your password">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <span class="fa fa-key"></span>
+                                <span class="fa fa-key">
+                                @if ($errors->has('password'))
+                                      <span class="text-danger">{{ $errors->first('password') }}</span>
+                                  @endif
+                                </span>
                             </div>
                         </div>
                     </div>
