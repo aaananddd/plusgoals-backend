@@ -19,7 +19,7 @@ use App\Http\Controllers\API\TaskController;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
+    Route::get('login', 'login');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');

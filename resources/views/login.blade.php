@@ -61,60 +61,7 @@
                 </a>
                 <h5 class="m-0 mt-5 text-center">Login to access your Account </h5>
             </div>           
-            <form action="index.html"
-                  novalidate>
-                <div class="form-group">
-                    <label class="text-label"
-                           for="email_2">Email Address:</label>
-                    <div class="input-group input-group-merge">
-                        <input id="email_2"
-                               type="email"
-                               required=""
-                               class="form-control form-control-prepended"
-                               placeholder="Enter Your Email Id">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <span class="far fa-envelope"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="text-label"
-                           for="password_2">Password:</label>
-                    <div class="input-group input-group-merge">
-                        <input id="password_2"
-                               type="password"
-                               required=""
-                               class="form-control form-control-prepended"
-                               placeholder="Enter your password">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <span class="fa fa-key"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-block btn-primary mt-3 mb-3 "
-                            type="submit">Login</button>
-                </div>
-                <div class="form-group text-center">
-                    <div class="custom-control custom-checkbox text-center">
-                        <input type="checkbox"
-                               class="custom-control-input"
-                               checked=""
-                               id="remember">
-                        <label class="custom-control-label"
-                               for="remember">Remember me for 30 days</label>
-                    </div>
-                </div>
-                <div class="form-group text-center">
-                    <a href="">Forgot password?</a> 
-                    <p class="mt-2"> Don't have an account? <a class="text-body text-underline"
-                       href="signup.html">Sign up!</a></p>
-                </div>
-            </form>
+          
         </div>
 
         <!-- jQuery -->
