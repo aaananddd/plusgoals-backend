@@ -61,11 +61,7 @@
                 </a>
                 <h5 class="m-0 mt-5 text-center">Login to access your Account </h5>
             </div>           
-<<<<<<< HEAD
-            <form action=""
-=======
             <form action="{{route('loginCheck')}}" method="post"
->>>>>>> 6abb3aedcbadf182722739ec98622341bf66d395
                   novalidate>
                   @csrf
                 <div class="form-group">
