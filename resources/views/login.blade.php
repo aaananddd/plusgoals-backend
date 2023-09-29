@@ -57,24 +57,34 @@
                 <a href="index.html"
                    class="navbar-brand flex-column mb-2 align-items-center mr-0"
                    style="min-width: 0">
-                       <img src="images/plus-goal-logo.svg" alt="logo" class="img-fluid" />
+                       <img src="{{asset('images/plus-goal-logo.svg')}}" class="img-fluid" />
                 </a>
                 <h5 class="m-0 mt-5 text-center">Login to access your Account </h5>
             </div>           
+<<<<<<< HEAD
             <form action=""
+=======
+            <form action="{{route('loginCheck')}}" method="post"
+>>>>>>> 6abb3aedcbadf182722739ec98622341bf66d395
                   novalidate>
+                  @csrf
                 <div class="form-group">
                     <label class="text-label"
                            for="email_2">Email Address:</label>
                     <div class="input-group input-group-merge">
-                        <input id="email_2"
+                        <input id="email"
                                type="email"
                                required=""
+                               name ="email"
                                class="form-control form-control-prepended"
                                placeholder="Enter Your Email Id">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <span class="far fa-envelope"></span>
+                            <span class="far fa-envelope"> </span>
+                                @if ($errors->has('email'))
+                                <span class="far fa-envelope">{{ $errors->first('email') }}</span>
+                                  @endif
+                               
                             </div>
                         </div>
                     </div>
@@ -83,14 +93,19 @@
                     <label class="text-label"
                            for="password_2">Password:</label>
                     <div class="input-group input-group-merge">
-                        <input id="password_2"
+                        <input id="password"
                                type="password"
                                required=""
+                               name="password"
                                class="form-control form-control-prepended"
                                placeholder="Enter your password">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <span class="fa fa-key"></span>
+                                <span class="fa fa-key">
+                                @if ($errors->has('password'))
+                                      <span class="text-danger">{{ $errors->first('password') }}</span>
+                                  @endif
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -99,7 +114,7 @@
                     <button class="btn btn-block btn-primary mt-3 mb-3 "
                             type="submit">Login</button>
                 </div>
-                <div class="form-group text-center">
+                <!-- <div class="form-group text-center">
                     <div class="custom-control custom-checkbox text-center">
                         <input type="checkbox"
                                class="custom-control-input"
@@ -108,13 +123,14 @@
                         <label class="custom-control-label"
                                for="remember">Remember me for 30 days</label>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group text-center">
                     <a href="">Forgot password?</a> 
-                    <p class="mt-2"> Don't have an account? <a class="text-body text-underline"
-                       href="signup.html">Sign up!</a></p>
+                    <!-- <p class="mt-2"> Don't have an account? <a class="text-body text-underline"
+                       href="signup.html">Sign up!</a></p> -->
                 </div>
             </form>
+        </div>
 
         <!-- jQuery -->
         <script src="{{asset('vendor/jquery.min.js')}}"></script>
