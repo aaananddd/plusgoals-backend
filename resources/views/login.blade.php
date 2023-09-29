@@ -57,29 +57,24 @@
                 <a href="index.html"
                    class="navbar-brand flex-column mb-2 align-items-center mr-0"
                    style="min-width: 0">
-                       <img src="{{asset('images/plus-goal-logo.svg')}}" class="img-fluid" />
+                       <img src="images/plus-goal-logo.svg" alt="logo" class="img-fluid" />
                 </a>
                 <h5 class="m-0 mt-5 text-center">Login to access your Account </h5>
             </div>           
-            <form action="loginCheck" method="post"
+            <form action="index.html"
                   novalidate>
                 <div class="form-group">
                     <label class="text-label"
                            for="email_2">Email Address:</label>
                     <div class="input-group input-group-merge">
-                        <input id="email"
+                        <input id="email_2"
                                type="email"
                                required=""
-                               name ="email"
                                class="form-control form-control-prepended"
                                placeholder="Enter Your Email Id">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <span class="far fa-envelope"> </span>
-                                @if ($errors->has('email'))
-                                <span class="far fa-envelope">{{ $errors->first('email') }}</span>
-                                  @endif
-                               
+                                <span class="far fa-envelope"></span>
                             </div>
                         </div>
                     </div>
@@ -88,19 +83,14 @@
                     <label class="text-label"
                            for="password_2">Password:</label>
                     <div class="input-group input-group-merge">
-                        <input id="password"
+                        <input id="password_2"
                                type="password"
                                required=""
-                               name="password"
                                class="form-control form-control-prepended"
                                placeholder="Enter your password">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <span class="fa fa-key">
-                                @if ($errors->has('password'))
-                                      <span class="text-danger">{{ $errors->first('password') }}</span>
-                                  @endif
-                                </span>
+                                <span class="fa fa-key"></span>
                             </div>
                         </div>
                     </div>
@@ -125,7 +115,6 @@
                        href="signup.html">Sign up!</a></p>
                 </div>
             </form>
-        </div>
 
         <!-- jQuery -->
         <script src="{{asset('vendor/jquery.min.js')}}"></script>
