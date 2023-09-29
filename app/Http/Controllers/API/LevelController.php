@@ -77,7 +77,7 @@ class LevelController extends Controller
     }
 
     //Update level
-    public function UpdateLevel(Request $request){
+    public function UpdateLevel(Request $request, $id){
 
         $validator = Validator::make($request->all(), [
            'level_name' => 'required',
@@ -88,7 +88,7 @@ class LevelController extends Controller
         if($validator->fails()){
             return $this->sendError($validator->errors(), 'Validation Error', 422);
         }
-        
+        if(Level::where('id', $id)->exists()){
         $level_name = $request->level_name;
         $values = Level::where('level_name', $level_name)->get();
         $OldMode = $values[0]->mode;
@@ -128,14 +128,16 @@ class LevelController extends Controller
         } else {
         return response()->json(['status' => false, 'message' => "Access denied"]);
        }
-       
+    } else{
+        return response()->json(['status' => false, 'message' => "No such level found"]);
+    }
     }
 
     //Delete levels
-    public function DeleteLevel(Request $request){
+    public function DeleteLevel(Request $request, $id){
 
         $validator = Validator::make($request->all(), [
-            'level_name' => 'required',
+       //     'level_name' => 'required',
             'role_id' => 'required',
          //   'token' => 'required'
         ]);
@@ -144,25 +146,23 @@ class LevelController extends Controller
             return $this->sendError($validator->errors(), 'Validation Error', 422);
         }
 
-        $level_name = $request->level_name;
+        if(Level::where('id', $id)->exists()){
+    //    $level_name = $request->level_name;
         $role = $request->role_id;
        // $token = $request->token;
 
         if($role == '1'){
-            $LevelCheck = Level::select('*')->where('level_name', $level_name)->first();
-          
-             if($LevelCheck != null) {
-                $result = Level::where('level_name', $level_name)->delete();
+                $result = Level::where('id', $id)->delete();
                 if($result == true){
                     return response()->json(['status' => true, 'message'=> "Deleted level successfully"]);
                 } else {
                     return response()->json(['status' => false, 'message' => "Failed to delete level"]);
                 }
              } else {
-                return response()->json(['status' => false, 'message' => "No such level found"]);
+                return response()->json(['status' => false, 'message' => "Access denied"]);
              }
             } else {
-            return response()->json(['status' => false, 'message' => "Access denied"]);
+            return response()->json(['status' => false, 'message' => "No such level found"]);
         }
     }
 
@@ -179,18 +179,18 @@ class LevelController extends Controller
     }
 
     //Get level by Id
-    public function GetLevelbyId(Request $request){
-        $validator = Validator::make($request->all(),[
-            'level_id' => 'required'
-        ]);
+    public function GetLevelbyId(Request $request, $id){
+        // $validator = Validator::make($request->all(),[
+        //     'level_id' => 'required'
+        // ]);
 
-        if($validator->fails()){
-            return $this->sendError($validator->errors(), 'Validation Error', 422);
-        }
+        // if($validator->fails()){
+        //     return $this->sendError($validator->errors(), 'Validation Error', 422);
+        // }
         
-        $level_id = $request->level_id;
-
-        $result = Level::where('id', $level_id)->first();
+       //  $level_id = $request->level_id;
+       if(Level::where('id', $id)->exists()){
+        $result = Level::where('id', $id)->first();
 
         if($result == true){
             return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
@@ -198,5 +198,8 @@ class LevelController extends Controller
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
         }
 
+    } else {
+        return response()->json(['status' => false, 'message' => "No such found"]);
     }
+ }
 }

@@ -92,7 +92,7 @@ class TaskController extends Controller
     }
 
     ///Update Task
-    public function UpdateTask(Request $request){
+    public function UpdateTask(Request $request, $id){
         $validator = Validator::make($request->all(),[
             'task_name' => 'required',
             'updated_by' => 'required',
@@ -104,6 +104,7 @@ class TaskController extends Controller
             $msg = $validator->messages()->first();
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
+        if(Task::where('task_id', $id)->exists()){
         $user_id = $request->updated_by;
         $user_access_token  = $request->token;
         $TokenCheck = User::where('id', $user_id)->first();
@@ -153,7 +154,10 @@ class TaskController extends Controller
     }else {
         return response()->json(['status'=>false, 'message'=>"Invalid token"]);
     }
+ } else {
+    return response()->json(['status'=>false, 'message' => "No such task found"]);
  }
+}
     //Get tasks
     public function GetTask(){
         
@@ -167,17 +171,18 @@ class TaskController extends Controller
     }
 
     //Get task by id
-    public function GetTaskbyId(Request $request){
-        $validator = Validator::make($request->all(),[
-            'task_id' => 'required',
-        ]);
+    public function GetTaskbyId($id){
+        // $validator = Validator::make($request->all(),[
+        //     'task_id' => 'required',
+        // ]);
 
-        if($validator->fails()){
-            $msg = $validator->messages()->first();
-            return response()->json(['response_code' => false, 'message' => $msg]);
-        }
+        // if($validator->fails()){
+        //     $msg = $validator->messages()->first();
+        //     return response()->json(['response_code' => false, 'message' => $msg]);
+        // }
         
-        $task_id = $request->task_id;
+       // $task_id = $request->task_id;
+       if(Task::where('task_id', $id)->exists()){
         $result = Task::where('task_id', $task_id)->first();
 
         if($result == true){
@@ -185,10 +190,13 @@ class TaskController extends Controller
         } else {
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
         }
+    }else{
+        return response()->json(['status' => false, 'message' => "No such tsak found"]);
     }
+}
     
     //Delete task
-    public function DeleteTask(Request $request){
+    public function DeleteTask(Request $request, $id){
         $validator = Validator::make($request->all(),[
             'task_name' => 'required',
         ]);
@@ -197,7 +205,7 @@ class TaskController extends Controller
             $msg = $validator->messages()->first();
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
-
+        if(Task::where('task_id', $id)->exists()){
         $task_name = $request->task_name;
 
         $result = Task::where('task_name', $task_name)->delete();
@@ -207,5 +215,8 @@ class TaskController extends Controller
         }else {
             return response()->json(['status' => false, 'message'=>"Failed to delete"]);
         }
+    } else{
+        return response()->json(['status' => false, 'message' => "No such task found"]);
     }
+}
 }

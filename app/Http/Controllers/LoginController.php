@@ -16,7 +16,7 @@ class LoginController extends Controller
     }
 
     public function loginCheck(Request $request){
-        dd($request);
+     
         $client = new \GuzzleHttp\Client();
         $response = $client->post('http://localhost:8000/api/login'); 
         return $response->view(['login']);
