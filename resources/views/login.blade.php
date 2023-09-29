@@ -61,7 +61,7 @@
                 </a>
                 <h5 class="m-0 mt-5 text-center">Login to access your Account </h5>
             </div>           
-            <form action="index.html"
+            <form action=""
                   novalidate>
                 <div class="form-group">
                     <label class="text-label"
