@@ -83,9 +83,13 @@ class AuthController extends Controller
         }
         
         User::where('email', $request->email)->update(['remember_token' => $token]);
+        $result = User::where('email', $request->email)->get();
+        
         $success = [
             'token' => $token,
-            'email' => $request->email
+            'email' => $request->email,
+            'name' => $result[0]->first_name,
+            'id' => $result[0]->id
         ];
         return $this->sendResponse($success, 'successful login', 200);
     }
