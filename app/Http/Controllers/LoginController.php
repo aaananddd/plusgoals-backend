@@ -76,5 +76,32 @@ class LoginController extends Controller
 
     public function forgotPassword(Request $request){
          
+        $email = $request->email;
+        $password = $request->password;
+        $c_password = $request->confirm_password;
+
+        $this->validate($request, [
+            'password' => 'required',
+            'new_password' => 'confirmed|max:8|different:password',
+        ]);
+        
+        if (Hash::check($request->password, $user->password)) { 
+           $user->fill([
+            'password' => Hash::make($request->new_password)
+            ])->save();
+        
+           $request->session()->flash('success', 'Password changed');
+            return redirect()->route('login');
+        
+        } else {
+            $request->session()->flash('error', 'Password does not match');
+            return redirect()->route('password');
+        }
+        // if(User::where('email', $email)->exists()){
+        //     $result = User::where('email', $email)->update([
+        //             'password' => $request->password
+        //     ]);
+        // }
+       
     }
 }
