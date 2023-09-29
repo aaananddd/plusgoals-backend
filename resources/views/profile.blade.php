@@ -144,7 +144,7 @@
                                            class="dropdown-item">Help Center</a>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown">
+                                <!-- <li class="nav-item dropdown">
                                     <a href="#"
                                        class="nav-link dropdown-toggle"
                                        data-toggle="dropdown"
@@ -161,11 +161,11 @@
                                         <a href="student-paths.html"
                                            class="dropdown-item">My Paths</a>
                                     </div>
-                                </li>
-                                <li class="nav-item">
+                                </li> -->
+                                <!-- <li class="nav-item">
                                     <a href="pricing.html"
                                        class="nav-link">Pricing</a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item dropdown">
                                     <a href="#"
                                        class="nav-link dropdown-toggle"
@@ -272,21 +272,21 @@
                                 </div>
                                 <div class="flex">
                                     <h1 class="h2 mb-0">Laza Bogdan</h1>
-                                    <div class="rating mb-16pt d-inline-flex">
+                                    <!-- <div class="rating mb-16pt d-inline-flex">
                                         <div class="rating__item"><i class="material-icons">star</i></div>
                                         <div class="rating__item"><i class="material-icons">star</i></div>
                                         <div class="rating__item"><i class="material-icons">star</i></div>
                                         <div class="rating__item"><i class="material-icons">star</i></div>
                                         <div class="rating__item"><i class="material-icons">star_border</i></div>
-                                    </div>
-                                    <div>
+                                    </div> -->
+                                    <!-- <div>
                                         <span class="chip chip-outline-secondary d-inline-flex align-items-center"
                                               data-toggle="tooltip"
                                               data-title="Experience IQ"
                                               data-placement="bottom">
                                             <i class="material-icons icon--left">opacity</i> 2,300 points
                                         </span>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="ml-lg-16pt">
