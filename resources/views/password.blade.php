@@ -9,7 +9,7 @@
               content="IE=edge">
         <meta name="viewport"
               content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Login</title>
+        <title>Reset password</title>
 
         <!-- Prevent the demo from appearing in search engines -->
         <meta name="robots"
@@ -61,20 +61,41 @@
                 </a>
                 <h5 class="m-0 mt-5 text-center">Reset Your Password</h5>
             </div>           
-            <form action=""
+            <form action="{{route('forgotPassword')}}" method="post"
                   novalidate>
-                <div class="form-group">
+                  @csrf
+                  <div class="form-group">
                     <label class="text-label"
-                           for="email_2">New Password:</label>
-                           <div class="input-group input-group-merge">
-                        <input id="password_2"
-                               type="password"
+                           for="email_2">Email Address:</label>
+                    <div class="input-group input-group-merge">
+                        <input id="email"
+                               type="email"
                                required=""
+                               name ="email"
                                class="form-control form-control-prepended"
-                               placeholder="Enter your New password">
+                               placeholder="Enter Your Email Id">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <span class="fa fa-key"></span>
+                            <span class="far fa-envelope"> </span>
+                                @if ($errors->has('email'))
+                                <span class="far fa-envelope">{{ $errors->first('email') }}</span>
+                                  @endif
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="text-label"
+                           for="password">New Password:</label>
+                           <div class="input-group input-group-merge">
+                           <input type="password" placeholder="Enter your new password" id="password" class="form-control form-control-prepended" name="password"
+                                    required autofocus>
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                @if ($errors->has('password'))
+                                <span class="fa fa-key">{{ $errors->first('password') }}</span>
+                                @endif    
                             </div>
                         </div>
                     </div>
@@ -83,14 +104,13 @@
                     <label class="text-label"
                            for="password_2">Confirm Password:</label>
                     <div class="input-group input-group-merge">
-                        <input id="password_2"
-                               type="password"
-                               required=""
-                               class="form-control form-control-prepended"
-                               placeholder="Enter your New password">
-                        <div class="input-group-prepend">
+                    <input type="password" placeholder="Enter your new password" id="c_password" class="form-control form-control-prepended" name="c_password"
+                                    required autofocus>
+                          <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <span class="fa fa-key"></span>
+                                @if ($errors->has('c_password'))
+                                <span class="fa fa-key">{{ $errors->first('c_password') }}</span>
+                                @endif    
                             </div>
                         </div>
                     </div>
@@ -99,21 +119,7 @@
                     <button class="btn btn-block btn-primary mt-3 mb-3 "
                             type="submit">Confirm</button>
                 </div>
-                <!-- <div class="form-group text-center">
-                    <div class="custom-control custom-checkbox text-center">
-                        <input type="checkbox"
-                               class="custom-control-input"
-                               checked=""
-                               id="remember">
-                        <label class="custom-control-label"
-                               for="remember">Remember me for 30 days</label>
-                    </div>
-                </div> -->
-                <!-- <div class="form-group text-center">
-                    <a href="">Forgot password?</a> 
-                    <p class="mt-2"> Don't have an account? <a class="text-body text-underline"
-                       href="signup.html">Sign up!</a></p>
-                </div> -->
+            
             </form>
 
         <!-- jQuery -->

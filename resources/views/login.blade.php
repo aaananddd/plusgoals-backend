@@ -121,7 +121,7 @@
                     </div>
                 </div> -->
                 <div class="form-group text-center">
-                    <a href="">Forgot password?</a> 
+                    <a href="{{url('reset_password')}}">Forgot password?</a> 
                     <!-- <p class="mt-2"> Don't have an account? <a class="text-body text-underline"
                        href="signup.html">Sign up!</a></p> -->
                 </div>

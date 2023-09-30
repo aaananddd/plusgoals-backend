@@ -35,20 +35,8 @@ class LoginController extends Controller
         return response()->json($response, $status);
     }
 
-    public function index()
-    {
-       
-        return view('login');
-    }
 
-    public function loginCheck(Request $request){
-<<<<<<< HEAD
-        // dd($request);
-        $client = new \GuzzleHttp\Client();
-        $response = $client->post('http://localhost:8000/api/login'); 
-        return $response->view(['login']);
-=======
-      
+    public function loginCheck(Request $request){    
         $email = $request->email;
         $password= Hash::make($request->password);
         $token = $request->token;
@@ -75,40 +63,29 @@ class LoginController extends Controller
                 ->withSuccess('Signed in');
             }
         
-            return redirect()->route('login')->withError('Login failed');
+            return redirect()->route('/')->withError('Login failed');
         }
-        return redirect("login")->withError('Email id doesnit exist');     
+        return redirect("/")->withError('Email id doesnit exist');     
     }
->>>>>>> 6abb3aedcbadf182722739ec98622341bf66d395
 
     public function forgotPassword(Request $request){
-         
+      
         $email = $request->email;
         $password = $request->password;
-        $c_password = $request->confirm_password;
-
-        $this->validate($request, [
-            'password' => 'required',
-            'new_password' => 'confirmed|max:8|different:password',
-        ]);
+        $c_password = $request->c_password;
         
-        if (Hash::check($request->password, $user->password)) { 
-           $user->fill([
-            'password' => Hash::make($request->new_password)
-            ])->save();
-        
-           $request->session()->flash('success', 'Password changed');
-            return redirect()->route('login');
-        
+        if(User::where('email', $email)->exists()){
+          
+            if($password === $c_password){
+            
+                $result = User::where('email', $email)->update([
+                    "password" => Hash::make($password)
+                ]);
+            return redirect('/');
         } else {
-            $request->session()->flash('error', 'Password does not match');
-            return redirect()->route('password');
+            return redirect('/reset_password');
         }
-        // if(User::where('email', $email)->exists()){
-        //     $result = User::where('email', $email)->update([
-        //             'password' => $request->password
-        //     ]);
-        // }
-       
+        return redirect('/reset_password');
     }
+  }
 }

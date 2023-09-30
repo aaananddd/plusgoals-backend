@@ -13,16 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('login');
-// });
+Route::get('/', function () {return view('login');});
+Route::get('/reset_password', function() {return view('password');});
+Route::get('/dashboard', function() {return view('dashboard');});
+Route::get('/profile', function() {return view('profile');});
 
 //Auth::routes();
+//API
+Route::post('/loginCheck', [App\Http\Controllers\LoginController::class, 'loginCheck'])->name('loginCheck');
+Route::post('/forgotPassword',[App\Http\Controllers\LoginController::class, 'forgotPassword'])->name('forgotPassword');
 
-Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('loginCheck', [App\Http\Controllers\LoginController::class, 'loginCheck'])->name('loginCheck');
-
-Route::get('/', function () {
-        return view('profile');
-    });
