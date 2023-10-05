@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Question;
 use Validator;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -50,17 +52,16 @@ class TaskController extends Controller
      $TokenCheck = User::where('id', $user_id)->first();
      $DB_token = $TokenCheck->remember_token;
      if($DB_token == $user_access_token){
-         
         $Role_db = User::where('id', $user_id)->get('role');
         $roleCheck = $Role_db[0]->role;
-        if($roleCheck == 1) {
-         $task_name = $request->task_name;
+        if($roleCheck == 1) { 
+          $task_name = $request->task_name;
           $task_desc = $request->task_desc;
-     //   $created_by = $request->created_by;
+          //$created_by = $request->created_by;
           $task_level = $request->task_level ? $request->task_level:null;
           $is_active = 1;
-          $time_limit = $request->time_limit ? $request->time_limit:null;
-          $task_date = $request->task_date ? $request->task_date:null;
+          $NoOfQuestns = $request->NoOfQuestns ? $request->NoOfQuestns:null;
+          $NofQstnsAns = $request->NofQstnsAns ? $request->NofQstnsAns:null;
           $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
           $save_template = $request->save_template ? $request->save_template:null;
           //$token = $request->token;
@@ -71,14 +72,37 @@ class TaskController extends Controller
             'created_by' => $user_id,
             'task_level' => $task_level,
             'is_active' => $is_active,
-            'time_limit' => $time_limit,
-            'task_date' => $task_date,
+            'NoOfQuestns' => $NoOfQuestns,
+            'NofQstnsAns' => $NofQstnsAns,
             'difficulty_level' => $difficulty_level,
             'save_template' => $save_template,
-            'created_date' => date('Y-m-d')
+            'created_date' => date('Y-m-d h:m:s')
         ]);
-
             if($result == true){
+                
+                $GetlastId = Task::select('task_id')->where('task_name', $task_name)->get();
+                $task_id = $GetlastId[0]->task_id;
+                for($i=0; $i<$NoOfQuestns; $i++){
+                    $question[$i] = $request->question ? $request->question:null;
+                }
+                
+                for($i=0; $i<$NoOfQuestns; $i++){
+                    $QuestionSet = Question::insert([
+                        'task_id' => $task_id,
+                        'mode' => $difficulty_level,
+                        'level_id' => $task_level,
+                        'question' => $question[$i]
+                    ]);
+                }
+                dd($QuestionSet);
+                    // 'Question1' => $question1,
+                    // 'Question2' => $question2,
+                    // 'Question3' => $question3,
+                    // 'Question4' => $question4,
+                    // 'Question5' => $question5,
+            
+            
+                //return redirect('/admin/dashboard')->with('success','New task has been created successfully.');
                 return response()->json(['status' => true, 'message' => "Task added successfully"]);
              } else {
                 return response()->json(['status' => false, ' message' => "Failed to add task"]);
@@ -138,6 +162,7 @@ class TaskController extends Controller
                 'task_date' => $task_date,
                 'difficulty_level' => $difficulty_level,
                 'save_template' => $save_template,
+             
             ]);
     
             if($result == true){
@@ -219,4 +244,21 @@ class TaskController extends Controller
         return response()->json(['status' => false, 'message' => "No such task found"]);
     }
 }
+
+// Add questions
+public function Task(Request $request){
+    // $validator=Validator::make($request->all, [
+    //     'task_id'=>'required'
+    // ]);
+    // if($validator->fails()){
+    //     $msg = $validator->messages()->first();
+    //     return response()->json(['response_code' => false, 'message' => $msg]);
+    // }
+   
+   // $res = Task::lastInsertId();
+  
+
+    
+}
+
 }
