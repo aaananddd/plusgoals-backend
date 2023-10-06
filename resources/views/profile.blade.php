@@ -1,3 +1,6 @@
+@extends('ProfileController')
+@section('layout.app')
+
 
 <!DOCTYPE html>
 <html lang="en"
@@ -98,7 +101,7 @@
                                              class="img-fluid" /></span>
 
                                 </span>
-
+@csrf
                                 <span class="d-none d-lg-block">Plus Goals</span>
                             </a>
 
@@ -270,8 +273,10 @@
                                          width="104"
                                          alt="teacher">
                                 </div>
+                              
+                             
                                 <div class="flex">
-                                    <h1 class="h2 mb-0">Laza Bogdan</h1>
+                                    <h1 class="h2 mb-0">{{$response->first_name}}</h1>
                                     <!-- <div class="rating mb-16pt d-inline-flex">
                                         <div class="rating__item"><i class="material-icons">star</i></div>
                                         <div class="rating__item"><i class="material-icons">star</i></div>
@@ -451,6 +456,7 @@
                                                 <!-- <img src="../../public/images/people/50/guy-2.jpg" alt="Avatar" class="avatar-img rounded-circle"> -->
                                                 <span class="avatar-title rounded-circle">LB</span>
                                             </div>
+                                        
                                             <div class="flex">
                                                 <div class="d-flex align-items-center mb-1">
                                                     <strong class="card-title">Laza Bogdan</strong>
@@ -1007,3 +1013,5 @@
     </body>
 
 </html>
+
+@endsection

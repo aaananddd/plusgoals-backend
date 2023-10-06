@@ -18,6 +18,7 @@ Route::get('/reset_password', function() {return view('password');});
 Route::get('/dashboard', function() {return view('dashboard');});
 Route::get('/profile', function() {return view('profile');});
 
+Route::get('/profileView', [App\Http\Controllers\ProfileController::class, 'index'])->name('profileView');
 //Auth::routes();
 //API
 Route::post('/loginCheck', [App\Http\Controllers\LoginController::class, 'loginCheck'])->name('loginCheck');

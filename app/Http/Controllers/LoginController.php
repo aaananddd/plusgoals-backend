@@ -63,7 +63,7 @@ class LoginController extends Controller
                 ->withSuccess('Signed in');
             }
         
-            return redirect()->route('/')->withError('Login failed');
+            return redirect('/')->withError('Login failed');
         }
         return redirect("/")->withError('Email id doesnit exist');     
     }
