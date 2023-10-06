@@ -79,31 +79,10 @@ class TaskController extends Controller
             'created_date' => date('Y-m-d h:m:s')
         ]);
             if($result == true){
-                
                 $GetlastId = Task::select('task_id')->where('task_name', $task_name)->get();
                 $task_id = $GetlastId[0]->task_id;
-                for($i=0; $i<$NoOfQuestns; $i++){
-                    $question[$i] = $request->question ? $request->question:null;
-                }
-                
-                for($i=0; $i<$NoOfQuestns; $i++){
-                    $QuestionSet = Question::insert([
-                        'task_id' => $task_id,
-                        'mode' => $difficulty_level,
-                        'level_id' => $task_level,
-                        'question' => $question[$i]
-                    ]);
-                }
-                dd($QuestionSet);
-                    // 'Question1' => $question1,
-                    // 'Question2' => $question2,
-                    // 'Question3' => $question3,
-                    // 'Question4' => $question4,
-                    // 'Question5' => $question5,
-            
-            
                 //return redirect('/admin/dashboard')->with('success','New task has been created successfully.');
-                return response()->json(['status' => true, 'message' => "Task added successfully"]);
+                return response()->json(['status' => true, 'message' => "Task added successfully", 'task_id' => $task_id]);
              } else {
                 return response()->json(['status' => false, ' message' => "Failed to add task"]);
              }
@@ -164,9 +143,11 @@ class TaskController extends Controller
                 'save_template' => $save_template,
              
             ]);
-    
+           
             if($result == true){
-                return response()->json(['status' => true, 'message' => "Task updated successfully"]);
+                $GetlastId = Task::select('task_id')->where('task_name', $task_name)->get();
+                $task_id = $GetlastId[0]->task_id;
+                return response()->json(['status' => true, 'message' => "Task updated successfully", 'task_id' => $task_id]);
             } else {
                 return response()->json(['status' => false, ' message' => "Failed to update task"]);
             }
@@ -197,18 +178,8 @@ class TaskController extends Controller
 
     //Get task by id
     public function GetTaskbyId($id){
-        // $validator = Validator::make($request->all(),[
-        //     'task_id' => 'required',
-        // ]);
-
-        // if($validator->fails()){
-        //     $msg = $validator->messages()->first();
-        //     return response()->json(['response_code' => false, 'message' => $msg]);
-        // }
-        
-       // $task_id = $request->task_id;
        if(Task::where('task_id', $id)->exists()){
-        $result = Task::where('task_id', $task_id)->first();
+        $result = Task::where('task_id', $id)->first();
 
         if($result == true){
             return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
@@ -246,19 +217,78 @@ class TaskController extends Controller
 }
 
 // Add questions
-public function Task(Request $request){
-    // $validator=Validator::make($request->all, [
-    //     'task_id'=>'required'
-    // ]);
-    // if($validator->fails()){
-    //     $msg = $validator->messages()->first();
-    //     return response()->json(['response_code' => false, 'message' => $msg]);
-    // }
-   
-   // $res = Task::lastInsertId();
-  
 
-    
+public function AddQuestions(Request $request, $task_id){
+   
+    $result = Task::select('*')->where('task_id', $task_id)->get();
+    $level = $result[0]->task_level;
+    $mode = $result[0]->difficulty_level;
+    $created_by = $result[0]->created_by;
+    $question1 = $request->question1 ? $request->question1:null;
+    $question2 = $request->question2 ? $request->question2:null;
+    $question3 = $request->question3 ? $request->question3:null;
+    $question4 = $request->question4 ? $request->question4:null;
+    $question5 = $request->question5 ? $request->question5:null;
+    $question6 = $request->question6 ? $request->question6:null;
+    $question7 = $request->question7 ? $request->question7:null;
+    $question8 = $request->question8 ? $request->question8:null;
+    $question9 = $request->question9 ? $request->question9:null;
+    $question10 = $request->question10 ? $request->question10:null;
+
+    $Insert = Question::insert([
+        'task_id' => $task_id,
+        'mode' => $difficulty_level,
+        'level' => $task_level,
+        'created_by' => $created_by,
+        'question1' => $question1,
+        'question2' => $question2,
+        'question3' => $question3,
+        'question4' => $question4,
+        'question5' => $question5,
+        'question6' => $question6,
+        'question7' => $question7,
+        'question8' => $question8,
+        'question9' => $question9,
+        'question10' => $question10
+    ]);
+
+if($Insert == true){
+    $GetlastId = Question::select('id')->where('task_name', $task_name)->get();
+    $qid = $GetlastId[0]->qid;
+    //return redirect('/admin/dashboard')->with('success','New task has been created successfully.');
+    return response()->json(['status' => true, 'message' => "Questions added successfully", 'qid' => $qid]);
+ } else {
+    return response()->json(['status' => false, ' message' => "Failed to add question"]);
+ }
+
 }
 
+// Add answers
+public function AddAnswers(Request $request, $qid){
+
+    $option1 = $request->option1;
+    $option2 = $request->option2;
+    $option3 = $request->option3;
+    $option4 = $request->option4;
+    $option5 = $request->option5;
+    $answer = $request->answer;
+
+    $result = Answer::insert([
+        'qid' => $qid,
+        'option1' => $option1,
+        'option2' => $option2,
+        'option3' => $option3,
+        'option4' => $option4,
+        'option5' => $option5,
+        'answer' => $answer
+    ]);
+
+    if($result == true){
+        return response()->json(['status'=>true, 'message'=>"Added answers"]);
+    }
+    else{
+        return response()->json(['status'=>false, 'message'=>"Failed to add"]);
+    }
+    
+}
 }

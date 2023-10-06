@@ -50,3 +50,7 @@ Route::put('/task/{id}', [TaskController::class, 'UpdateTask']);
 Route::delete('/task/{id}', [TaskController::class, 'DeleteTask']);
 Route::get('/task', [TaskController::class, 'GetTask']);
 Route::get('/task/{id}', [TaskController::class, 'GetTaskbyId']);
+
+//Questions
+Route::post('/questions/{id}', [TaskController::class, 'AddQuestions']);
+Route::post('/answer/id', [TaskController::class, 'AddAnswers']);
