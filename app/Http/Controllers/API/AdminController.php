@@ -50,6 +50,7 @@ class AdminController extends Controller
 
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
+        $user_id = $request->id;
         $id = $request->user_id;
        if(User::where('id', $id)->exists()){
         $user_access_token  = $request->token;
@@ -117,7 +118,7 @@ class AdminController extends Controller
 
             return response()->json(['response_code' => false, 'message' => $msg]);
         }
-       // $user_id = $request->user_id;
+       $user_id = $request->user_id;
        if(User::where('id', $id)->exists()){
         $user_access_token  = $request->token;
         $TokenCheck = User::where('id', $id)->first();
