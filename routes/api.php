@@ -50,3 +50,5 @@ Route::put('/task/{id}', [TaskController::class, 'UpdateTask']);
 Route::delete('/task/{id}', [TaskController::class, 'DeleteTask']);
 Route::get('/task', [TaskController::class, 'GetTask']);
 Route::get('/task/{id}', [TaskController::class, 'GetTaskbyId']);
+
+Route::get('/getTask', [TaskController::class, 'Task']);
