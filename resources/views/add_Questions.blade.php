@@ -49,6 +49,14 @@
               href="../../public/css/app.css"
               rel="stylesheet"> -->
               <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+              <style>
+                #editor
+                {
+                    height : 500px;
+                    width  : 400px
+                    
+                }
+              </style>
     </head>
 
     <body class="layout-sticky-subnav layout-learnly ">
@@ -277,34 +285,12 @@
                                     <div>
                                        
                                     </div>
-                                    <!-- <div class="rating mb-16pt d-inline-flex">
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star_border</i></div>
-                                    </div> -->
-                                    <!-- <div>
-                                        <span class="chip chip-outline-secondary d-inline-flex align-items-center"
-                                              data-toggle="tooltip"
-                                              data-title="Experience IQ"
-                                              data-placement="bottom">
-                                            <i class="material-icons icon--left">opacity</i> 2,300 points
-                                        </span>
-                                    </div> -->
+                                   
                                 </div>
                             </div>
-                            <!-- <div class="col-mg-4">
-                            <h6 class="h6 mb-0">Email : lazabogdan@gmail.com</h6><br>
-                            <h6 class="h6 mb-0">Contact : 8907653421</h6> -->
-                                <!-- <a href=""
-                                   class="btn btn-light">Follow</a> -->
-                            <!-- </div> -->
+                            
                         </div>
-                        <!-- <div class="col-lg-4">
-                                    <a href=""
-                                   class="btn btn-light">Follow</a>
-                            </div> -->
+                        
                     </div>
                 </div>
 
@@ -331,7 +317,7 @@
                                                            class="col-md-3 col-form-label form-label">Task</label>
                                                     <div class="col-md-9">
                                                     <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-                                                    <textarea id="editor" name="task_desc" class="col-md-12" rows="5"></textarea>
+                                                    <textarea id="editor" name="task_desc" class="col-md-12" rows="10"></textarea>
                                                         <!-- <textarea id="question"
                                                                   placeholder="Enter the Question ..."
                                                                   rows="4"
@@ -343,80 +329,76 @@
                                         
 
                                         <div class="card-body table--elevated">
-                                                <div class="form-group m-0"
-                                                     role="group"
-                                                     aria-labelledby="label-title">
-                                                    <div class="form-row align-items-center">
-                                                        <label id="label-title"
-                                                               for="title"
-                                                               class="col-md-3 col-form-label form-label">Option A</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"
-                                                                   type="text"
-                                                                   
-                                                                  
-                                                                   class="form-control">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                                <div class="form-row align-items-center">
+                                                    <label id="label-title" for="title" class="col-md-3 col-form-label form-label">Option A</label>
+                                                        <div class="col-md-8">      
+                                                            <input id="title"  type="text" class="form-control">             
+                                                        </div>
+                                                        <div class="col-md-1"> 
+                                                            <input id="checkbox" type="checkbox" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>     
+                                                        
+                                            <div class="card-body table--elevated">
+                                                <div class="form-group m-0"  role="group" aria-labelledby="label-title">
+                                                    <div class="form-row align-items-center">
+                                                        <label id="label-title" for="title" class="col-md-3 col-form-label form-label">Option B</label> 
+                                                            <div class="col-md-8">
+                                                                <input id="title"  type="text" class="form-control">                                                           
+                                                            </div>
+                                                            <div class="col-md-1"> 
+                                                                <input id="checkbox" type="checkbox" class="form-control">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>       
+                                                        
+                                            <div class="card-body table--elevated">
+                                                <div class="form-group m-0" role="group" aria-labelledby="label-title">                
+                                                    <div class="form-row align-items-center">                  
+                                                        <label id="label-title" for="title" class="col-md-3 col-form-label form-label">Option C</label>                   
+                                                            <div class="col-md-8">                  
+                                                                <input id="title" type="text" class="form-control">                 
+                                                            </div>
+                                                            <div class="col-md-1"> 
+                                                                <input id="checkbox" type="checkbox" class="form-control">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>   
 
                                             <div class="card-body table--elevated">
-                                                <div class="form-group m-0"
-                                                     role="group"
-                                                     aria-labelledby="label-title">
+                                                <div class="form-group m-0" role="group"  aria-labelledby="label-title">
                                                     <div class="form-row align-items-center">
-                                                        <label id="label-title"
-                                                               for="title"
-                                                               class="col-md-3 col-form-label form-label">Opption B</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"
-                                                                   type="text"
-                                                                   
-                                                                  
-                                                                   class="form-control">
-                                                        </div>
+                                                        <label id="label-title"  for="title" class="col-md-3 col-form-label form-label">Option D</label>
+                                                            <div class="col-md-8">
+                                                                <input id="title"  type="text" class="form-control">
+                                                            </div>
+                                                            <div class="col-md-1"> 
+                                                                <input id="checkbox" type="checkbox" class="form-control">
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                                    
                                             <div class="card-body table--elevated">
-                                                <div class="form-group m-0"
-                                                     role="group"
-                                                     aria-labelledby="label-title">
-                                                    <div class="form-row align-items-center">
-                                                        <label id="label-title"
-                                                               for="title"
-                                                               class="col-md-3 col-form-label form-label">Options C</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"
-                                                                   type="text"
-                                                                   
-                                                                  
-                                                                   class="form-control">
-                                                        </div>
+                                                <div class="form-group m-0" role="group" aria-labelledby="label-title">           
+                                                    <div class="form-row align-items-center">             
+                                                        <label id="label-title" for="title" class="col-md-3 col-form-label form-label">Option E</label>           
+                                                            <div class="col-md-8">        
+                                                                <input id="title" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="col-md-1"> 
+                                                                <input id="checkbox" type="checkbox" class="form-control">
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="card-body table--elevated">
-                                                <div class="form-group m-0"
-                                                     role="group"
-                                                     aria-labelledby="label-title">
-                                                    <div class="form-row align-items-center">
-                                                        <label id="label-title"
-                                                               for="title"
-                                                               class="col-md-3 col-form-label form-label">Option D</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"
-                                                                   type="text"
                                                                    
-                                                                  
-                                                                   class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                               
 
    
                                         <div class="list-group-item">
