@@ -1,22 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Model\User;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Hash;
+use Validator;
+use Illuminate\Support\Facades\Auth; 
+use Session;
 
 class ProfileController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('  GET', 'http://localhost:8000/api/users/', [
-            'form_params' => [
-                'id' => '1',
-            ]
-        ]);
-    
-       return view('profile', compact('response'));
-
+        $user = Session::get('user'); 
+        $id = $user->id;
+        $response = User::select('*')->where('id', $id)->get();
+        return view('profile', ['data' => array($response)]);
+   
     }
    
     

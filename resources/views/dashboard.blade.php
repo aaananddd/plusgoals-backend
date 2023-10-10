@@ -451,7 +451,7 @@
                             </div>
                             <div class="ml-lg-16pt">
                             
-                                <a href="{{url('profile')}}"
+                                <a href="{{route('profileView')}}"
                                    class="btn btn-light">My Profile</a>
                             </div>
                         </div>
@@ -493,9 +493,9 @@
                                         </div>
                                     </div>
                                 </div> -->
-
+                                @foreach($data as $user)
                                 <div class="page-separator">
-                                    <div class="page-separator__text">Earnings</div>
+                                    <div class="page-separator__text">Hello {{ $user[0]->first_name }}</div>
                                 </div>
                                 <div class="card card-body mb-32pt">
                                     <!-- <div id="legend"
@@ -1199,7 +1199,7 @@
                 </div>
             </div>
         </div>
-
+@endforeach
         <!-- // END Drawer -->
 
         <!-- jQuery -->
