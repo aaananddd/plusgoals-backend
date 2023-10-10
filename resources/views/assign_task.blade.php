@@ -307,53 +307,66 @@
                             </div> -->
                     </div>
                 </div>
-
+              
                 <div class="page-section">
                     <div class="container page__container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="row card-group-row mb-8pt">
                                 </div> 
-                                <div class="card">
-                                <!-- < class="card-body"> -->
-                                    <div class="card-body table--elevated">
+                                <div class="card">  
+                                <form method="POST" action="{{ route('addTask')}}">
+                                     <!-- < class="card-body"> -->
+                                 {{ csrf_field() }}
+                                  <div class="form-group">
+                                     <div class="card-body table--elevated">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                             <div class="form-row align-items-center">
-                                                <label id="label-title" for="title" class="col-md-3 col-form-label form-label">Task name</label>
+                                                <label id="label-title" for="task_name" class="col-md-3 col-form-label form-label">Task name</label>
                                                     <div class="col-md-9">
-                                                        <input id="title" type="text" placeholder="Enter task name ..." class="form-control">
+                                                        <input type="text" class="form-control" id="task_name" placeholder="Enter task name ..." name="task_name"> 
                                                     </div>
                                             </div>
                                         </div>
                                     </div>
+                                  </div>
+                                  <div class="form-group">
                                     <div class="list-group-item">
                                         <div role="group" aria-labelledby="label-question" class="m-0 form-group">
                                             <div class="form-row">
-                                                <label id="label-question" for="question" class="col-md-3 col-form-label form-label">Task Description</label>
+                                                <label id="label-question" for="task_desc" class="col-md-3 col-form-label form-label">Task Description</label>
                                                     <div class="col-md-9">
-                                                        <textarea id="question" placeholder="Describe your question in detail ..." rows="4" class="form-control"></textarea>
+                                                        <textarea id="task_desc" placeholder="Describe your question in detail ..." rows="4" class="form-control" name="task_desc"></textarea> 
                                                     </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="list-group-item">
+                                  </div>
+                                  <div class="form-group">
+                                  <div class="list-group-item">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-topic">
                                             <div class="form-row align-items-center">
-                                                <label id="label-topic" for="topic" class="col-md-3 col-form-label form-label">Level</label>
+                                                <label id="label-topic" for="task_level" class="col-md-3 col-form-label form-label">Level</label>
                                                     <div class="col-md-9">
-                                                        <select id="topic" class="form-control custom-select w-auto">
-                                                            <option value="JavaScript">Level 1</option>
-                                                        </select>
+                                                            
+                                                        <select class="form-control custom-select w-auto" name="task_level" id="task_level" >
+                                                            <option value="option_select" disabled selected>Task level</option>
+                                                                 @foreach($level as $task_level)      
+                                                                    <option value="{{ $task_level->id }}" {{$task_level->id == $task_level->id  ? 'selected' : ''}}>{{ $task_level->level_name}}</option> 
+                                                                 @endforeach
+                                                         </select>
                                                     </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <!-- <div class="form-group">
                                     <div class="list-group-item">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-topic">
                                             <div class="form-row align-items-center">
-                                                <label id="label-topic" for="topic" class="col-md-3 col-form-label form-label">Difficulty</label>
+                                                <label id="label-topic" for="difficulty_level" class="col-md-3 col-form-label form-label">Difficulty</label>
                                                     <div class="col-md-9">
-                                                        <select id="topic" class="form-control custom-select w-auto">
+                                                        <select id="difficulty_level" class="form-control custom-select w-auto">
                                                             <option value="Easy">Easy</option>
                                                             <option value="Medium">Medium</option>
                                                             <option value="Difficult">Difficult</option>
@@ -362,82 +375,55 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                </div> -->
+                                <div class="form-group">
                                         <div class="card-body table--elevated">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                                 <div class="form-row align-items-center">
-                                                    <label id="label-title" for="title" class="col-md-3 col-form-label form-label">No.Of Questions</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"  type="text" class="form-control">
-                                                        </div>
+                                                <label id="label-title" for="NoOfQuestns" class="col-md-3 col-form-label form-label">No of Questions</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" id="NoOfQuestns" placeholder="Enter task name ..." name="NoOfQuestns"> 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>                  
+                                        </div>   
+                                </div>
+                                <div class="form-group">
                                         <div class="card-body table--elevated">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-title">
-                                                <div class="form-row align-items-center">       
-                                                    <label id="label-title"   for="title" class="col-md-3 col-form-label form-label">No.of Questions to be answerd</label>   
-                                                        <div class="col-md-9">
-                                                            <input id="title" type="text" class="form-control">    
-                                                        </div>
+                                                <div class="form-row align-items-center">
+                                                <label id="label-title" for="NofQstnsAns" class="col-md-3 col-form-label form-label">No of Questions to be Answered</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" id="NofQstnsAns" placeholder="Enter task name ..." name="NofQstnsAns"> 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>  
+                                        </div>   
+                                </div>
+                                <div class="form-group">
                                         <div class="list-group-item">
                                             <div class="text-right">
-                                                <button type="button" class="btn btn-accent">Next</button>
+                                            <button type="submit" style="cursor:pointer" class="btn btn-accent">Save</button>
+                                            <!-- <button  type="submit" class="btn btn-primary">Submit</button>  -->
+                                            <!-- <button type="button" class="btn btn-accent">Next</button> -->
                                             </div>
                                         </div>
                                     </div>
-                                </div>     
-                                
+                                </div>  
+                            </div>  
+                     </form>
+                               
+
                                 <div class="card">
-                                    <!-- < class="card-body"> -->
-                                 
-
-                                            <div class="list-group-item">
-                                            <div role="group"
-                                                 aria-labelledby="label-question"
-                                                 class="m-0 form-group">
-                                                <div class="form-row">
-                                                    <label id="label-question"
-                                                           for="question"
-                                                           class="col-md-3 col-form-label form-label">Task</label>
-                                                    <div class="col-md-9">
-                                                    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-                                                    <textarea id="editor" name="task_desc" class="col-md-12" rows="5"></textarea>
-                                                        <!-- <textarea id="question"
-                                                                  placeholder="Enter the Question ..."
-                                                                  rows="4"
-                                                                  class="form-control"></textarea> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-
-                                        <div class="list-group-item">
-                                            <div role="group"
-                                                 aria-labelledby="label-question"
-                                                 class="m-0 form-group">
-                                                <div class="form-row">
-                                                    <label id="label-question"
-                                                           for="question"
-                                                           class="col-md-3 col-form-label form-label">File Upload</label>
-                                                    <div class="col-md-9">
-                                                    <input type="file" id="file-upload" name="file" class="form-control-file">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-   
+                                    
+                                  
+<!--    
                                         <div class="list-group-item">
                                             <div class="text-right">
                                                 <button type="button" class="btn btn-accent">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <button type="button" class="btn btn-accent">Next</button>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                             </div>
                             

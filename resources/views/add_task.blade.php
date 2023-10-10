@@ -319,16 +319,33 @@
 
                                 <div class="card">
                                     <!-- < class="card-body"> -->
-                                 
-
-                                            <div class="list-group-item">
+                                      
+                                    <div class="list-group-item">
                                             <div role="group"
                                                  aria-labelledby="label-question"
                                                  class="m-0 form-group">
                                                 <div class="form-row">
                                                     <label id="label-question"
                                                            for="question"
-                                                           class="col-md-3 col-form-label form-label">Task</label>
+                                                           class="col-md-3 col-form-label form-label">Task Name</label>
+                                                    <div class="col-md-9">
+                                                   
+                                                            <input id="title"  type="text" class="form-control">
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="list-group-item">
+                                            <div role="group"
+                                                 aria-labelledby="label-question"
+                                                 class="m-0 form-group">
+                                                <div class="form-row">
+                                                    <label id="label-question"
+                                                           for="question"
+                                                           class="col-md-3 col-form-label form-label">Task Description</label>
                                                     <div class="col-md-9">
                                                     <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
                                                     <textarea id="editor" name="task_desc" class="col-md-12" rows="5"></textarea>

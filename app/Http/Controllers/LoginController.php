@@ -39,10 +39,9 @@ class LoginController extends Controller
 
     public function loginCheck(Request $request)
     {    
-           
         $email = $request->email;
         $password= Hash::make($request->password);
-        $token = $request->token;
+        $token = $request->_token;
         $input = $request->only('email', 'password');
         $validator = Validator::make($input, [
              'email' => 'required',
@@ -56,11 +55,11 @@ class LoginController extends Controller
         if(User::where('email', $email)->exists()){
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials)) {
-                $user = Auth::user();
                 User::where('email', $email)
                 ->update([
                 'remember_token' => $token
                 ]);
+                $user = Auth::user();
             Session::put('user', $user);
             $user_detail=Session::get('user');  
             $user_data = User::select('*')->where('email', $email)->get();

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Question;
 use Validator;
 use DB;
-
+use Session;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -34,21 +34,10 @@ class TaskController extends Controller
 
     /// Insert Task
     public function InsertTask(Request $request){
-
-        $validator = Validator::make($request->all(),[
-            'task_name' => 'required',
-            'task_desc' => 'required',
-            'user_id' => 'required',
-            'token' => 'required',
-        ]);
-
-        if($validator->fails()){
-            $msg = $validator->messages()->first();
-            return response()->json(['response_code' => false, 'message' => $msg]);
-        }
-        
-     $user_id = $request->user_id;
-     $user_access_token  = $request->token;
+    
+     $user = Session::get('user'); 
+     $user_id = $user->id;
+     $user_access_token  = $user->remember_token;
      $TokenCheck = User::where('id', $user_id)->first();
      $DB_token = $TokenCheck->remember_token;
      if($DB_token == $user_access_token){
@@ -62,8 +51,8 @@ class TaskController extends Controller
           $is_active = 1;
           $NoOfQuestns = $request->NoOfQuestns ? $request->NoOfQuestns:null;
           $NofQstnsAns = $request->NofQstnsAns ? $request->NofQstnsAns:null;
-          $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
-          $save_template = $request->save_template ? $request->save_template:null;
+       //  $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
+        //  $save_template = $request->save_template ? $request->save_template:null;
           //$token = $request->token;
 
         $result = Task::insert([
@@ -74,8 +63,8 @@ class TaskController extends Controller
             'is_active' => $is_active,
             'NoOfQuestns' => $NoOfQuestns,
             'NofQstnsAns' => $NofQstnsAns,
-            'difficulty_level' => $difficulty_level,
-            'save_template' => $save_template,
+            'difficulty_level' => $task_level,
+            'save_template' => '1',
             'created_date' => date('Y-m-d h:m:s')
         ]);
             if($result == true){
@@ -166,11 +155,12 @@ class TaskController extends Controller
 }
     //Get tasks
     public function GetTask(){
-        
+      
         $result = Task::select('*')->get();
 
         if($result == true){
-            return response()->json(['status' => true, 'message' => "Data retrieved", 'data' => $result]);
+            return view('task', ['result' => $result]);
+          //  return response()->json(['status' => true, 'message' => "Data retrieved", 'data' => $result]);
         } else {
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
         }

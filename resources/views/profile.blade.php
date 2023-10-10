@@ -1,90 +1,45 @@
 @extends('layouts.app')
 @section('content')
-
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Teacher Profile</title>
-
 <meta name="robots" content="noindex">
-<link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap" rel="stylesheet">
-
-
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600?display=swap" rel="stylesheet">
 <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
-
-
 <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
-
-
 <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
-
-
 <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
-
-
 <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
-
-
 <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 </head>
-<body class="layout-sticky-subnav layout-learnly ">
-<div class="preloader">
-<div class="sk-chase">
+<body class="?layout-sticky-subnav" layout-learnly>
+<div class="preloader"> <div class="sk-chase">
+<div class="sk-chase-dot"></div> <div class="sk-chase-dot"></div>
 <div class="sk-chase-dot"></div>
-<div class="sk-chase-dot"></div>
-<div class="sk-chase-dot"></div>
-<div class="sk-chase-dot"></div>
-<div class="sk-chase-dot"></div>
-<div class="sk-chase-dot"></div>
+<div class="sk-chase-dot"></div> <div class="sk-chase-dot"></div> <div class="sk-chase-dot"></div>
 </div>
-
-
 </div>
-
 <div class="mdk-header-layout js-mdk-header-layout">
-
-<div id="header" class="mdk-header js-mdk-header mb-0" data-fixed data-effects="waterfall">
-<div class="mdk-header__content">
-<div class="navbar navbar-expand navbar-light bg-white border-bottom" id="default-navbar" data-primary>
-<div class="container page__container">
-
-<a href="index.html" class="navbar-brand mr-16pt">
-
-<span><img src="images/plus-goal-logo.svg" width="100" height="50"></span>
-
-<span class="d-none d-lg-block"></span>
-</a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+<div id="header" class="mdk-header js-mdk-header mb-0" data-fixed data-effects="waterfall"> <div class="mdk-header__content">
+<div class="navbar navbar-expand navbar-light bg-white border-bottom" id="default-navbar" data-primary> <div class="container page__container"> <a href="index.html" class="navbar-brand mr-16pt"> <span><img src="images/plus-goal-logo.svg" width="100" height="50"></span>
+<span class="d-none d-lg-block"></span> </a>
 
 <button class="navbar-toggler w-auto mr-16pt d-block rounded-0" type="button" data-toggle="sidebar">
-<span class="material-icons">short_text</span>
-</button>
-<ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
-<li class="nav-item">
-<a href="index.html" class="nav-link">Home</a>
-</li>
-<li class="nav-item dropdown">
-<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">Courses</a>
-<div class="dropdown-menu">
-<a href="courses.html" class="dropdown-item">Browse Courses</a>
-<a href="student-course.html" class="dropdown-item">Preview Course</a>
-<a href="student-lesson.html" class="dropdown-item">Preview Lesson</a>
-<a href="student-take-course.html" class="dropdown-item"><span class="mr-16pt">Take Course</span> <span class="badge badge-notifications badge-accent text-uppercase ml-auto">Pro</span></a>
-<a href="student-take-lesson.html" class="dropdown-item">Take Lesson</a>
-<a href="student-take-quiz.html" class="dropdown-item">Take Quiz</a>
-<a href="student-quiz-result-details.html" class="dropdown-item">Quiz Result</a>
-<a href="student-dashboard.html" class="dropdown-item">Student Dashboard</a>
-<a href="student-my-courses.html" class="dropdown-item">My Courses</a>
+<span class="material-icons">short_text</span> </button> <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
+<li class="nav-item"> <a href="{{ route('home') }}" class="nav-link">Home</a> </li>
+<li class="nav-item dropdown"> <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">Courses</a> <div class="dropdown-menu">
+<a href="courses.html" class="dropdown-item">Browse Courses</a> <a href="student-course.htm" class="dropdown-item">Preview Course</a> <a href="student-lesson.html" class="dropdown-item">Preview Lesson</a>
+<a href="student-take-course.html" class="dropdown-item"><span class="mr-16pt">Take
+Course</span> <span class="badge badge-notifications badge-accent text-uppercase
+                                    ml-auto">Pro</span></a> <a href="student-take-lesson.html" class="dropdown-item">Take Lesson</a> <a href="student-take-quiz.html" class="dropdown-item">Take Quiz</a>
+<a href="student-quiz-result-details.html" class="dropdown-item">Quiz Result</a> <a href="student-dashboard.html" class="dropdown-item">Student Dashboard</a> <a href="student-my-courses.html" class="dropdown-item">My Courses</a>
 <a href="student-quiz-results.html" class="dropdown-item">My Quizzes</a>
 <a href="help-center.html" class="dropdown-item">Help Center</a>
 </div>
 </li>
-
-
 <li class="nav-item dropdown">
 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">Teachers</a>
 <div class="dropdown-menu">
@@ -132,7 +87,6 @@
 </div>
 </div>
 @foreach($data as $user)
-
 <div class="mdk-header-layout__content page-content ">
 <div class="page-section bg-alt border-bottom-2">
 <div class="container page__container">
@@ -141,25 +95,89 @@
 <div class="mb-16pt mb-md-0 mr-md-24pt">
 <img src="images/256_rsz_james-gillespie-714755-unsplash.jpg" width="104" alt="images/vector-sign-of-user-icon.jpg">
 </div>
-<div class="col-lg-8">
+<div class="col-lg-5">
 <h1 class="h2 mb-0">{{ $user[0]->first_name }} {{ $user[0]->last_name }}</h1><br>
-<h6 class="h6 mb-0">{{ $user[0]->address1 }} ,  {{ $user[0]->address2 }} <br>
-{{ $user[0]->city }},   {{ $user[0]->district }} <br>{{ $user[0]->state }}
+<h6 class="h6 mb-0">Email : {{ $user[0]->email }}
+
 </h6>
-<div>
-</div>
-
 
 </div>
-</div>
+
 <div class="col-mg-4">
-<h6 class="h6 mb-0">Email : {{ $user[0]->email }}</h6><br>
-<h6 class="h6 mb-0">Contact : {{ $user[0]->phone }}</h6>
-
+<a href class="btn btn-light">Edit Profile</a>
 </div>
 </div>
-<div class="col-lg-4">
-<a href class="btn btn-light">Follow</a>
+</div>
+<br><br>
+<div class="card-body table--elevated">
+<div class="form-group m-0" role="group" aria-labelledby="label-title">
+<div class="form-row align-items-center">
+<label id="label-title" for="title" class="col-md-3 col-form-label form-label">Address 1</label>
+<div class="col-md-9">
+<span > {{ $user[0]->address1 }} </span>
+</div>
+</div>
+</div>
+</div>
+<div class="card-body table--elevated">
+<div class="form-group m-0" role="group" aria-labelledby="label-title">
+<div class="form-row align-items-center">
+<label id="label-title" for="title" class="col-md-3 col-form-label form-label">Address 2</label>
+<div class="col-md-9">
+<span> {{ $user[0]->address2 }} </span>
+</div>
+</div>
+</div>
+</div>
+<div class="card-body table--elevated">
+<div class="form-group m-0" role="group" aria-labelledby="label-title">
+<div class="form-row align-items-center">
+<label id="label-title" for="title" class="col-md-3 col-form-label form-label">City</label>
+<div class="col-md-9">
+<span> {{ $user[0]->city }} </span>
+</div>
+</div>
+</div>
+</div>
+<div class="card-body table--elevated">
+<div class="form-group m-0" role="group" aria-labelledby="label-title">
+<div class="form-row align-items-center">
+<label id="label-title" for="title" class="col-md-3 col-form-label form-label">District</label>
+<div class="col-md-9">
+<span> {{ $user[0]->district }} </span>
+</div>
+</div>
+</div>
+</div>
+<div class="card-body table--elevated">
+<div class="form-group m-0" role="group" aria-labelledby="label-title">
+<div class="form-row align-items-center">
+<label id="label-title" for="title" class="col-md-3 col-form-label form-label">State</label>
+<div class="col-md-9">
+<span> {{ $user[0]->state }} </span>
+</div>
+</div>
+</div>
+</div>
+<div class="card-body table--elevated">
+<div class="form-group m-0" role="group" aria-labelledby="label-title">
+<div class="form-row align-items-center">
+<label id="label-title" for="title" class="col-md-3 col-form-label form-label">Country</label>
+<div class="col-md-9">
+<span> {{ $user[0]->country }} </span>
+</div>
+</div>
+</div>
+</div>
+<div class="card-body table--elevated">
+<div class="form-group m-0" role="group" aria-labelledby="label-title">
+<div class="form-row align-items-center">
+<label id="label-title" for="title" class="col-md-3 col-form-label form-label">Pin code</label>
+<div class="col-md-9">
+<span> {{ $user[0]->pincode }} </span>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -168,37 +186,22 @@
 <div class="row">
 <div class="col-lg-8">
 <div class="row card-group-row mb-8pt">
-
-
-
-
-</div>
-<div class="card">
-<div class="card-body">
-
-
-
-
-</div>
-</div>
-
-
-
-
 </div>
 
 </div>
 </div>
 </div>
 </div>
-
-
+</div>
 <div class="bg-dark border-top-2 mt-auto">
 <div class="container page__container page-section d-flex flex-column">
 <p class="text-white-70 brand mb-24pt">
 <img class="brand-icon" src="images/plus-goal-logo.svg" width="150" alt="Luma">
 </p>
-<p class="measure-lead-max text-white-50 small mr-8pt">Luma is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
+<p class="measure-lead-max text-white-50 small mr-8pt">Luma is a beautifully crafted user interface for
+modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher
+Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce
+and more.</p>
 <p class="mb-8pt d-flex">
 <a href class="text-white-70 text-underline mr-8pt small">Terms</a>
 <a href class="text-white-70 text-underline small">Privacy policy</a>
@@ -206,16 +209,11 @@
 <p class="text-white-50 small mt-n1 mb-0">Copyright 2019 &copy; All rights reserved.</p>
 </div>
 </div>
-
 </div>
-
-
 <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
 <div class="mdk-drawer__content">
 <div class="sidebar sidebar-light sidebar-light-dodger-blue sidebar-left" data-perfect-scrollbar>
-
 <a href="index.html" class="sidebar-brand ">
-
 <span class="avatar avatar-xl sidebar-brand-icon h-auto">
 <span class="avatar-title rounded bg-primary"><img src="images/white.svg" class="img-fluid" alt="logo" /></span>
 </span>
@@ -396,7 +394,6 @@ Community
 </li>
 <li class="sidebar-menu-item">
 <a class="sidebar-menu-button" href="help-center.html">
-
 <span class="sidebar-menu-text">Help Center</span>
 </a>
 </li>
@@ -418,32 +415,17 @@ Community
 </ul>
 </li>
 </ul>
-
 </div>
 </div>
 </div>
-
-
 @endforeach
 <script src="{{asset('vendor/jquery.min.js')}}"></script>
-
-
 <script src="{{asset('vendor/popper.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap.min.js')}}"></script>
-
-
 <script src="{{asset('vendor/perfect-scrollbar.min.js')}}"></script>
-
-
 <script src="{{asset('vendor/dom-factory.js')}}"></script>
-
-
 <script src="{{asset('vendor/material-design-kit.js')}}"></script>
-
-
 <script src="{{asset('js/app.js')}}"></script>
-
-
 <script src="{{asset('js/preloader.js')}}"></script>
 </body>
 </html>

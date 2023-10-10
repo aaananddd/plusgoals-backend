@@ -149,6 +149,7 @@ class LevelController extends Controller
         $result = Level::select('*')->get();
 
         if($result == true){
+            return view('assign_task', ['level' => $result]);
             return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
         } else {
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
