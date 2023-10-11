@@ -428,4 +428,16 @@ class AdminController extends Controller
         return respone()->json(['status' => false, 'message' => "No such role found"]);
     }
 }
+
+// List teachers
+    public function ListTeachers(){
+
+        $teachers = User::select('*')->where('role', '2')->get();
+        
+        if(!empty($teachers)){
+            return response()->json(['status'=>true, 'data'=>$teachers]);
+        } else {
+            return response()->json(['status'=>false]);
+        }
+    }
 }

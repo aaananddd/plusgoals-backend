@@ -305,137 +305,108 @@
 
                                 <div class="card">
                                     <!-- < class="card-body"> -->
-                                 
-
-                                            <div class="list-group-item">
-                                            <div role="group"
-                                                 aria-labelledby="label-question"
-                                                 class="m-0 form-group">
-                                                <div class="form-row">
-                                                    <label id="label-question"
-                                                           for="question"
-                                                           class="col-md-3 col-form-label form-label">Task</label>
+                                    <form method="POST" action="{{ route('addQuestions/'.)}}">
+                                     <!-- < class="card-body"> -->
+                                 {{ csrf_field() }}
+                                 <div class="form-group">
+                                    <div class="list-group-item">
+                                        <div role="group" aria-labelledby="label-question" class="m-0 form-group">
+                                            <div class="form-row">
+                                                <label id="label-question" for="task_desc" class="col-md-3 col-form-label form-label">Question</label>
                                                     <div class="col-md-9">
                                                     <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-                                                    <textarea id="editor" name="task_desc" class="col-md-12" rows="10"></textarea>
-                                                        <!-- <textarea id="question"
-                                                                  placeholder="Enter the Question ..."
-                                                                  rows="4"
-                                                                  class="form-control"></textarea> -->
+                                                    <textarea id="editor" name="question" class="col-md-12" rows="10"></textarea>
                                                     </div>
-                                                </div>
                                             </div>
                                         </div>
-                                        
-
+                                    </div>
+                                  </div>
+                                 
+                                  <div class="form-group">
                                         <div class="card-body table--elevated">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                                 <div class="form-row align-items-center">
-                                                    <label id="label-title" for="title" class="col-md-3 col-form-label form-label">Option A</label>
-                                                        <div class="col-md-8">      
-                                                            <input id="title"  type="text" class="form-control">             
-                                                        </div>
-                                                        <div class="col-md-1"> 
-                                                            <input id="checkbox" type="checkbox" class="form-control">
-                                                        </div>
+                                                <label id="label-title" for="OptionA" class="col-md-3 col-form-label form-label">Option A</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" id="OptionA" name="OptionA"> 
                                                     </div>
-                                                </div>
-                                            </div>     
-                                                        
-                                            <div class="card-body table--elevated">
-                                                <div class="form-group m-0"  role="group" aria-labelledby="label-title">
-                                                    <div class="form-row align-items-center">
-                                                        <label id="label-title"
-                                                               for="title"
-                                                               class="col-md-3 col-form-label form-label">Opption B</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"
-                                                                   type="text"
-                                                                   
-                                                                  
-                                                                   class="form-control">
+                                                    <div class="col-md-1"> 
+                                                            <input id="answer" name="answer" type="checkbox" value="a" class="form-control">
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>   
-
-                                            <div class="card-body table--elevated">
-                                                <div class="form-group m-0" role="group"  aria-labelledby="label-title">
-                                                    <div class="form-row align-items-center">
-                                                        <label id="label-title"
-                                                               for="title"
-                                                               class="col-md-3 col-form-label form-label">Options C</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"
-                                                                   type="text"
-                                                                   
-                                                                  
-                                                                   class="form-control">
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
-                                                    
-                                            <div class="card-body table--elevated">
-                                                <div class="form-group m-0" role="group" aria-labelledby="label-title">           
-                                                    <div class="form-row align-items-center">             
-                                                        <label id="label-title" for="title" class="col-md-3 col-form-label form-label">Option E</label>           
-                                                            <div class="col-md-8">        
-                                                                <input id="title" type="text" class="form-control">
-                                                            </div>
-                                                            <div class="col-md-1"> 
-                                                                <input id="checkbox" type="checkbox" class="form-control">
-                                                            </div>
+                                        </div>   
+                                </div>
+                                <div class="form-group">
+                                        <div class="card-body table--elevated">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                                <div class="form-row align-items-center">
+                                                <label id="label-title" for="OptionB" class="col-md-3 col-form-label form-label">Option B</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" id="OptionB" name="OptionB"> 
                                                     </div>
-                                                </div>
-                                            </div>
-                                                                   
-                                               
-
-                                            <div class="card-body table--elevated">
-                                                <div class="form-group m-0" role="group"  aria-labelledby="label-title">
-                                                    <div class="form-row align-items-center">
-                                                        <label id="label-title"
-                                                               for="title"
-                                                               class="col-md-3 col-form-label form-label">Option E</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"
-                                                                   type="text"
-                                                                   
-                                                                  
-                                                                   class="form-control">
+                                                    <div class="col-md-1"> 
+                                                            <input id="answer" name="answer" type="checkbox" value="b" class="form-control">
                                                         </div>
-                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div class="card-body table--elevated">
-                                                <div class="form-group m-0"
-                                                     role="group"
-                                                     aria-labelledby="label-title">
-                                                    <div class="form-row align-items-center">
-                                                        <label id="label-title"
-                                                               for="title"
-                                                               class="col-md-3 col-form-label form-label">Answer</label>
-                                                        <div class="col-md-9">
-                                                            <input id="title"
-                                                                   type="text"
-                                                                   
-                                                                  
-                                                                   class="form-control">
+                                        </div>   
+                                </div>
+                                <div class="form-group">
+                                        <div class="card-body table--elevated">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                                <div class="form-row align-items-center">
+                                                <label id="label-title" for="OptionC" class="col-md-3 col-form-label form-label">Option C</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" id="OptionC" name="OptionC"> 
+                                                    </div>
+                                                    <div class="col-md-1"> 
+                                                            <input id="answer" name="answer" type="checkbox" value="c" class="form-control">
                                                         </div>
-                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>   
+                                </div>
+                                <div class="form-group">
+                                        <div class="card-body table--elevated">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                                <div class="form-row align-items-center">
+                                                <label id="label-title" for="OptionD" class="col-md-3 col-form-label form-label">Option D</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" id="OptionD" name="OptionD"> 
+                                                    </div>
+                                                    <div class="col-md-1"> 
+                                                            <input id="answer" name="answer" value="d" type="checkbox" class="form-control">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                </div>
+                                <div class="form-group">
+                                        <div class="card-body table--elevated">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                                <div class="form-row align-items-center">
+                                                <label id="label-title" for="OptionE" class="col-md-3 col-form-label form-label">Option E</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" id="OptionE" name="OptionE"> 
+                                                    </div>
+                                                    <div class="col-md-1"> 
+                                                            <input id="answer" name="answer" value="e" type="checkbox" class="form-control">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                </div>
                                         <div class="list-group-item">
                                             <div class="text-right">
-                                                <button type="button" class="btn btn-accent">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <button type="button" class="btn btn-accent">Finish</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <button type="submit" style="cursor:pointer" class="btn btn-accent">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <!-- <button type="button" class="btn btn-accent">Finish</button>&nbsp;&nbsp;&nbsp;&nbsp; -->
                                                
                                             </div>
                                         </div>
-
+       
                             </div>
+                            </form>
                             <ul class="pagination justify-content-start pagination-xsm m-0">
                                                             <li class="page-item disabled">
                                                                 <a class="page-link"

@@ -60,3 +60,6 @@ Route::post('/answer/id', [TaskController::class, 'AddAnswers']);
 Route::post('/course', [CourseController::class, 'AddCourse']);
 Route::get('/course', [CourseController::class, 'GetCourse']);
 Route::get('/course/{id}', [CourseController::class, 'getCoursesById']);
+
+// teachers
+Route::get('/teachers', [AdminController::class, 'ListTeachers']);

@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\CourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,7 @@ Route::get('/dashboard/{id}', function() {return view('dashboard');});
 Route::get('/profile', function() {return view('profile');});
 Route::get('/add_task', function() {return view('add_task');});
 Route::get('/assign_task', function() {return view('assign_task');});
-Route::get('/add_questions', function() {return view('add_Questions');});
+Route::get('/add_questions/{id}', function() {return view('add_Questions');});
 Route::get('/task', function() {return view('task');});
 Route::get('/assigntask', function() {return view('assign_task');});
 
@@ -35,3 +36,4 @@ Route::post('/forgotPassword',[LoginController::class, 'forgotPassword'])->name(
 Route::get('/taskDetails',[TaskController::class, 'GetTask'])->name('taskDetails');
 Route::post('/addTask', [TaskController::class, 'InsertTask'])->name('addTask');
 Route::get('/taskLevel', [LevelController::class, 'GetLevels'])->name('taskLevel');
+Route::post('/addQuestions', [TaskController::class, 'AddQuestions'])->name('addQuestions');

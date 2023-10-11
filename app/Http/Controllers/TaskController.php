@@ -70,7 +70,7 @@ class TaskController extends Controller
             if($result == true){
                 $GetlastId = Task::select('task_id')->where('task_name', $task_name)->get();
                 $task_id = $GetlastId[0]->task_id;
-                //return redirect('/admin/dashboard')->with('success','New task has been created successfully.');
+                return redirect('add_questions/'. $task_id);
                 return response()->json(['status' => true, 'message' => "Task added successfully", 'task_id' => $task_id]);
              } else {
                 return response()->json(['status' => false, ' message' => "Failed to add task"]);
@@ -206,43 +206,66 @@ class TaskController extends Controller
     }
 }
 
+//
 // Add questions
 
-public function AddQuestions(Request $request, $task_id){
-   
-    $result = Task::select('*')->where('task_id', $task_id)->get();
-    $level = $result[0]->task_level;
-    $mode = $result[0]->difficulty_level;
-    $created_by = $result[0]->created_by;
-    $question1 = $request->question1 ? $request->question1:null;
-    $question2 = $request->question2 ? $request->question2:null;
-    $question3 = $request->question3 ? $request->question3:null;
-    $question4 = $request->question4 ? $request->question4:null;
-    $question5 = $request->question5 ? $request->question5:null;
-    $question6 = $request->question6 ? $request->question6:null;
-    $question7 = $request->question7 ? $request->question7:null;
-    $question8 = $request->question8 ? $request->question8:null;
-    $question9 = $request->question9 ? $request->question9:null;
-    $question10 = $request->question10 ? $request->question10:null;
+public function AddQuestions(Request $request){
 
-    $Insert = Question::insert([
-        'task_id' => $task_id,
-        'mode' => $difficulty_level,
-        'level' => $task_level,
-        'created_by' => $created_by,
-        'question1' => $question1,
-        'question2' => $question2,
-        'question3' => $question3,
-        'question4' => $question4,
-        'question5' => $question5,
-        'question6' => $question6,
-        'question7' => $question7,
-        'question8' => $question8,
-        'question9' => $question9,
-        'question10' => $question10
+    $user = Session::get('user'); 
+    $created_by = $user->id;
+    $question = $request->question;
+    $optionA= $request->optionA;
+    $optionB=$request->optionB;
+    $optionC =$request->optionC;
+    $optionD =$request->optionD;
+    $optionE = $request->optionE;
+    $answer  = $request->answer ;
+
+    $result = Question::insert([
+            'task_id' => $task_id,
+            'question' => $question,
+            'optionA' => $optionA,
+            'optionB' => $optionB,
+            'optionC' => $optionC,
+            'optionD' => $optionD,
+            'optionE' => $optionE,
+            'answer' => $answer,
+            'created_by' => $created_by,
+            'created_at' => date('Y-m-d h:m:s')
     ]);
+    // $result = Task::select('*')->where('task_id', $task_id)->get();
+    // $level = $result[0]->task_level;
+    // $mode = $result[0]->difficulty_level;
+    // $created_by = $result[0]->created_by;
+    // $question1 = $request->question1 ? $request->question1:null;
+    // $question2 = $request->question2 ? $request->question2:null;
+    // $question3 = $request->question3 ? $request->question3:null;
+    // $question4 = $request->question4 ? $request->question4:null;
+    // $question5 = $request->question5 ? $request->question5:null;
+    // $question6 = $request->question6 ? $request->question6:null;
+    // $question7 = $request->question7 ? $request->question7:null;
+    // $question8 = $request->question8 ? $request->question8:null;
+    // $question9 = $request->question9 ? $request->question9:null;
+    // $question10 = $request->question10 ? $request->question10:null;
 
-if($Insert == true){
+    // $Insert = Question::insert([
+    //     'task_id' => $task_id,
+    //     'mode' => $difficulty_level,
+    //     'level' => $task_level,
+    //     'created_by' => $created_by,
+    //     'question1' => $question1,
+    //     'question2' => $question2,
+    //     'question3' => $question3,
+    //     'question4' => $question4,
+    //     'question5' => $question5,
+    //     'question6' => $question6,
+    //     'question7' => $question7,
+    //     'question8' => $question8,
+    //     'question9' => $question9,
+    //     'question10' => $question10
+    // ]);
+
+if($result == true){
     $GetlastId = Question::select('id')->where('task_name', $task_name)->get();
     $qid = $GetlastId[0]->qid;
     //return redirect('/admin/dashboard')->with('success','New task has been created successfully.');
