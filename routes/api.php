@@ -6,7 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\LevelController;
 use App\Http\Controllers\API\TaskController;
-
+use App\Http\Controllers\API\CourseController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,3 +54,9 @@ Route::get('/task/{id}', [TaskController::class, 'GetTaskbyId']);
 //Questions
 Route::post('/questions/{id}', [TaskController::class, 'AddQuestions']);
 Route::post('/answer/id', [TaskController::class, 'AddAnswers']);
+
+
+//Courses
+Route::post('/course', [CourseController::class, 'AddCourse']);
+Route::get('/course', [CourseController::class, 'GetCourse']);
+Route::get('/course/{id}', [CourseController::class, 'getCoursesById']);
