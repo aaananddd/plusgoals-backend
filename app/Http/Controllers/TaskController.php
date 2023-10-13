@@ -65,12 +65,14 @@ class TaskController extends Controller
             'NofQstnsAns' => $NofQstnsAns,
             'difficulty_level' => $task_level,
             'save_template' => '1',
-            'created_date' => date('Y-m-d h:m:s')
+            'created_date' => date('Y-m-d h:m:s'),
+            'question_limit' => $NoOfQuestns
         ]);
             if($result == true){
                 $GetlastId = Task::select('task_id')->where('task_name', $task_name)->get();
                 $task_id = $GetlastId[0]->task_id;
-                return redirect('add_questions/'. $task_id);
+               // return redirect('add_questions/'. $task_id);
+                return redirect('addQuestion/'.$task_id.'/'. $NoOfQuestns );
                 return response()->json(['status' => true, 'message' => "Task added successfully", 'task_id' => $task_id]);
              } else {
                 return response()->json(['status' => false, ' message' => "Failed to add task"]);
@@ -206,74 +208,73 @@ class TaskController extends Controller
     }
 }
 
-//
+
 // Add questions
+public function AddQuestion($id, $limit){
+    
+    $task_id = $id;
 
-public function AddQuestions(Request $request){
+    $noOfquestions = $limit;
 
-    $user = Session::get('user'); 
-    $created_by = $user->id;
-    $question = $request->question;
-    $optionA= $request->optionA;
-    $optionB=$request->optionB;
-    $optionC =$request->optionC;
-    $optionD =$request->optionD;
-    $optionE = $request->optionE;
-    $answer  = $request->answer ;
+    return view('add_Questions', ['task_id' => $task_id, 'questionLimit' => $noOfquestions]);
 
-    $result = Question::insert([
-            'task_id' => $task_id,
-            'question' => $question,
-            'optionA' => $optionA,
-            'optionB' => $optionB,
-            'optionC' => $optionC,
-            'optionD' => $optionD,
-            'optionE' => $optionE,
-            'answer' => $answer,
-            'created_by' => $created_by,
-            'created_at' => date('Y-m-d h:m:s')
-    ]);
-    // $result = Task::select('*')->where('task_id', $task_id)->get();
-    // $level = $result[0]->task_level;
-    // $mode = $result[0]->difficulty_level;
-    // $created_by = $result[0]->created_by;
-    // $question1 = $request->question1 ? $request->question1:null;
-    // $question2 = $request->question2 ? $request->question2:null;
-    // $question3 = $request->question3 ? $request->question3:null;
-    // $question4 = $request->question4 ? $request->question4:null;
-    // $question5 = $request->question5 ? $request->question5:null;
-    // $question6 = $request->question6 ? $request->question6:null;
-    // $question7 = $request->question7 ? $request->question7:null;
-    // $question8 = $request->question8 ? $request->question8:null;
-    // $question9 = $request->question9 ? $request->question9:null;
-    // $question10 = $request->question10 ? $request->question10:null;
+}
+public function SaveQuestions(Request $request, $task_id){
 
-    // $Insert = Question::insert([
-    //     'task_id' => $task_id,
-    //     'mode' => $difficulty_level,
-    //     'level' => $task_level,
-    //     'created_by' => $created_by,
-    //     'question1' => $question1,
-    //     'question2' => $question2,
-    //     'question3' => $question3,
-    //     'question4' => $question4,
-    //     'question5' => $question5,
-    //     'question6' => $question6,
-    //     'question7' => $question7,
-    //     'question8' => $question8,
-    //     'question9' => $question9,
-    //     'question10' => $question10
-    // ]);
-
-if($result == true){
-    $GetlastId = Question::select('id')->where('task_name', $task_name)->get();
-    $qid = $GetlastId[0]->qid;
-    //return redirect('/admin/dashboard')->with('success','New task has been created successfully.');
-    return response()->json(['status' => true, 'message' => "Questions added successfully", 'qid' => $qid]);
- } else {
-    return response()->json(['status' => false, ' message' => "Failed to add question"]);
- }
-
+    $noOfquestions = Task::select('question_limit')->where('task_id', $task_id)->get();
+    $questionLimit = $noOfquestions[0]->question_limit;
+    
+    if(! empty($questionLimit)) {
+        for ($i=1;$i<=$questionLimit;$i++){
+          
+            $user = Session::get('user'); 
+            $created_by = $user->id;
+            $question = $request->question;
+            $optionA= $request->OptionA;
+            $optionB=$request->OptionB;
+            $optionC =$request->OptionC;
+            $optionD =$request->OptionD;
+            $optionE = $request->OptionE;
+            $answer  = $request->answer ;
+        
+            $result = Question::insert([
+                    'task_id' => $task_id,
+                    'question' => $question,
+                    'optionA' => $optionA,
+                    'optionB' => $optionB,
+                    'optionC' => $optionC,
+                    'optionD' => $optionD,
+                    'optionE' => $optionE,
+                    'answer' => $answer,
+                    'created_by' => $created_by,
+                    'created_at' => date('Y-m-d h:m:s')
+            ]);
+   
+            if($result == true) {
+                 $count = $questionLimit - 1;
+                
+                 if($count != 0){
+                    $setLimit = Task::where( 'task_id', $task_id) ->update([
+                        'question_limit' => $count
+                       ]);
+                   
+                      return redirect('addQuestion/'.$task_id. '/'.$count);  
+                 } else if($count == 0){
+                    
+                   return redirect('taskDetails');
+                 }
+            } else {
+                return response()->json(['status' => false]);
+            }
+        }      
+    } else {
+     return  redirect('taskDetails');
+       // return view('/taskDetails');
+    }
+ 
+   return  redirect('taskDetails');
+   // return response()->json(['status' => true, 'message' => "Questions added successfully", 'qid' => $qid]);
+ 
 }
 
 // Add answers

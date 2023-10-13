@@ -78,6 +78,16 @@ class AdminController extends Controller
             
           
                 return response()->json(['status' => 1, 'message'=> "Updated user details successfully"]);
-            }
+    }
+
+    // Teachers list view
+    public function teachersList()
+    {
+      
+        $teachers = User::select('*')->where('role', '2')->get();
+        return view('teachers_list', ['data' => array($teachers)]);
+    
+        
+    }
        
 }

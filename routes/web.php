@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +37,7 @@ Route::post('/forgotPassword',[LoginController::class, 'forgotPassword'])->name(
 Route::get('/taskDetails',[TaskController::class, 'GetTask'])->name('taskDetails');
 Route::post('/addTask', [TaskController::class, 'InsertTask'])->name('addTask');
 Route::get('/taskLevel', [LevelController::class, 'GetLevels'])->name('taskLevel');
-Route::post('/addQuestions', [TaskController::class, 'AddQuestions'])->name('addQuestions');
+Route::get('/addQuestion/{id}/{limit}', [TaskController::class, 'AddQuestion'])->name('addQuestion');
+Route::post('/saveQuestions/{task_id}', [TaskController::class, 'SaveQuestions'])->name('saveQuestions');
+Route::get('/teachers', [AdminController::class, 'teachersList'])->name('teachers');
+Route::get('/courselist', [CourseController::class, 'index'])->name('courselist');

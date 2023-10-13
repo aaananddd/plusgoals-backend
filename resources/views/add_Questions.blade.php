@@ -280,7 +280,8 @@
                                          
                                 </div>
                                 <div class="col-lg-8">
-                                    <h1 class="h2 mb-0">Add Questions</h1><br>
+                                    <h1 class="h2 mb-0">Add Questions</h1>
+                                    <h5 class="h5 mb-0">Question limit : {{ $questionLimit }}</h5><br>
                                    
                                     <div>
                                        
@@ -294,6 +295,7 @@
                     </div>
                 </div>
 
+
                 <div class="page-section">
                     <div class="container page__container">
 
@@ -305,7 +307,8 @@
 
                                 <div class="card">
                                     <!-- < class="card-body"> -->
-                                    <form method="POST" action="{{ route('addQuestions/'.)}}">
+                                    <form method="POST" action="{{ url('saveQuestions/'.$task_id)}}">
+                                  
                                      <!-- < class="card-body"> -->
                                  {{ csrf_field() }}
                                  <div class="form-group">

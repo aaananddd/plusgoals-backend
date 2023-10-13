@@ -94,7 +94,7 @@ class TaskController extends Controller
                         'question' => $question[$i]
                     ]);
                 }
-                dd($QuestionSet);
+            
                     // 'Question1' => $question1,
                     // 'Question2' => $question2,
                     // 'Question3' => $question3,
