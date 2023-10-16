@@ -8,6 +8,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\API\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +42,7 @@ Route::get('/addQuestion/{id}/{limit}', [TaskController::class, 'AddQuestion'])-
 Route::post('/saveQuestions/{task_id}', [TaskController::class, 'SaveQuestions'])->name('saveQuestions');
 Route::get('/teachers', [AdminController::class, 'teachersList'])->name('teachers');
 Route::get('/courselist', [CourseController::class, 'index'])->name('courselist');
+Route::get('/students', [StudentController::class, 'getStudentDetails'])->name('students');
+Route::get('/paidStudents', [StudentController::class, 'getPaidStudents'])->name('paidStudents');
+Route::get('/unpaidStudents', [StudentController::class, 'getUnPaidStudents'])->name('unpaidStudents');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');

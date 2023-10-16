@@ -150,7 +150,7 @@ th {
 <div class="mb-16pt mb-md-0 mr-md-24pt">
 </div>
 <div class="col-lg-8">
-<h1 class="h2 mb-0">Student List</h1><br>
+<h1 class="h2 mb-0">Paid Student List</h1><br>
 </div>
 </div>
 </div>
@@ -177,7 +177,7 @@ th {
 @foreach($data as $students)
 @for( $i = 0; $i < count($students); $i++)
 <tr>
-<td>{{ $students[$i]->id }}</td>
+<td> {{ $students[$i]->id }} </td>
 <td>{{ $students[$i]->first_name }}  {{ $students[$i]->last_name }}</td>
 <td>{{ $students[$i]->course_name }}</td>
 <td>{{ $students[$i]->mode }}</td>

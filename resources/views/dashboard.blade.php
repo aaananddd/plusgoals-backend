@@ -128,9 +128,9 @@
                                        data-toggle="dropdown"
                                        data-caret="false">Courses</a>
                                     <div class="dropdown-menu">
-                                        <a href="courses.html"
+                                        <a href="{{ route('courselist') }}"
                                            class="dropdown-item">Browse Courses</a>
-                                        <a href="student-course.html"
+                                        <a href="{{ route('courselist') }}"
                                            class="dropdown-item">Preview Course</a>
                                         <a href="student-lesson.html"
                                            class="dropdown-item">Preview Lesson</a>
@@ -180,8 +180,8 @@
                                        data-toggle="dropdown"
                                        data-caret="false">Teachers</a>
                                     <div class="dropdown-menu">
-                                        <a href="instructor-dashboard.html"
-                                           class="dropdown-item active">Instructor Dashboard</a>
+                                        <a href="{{ route('teachers') }}"
+                                           class="dropdown-item active">Teachers list</a>
                                         <a href="instructor-courses.html"
                                            class="dropdown-item">Manage Courses</a>
                                         <a href="instructor-quizzes.html"
@@ -194,6 +194,19 @@
                                            class="dropdown-item">Edit Course</a>
                                         <a href="instructor-edit-quiz.html"
                                            class="dropdown-item">Edit Quiz</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown active">
+                                    <a href="#"
+                                       class="nav-link dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       data-caret="false">Students</a>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ route('paidStudents') }}"
+                                           class="dropdown-item active">Paid Students</a>
+                                        <a href="{{ route('unpaidStudents') }}"
+                                           class="dropdown-item">Unpaid Students</a>
+                                       
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown"
@@ -501,18 +514,44 @@
                                 <div class="page-separator">
                                     <div class="page-separator__text">Hello {{ $user[0]->first_name }}</div>
                                 </div>
-                                <div class="card card-body mb-32pt">
-                                    <!-- <div id="legend"
-                                         class="chart-legend mt-0 mb-24pt justify-content-start"></div>
-                                    <div class="chart"
-                                         style="height: 320px;">
-                                        <canvas id="earningsChart"
-                                                class="chart-canvas js-update-chart-bar"
-                                                data-chart-legend="#legend"
-                                                data-chart-line-background-color="gradient:primary,gray"
-                                                data-chart-prefix="$"
-                                                data-chart-suffix="k"></canvas>
-                                    </div> -->
+                                <div class="card card-body mb-48pt">
+                                <div class="mb-36pt">
+                            
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="card border-1 border-left-3 border-left-accent text-center mb-lg-0">
+                                                <div class="card-body">
+                                                    <h4 class="h2 mb-0">    {{ $students }}</h4>
+                                                    <div>Total Students</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="card text-center mb-lg-0">
+                                                <div class="card-body">
+                                                    <h4 class="h2 mb-0">{{ $teachers }}</h4>
+                                                    <div>Total Teachers</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="card text-center mb-lg-0">
+                                                <div class="card-body">
+                                                    <h4 class="h2 mb-0">{{ $courses }}</h4>
+                                                    <div>Total Courses</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="card text-center mb-lg-0">
+                                                <div class="card-body">
+                                                    <h4 class="h2 mb-0">{{ $tasks }}</h4>
+                                                    <div>Total Tasks</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
 
                                 <div class="page-separator">
@@ -788,7 +827,7 @@
                                     </div>
                                 </div> -->
 
-                                <div class="page-separator">
+                                <!-- <div class="page-separator">
                                     <div class="page-separator__text">Recommended</div>
                                 </div>
 
@@ -820,9 +859,9 @@
                                             <small class="text-muted">3/5</small>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="mb-16pt d-flex align-items-center">
+                                <!-- <div class="mb-16pt d-flex align-items-center">
                                     <a href="student-course.html"
                                        class="avatar avatar-4by3 overlay overlay--primary mr-12pt">
                                         <img src="../../public/images/paths/angular_testing_200x168.png"
@@ -880,7 +919,7 @@
                                             <small class="text-muted">13 May 2018</small>
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>

@@ -7,6 +7,8 @@ use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\LevelController;
 use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -63,3 +65,16 @@ Route::get('/course/{id}', [CourseController::class, 'getCoursesById']);
 
 // teachers
 Route::get('/teachers', [AdminController::class, 'ListTeachers']);
+
+//Students
+Route::post('/student_register', [StudentController::class, 'register']);
+Route::get('/student_login', [StudentController::class, 'login']);
+Route::put('/student/{id}', [StudentController::class, 'updateStudentProfile']);
+Route::post('/applyCourse/{id}', [StudentController::class, 'applyCourse']);
+Route::get('/student', [StudentController::class, 'getStudentDetails']);
+Route::get('/student/{id}', [StudentController::class, 'getStudentDetailById']);
+Route::get('/paidStudents', [StudentController::class, 'getPaidStudents']);
+Route::get('/unpaidStudents', [StudentController::class, 'getUnPaidStudents']);
+
+// Dahsboard
+Route::get('/dashboard', [HomeController::class, 'dashboard']);
