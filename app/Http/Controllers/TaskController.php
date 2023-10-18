@@ -54,7 +54,7 @@ class TaskController extends Controller
        //  $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
         //  $save_template = $request->save_template ? $request->save_template:null;
           //$token = $request->token;
-
+       
         $result = Task::insert([
             'task_name' => $task_name,
             'task_desc' => $task_desc,
@@ -158,11 +158,13 @@ class TaskController extends Controller
     //Get tasks
     public function GetTask(){
       
-        $result = Task::select('*')->get();
+        $result = Task::leftjoin('levels','tasks.task_level','=','levels.id')
+                        ->select('tasks.*', 'levels.level_name')
+                        ->get();
 
         if($result == true){
-            return view('task', ['result' => $result]);
-          //  return response()->json(['status' => true, 'message' => "Data retrieved", 'data' => $result]);
+           return view('task', ['result' => $result]);
+           return response()->json(['status' => true, 'message' => "Data retrieved", 'data' => $result]);
         } else {
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
         }
@@ -173,13 +175,21 @@ class TaskController extends Controller
        if(Task::where('task_id', $id)->exists()){
         $result = Task::where('task_id', $id)->first();
 
-        if($result == true){
-            return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
+        $questions = Question::select('*')->where('task_id', $id)->get();
+    
+       if ((!empty($result)) && (!empty($questions))){
+       
+            return view('task_details', ['data' => array($result), 'question' => ($questions)]);
+            return response()->json(['status' => true, 'message' => "Data retreived", 'data' =>  $result , 'questions' => $questions]);
+       } else if((!empty($result)) && (empty($questions))){
+         
+            return view('task_details', ['data' => array($result), 'question' =>array(null)]);
+            return response()->json(['status' => false, 'data'=>$result, 'questions'=>null]);
         } else {
-            return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
+            return true;
         }
     }else{
-        return response()->json(['status' => false, 'message' => "No such tsak found"]);
+        return response()->json(['status' => false, 'message' => "No such task found"]);
     }
 }
     

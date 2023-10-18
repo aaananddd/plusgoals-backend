@@ -3,7 +3,7 @@
 <html lang="en"
       dir="ltr">
 
-    <head>
+      <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible"
               content="IE=edge">
@@ -23,32 +23,36 @@
               href="../../public/vendor/spinkit.css"
               rel="stylesheet"> -->
               <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
-
         <!-- Perfect Scrollbar -->
         <!-- <link type="text/css"
               href="../../public/vendor/perfect-scrollbar.css"
               rel="stylesheet"> -->
               <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
+
         <!-- Material Design Icons -->
         <!-- <link type="text/css"
               href="../../public/css/material-icons.css"
               rel="stylesheet"> -->
               <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
+
         <!-- Font Awesome Icons -->
         <!-- <link type="text/css"
               href="../../public/css/fontawesome.css"
               rel="stylesheet"> -->
               <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
+
         <!-- Preloader -->
         <!-- <link type="text/css"
               href="../../public/css/preloader.css"
               rel="stylesheet"> -->
               <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
+
         <!-- App CSS -->
         <!-- <link type="text/css"
               href="../../public/css/app.css"
               rel="stylesheet"> -->
               <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+
     </head>
 
     <body class="layout-sticky-subnav layout-learnly ">
@@ -91,16 +95,16 @@
                             <a href="index.html"
                                class="navbar-brand mr-16pt">
 
-                                <!-- <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt"> -->
+                                <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
 
-                                    <span ><img src="images/plus-goal-logo.svg"
-                                              width="150" height="100"></span>
+                                    <span class="avatar-title rounded bg-primary"><img src="images/white.svg"
+                                             alt="logo"
+                                             class="img-fluid" /></span>
 
-                                <!-- </span> -->
+                                </span>
 
-                                <span class="d-none d-lg-block"></span>
+                                <span class="d-none d-lg-block">Plus Goals</span>
                             </a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
 
                             <!-- Navbar toggler -->
                             <button class="navbar-toggler w-auto mr-16pt d-block rounded-0"
@@ -111,8 +115,12 @@
 
                             <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
                                 <li class="nav-item">
-                                    <a href="index.html"
+                                    <a href="{{ route('home') }}"
                                        class="nav-link">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('taskDetails') }}"
+                                       class="nav-link">Task</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a href="#"
@@ -120,9 +128,9 @@
                                        data-toggle="dropdown"
                                        data-caret="false">Courses</a>
                                     <div class="dropdown-menu">
-                                        <a href="courses.html"
+                                        <a href="{{ route('courselist') }}"
                                            class="dropdown-item">Browse Courses</a>
-                                        <a href="student-course.html"
+                                        <a href="{{ route('courselist') }}"
                                            class="dropdown-item">Preview Course</a>
                                         <a href="student-lesson.html"
                                            class="dropdown-item">Preview Lesson</a>
@@ -166,14 +174,14 @@
                                     <a href="pricing.html"
                                        class="nav-link">Pricing</a>
                                 </li> -->
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown active">
                                     <a href="#"
                                        class="nav-link dropdown-toggle"
                                        data-toggle="dropdown"
                                        data-caret="false">Teachers</a>
                                     <div class="dropdown-menu">
-                                        <a href="instructor-dashboard.html"
-                                           class="dropdown-item">Instructor Dashboard</a>
+                                        <a href="{{ route('teachers') }}"
+                                           class="dropdown-item active">Teachers list</a>
                                         <a href="instructor-courses.html"
                                            class="dropdown-item">Manage Courses</a>
                                         <a href="instructor-quizzes.html"
@@ -188,7 +196,20 @@
                                            class="dropdown-item">Edit Quiz</a>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown active"
+                                <li class="nav-item dropdown active">
+                                    <a href="#"
+                                       class="nav-link dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       data-caret="false">Students</a>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ route('paidStudents') }}"
+                                           class="dropdown-item active">Paid Students</a>
+                                        <a href="{{ route('unpaidStudents') }}"
+                                           class="dropdown-item">Unpaid Students</a>
+                                       
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown"
                                     data-toggle="tooltip"
                                     data-title="Community"
                                     data-placement="bottom"
@@ -205,7 +226,7 @@
                                         <a href="student-profile.html"
                                            class="dropdown-item">Student Profile</a>
                                         <a href="teacher-profile.html"
-                                           class="dropdown-item active">Instructor Profile</a>
+                                           class="dropdown-item">Instructor Profile</a>
                                         <a href="blog.html"
                                            class="dropdown-item">Blog</a>
                                         <a href="blog-post.html"
@@ -395,24 +416,18 @@
             <!-- Footer -->
 
             <div class="bg-dark border-top-2 mt-auto">
-                <div class="container page__container page-section d-flex flex-column">
-                    <p class="text-white-70 brand mb-24pt">
-                        <img class="brand-icon"
-                             src="images/plus-goal-logo.svg"
-                             width="150"
-                             alt="Luma"> 
-                    </p>
-                    <p class="measure-lead-max text-white-50 small mr-8pt">Luma is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
-                    <p class="mb-8pt d-flex">
-                        <a href=""
-                           class="text-white-70 text-underline mr-8pt small">Terms</a>
-                        <a href=""
-                           class="text-white-70 text-underline small">Privacy policy</a>
-                    </p>
-                    <p class="text-white-50 small mt-n1 mb-0">Copyright 2019 &copy; All rights reserved.</p>
-                </div>
-            </div>
-
+<div class="container page__container page-section d-flex flex-column">
+<p class="text-white-70 brand mb-24pt">
+<img class="brand-icon" src="images/plus-goal-logo.svg" width="150" alt="Luma">
+</p>
+<p class="measure-lead-max text-white-50 small mr-8pt">Luma is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
+<p class="mb-8pt d-flex">
+<a href class="text-white-70 text-underline mr-8pt small">Terms</a>
+<a href class="text-white-70 text-underline small">Privacy policy</a>
+</p>
+<p class="text-white-50 small mt-n1 mb-0">Copyright 2019 &copy; All rights reserved.</p>
+</div>
+</div>
             <!-- // END Footer -->
 
         </div>

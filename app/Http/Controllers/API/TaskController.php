@@ -197,19 +197,10 @@ class TaskController extends Controller
 
     //Get task by id
     public function GetTaskbyId($id){
-        // $validator = Validator::make($request->all(),[
-        //     'task_id' => 'required',
-        // ]);
-
-        // if($validator->fails()){
-        //     $msg = $validator->messages()->first();
-        //     return response()->json(['response_code' => false, 'message' => $msg]);
-        // }
-        
-       // $task_id = $request->task_id;
+       
        if(Task::where('task_id', $id)->exists()){
-        $result = Task::where('task_id', $task_id)->first();
-
+        $result = Task::where('task_id', $id)->first();
+        
         if($result == true){
             return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
         } else {

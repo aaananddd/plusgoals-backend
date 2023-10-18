@@ -78,3 +78,4 @@ Route::get('/unpaidStudents', [StudentController::class, 'getUnPaidStudents']);
 
 // Dahsboard
 Route::get('/dashboard', [HomeController::class, 'dashboard']);
+

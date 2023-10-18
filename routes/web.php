@@ -46,3 +46,5 @@ Route::get('/students', [StudentController::class, 'getStudentDetails'])->name('
 Route::get('/paidStudents', [StudentController::class, 'getPaidStudents'])->name('paidStudents');
 Route::get('/unpaidStudents', [StudentController::class, 'getUnPaidStudents'])->name('unpaidStudents');
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+Route::get('/taskdetails/{id}',[TaskController::class, 'GetTaskbyId'])->name('taskdetails'); 

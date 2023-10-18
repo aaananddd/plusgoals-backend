@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en"
       dir="ltr">
 
-      <head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible"
               content="IE=edge">
         <meta name="viewport"
               content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Task </title>
+        <title>Take Quiz</title>
 
         <!-- Prevent the demo from appearing in search engines -->
         <meta name="robots"
@@ -112,7 +111,6 @@
                                     data-toggle="sidebar">
                                 <span class="material-icons">short_text</span>
                             </button>
-
                             <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
                                 <li class="nav-item">
                                     <a href="{{ route('home') }}"
@@ -244,7 +242,6 @@
                                     </div>
                                 </li>
                             </ul>
-
                             <form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-16pt"
                                   action="index.html"
                                   style="max-width: 230px">
@@ -439,7 +436,7 @@
             </div>
 
             <!-- // END Header -->
-
+            @foreach($data as $task)
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content page-content ">
 
@@ -448,105 +445,118 @@
 
                         <div class="d-flex flex-column flex-lg-row align-items-center">
                             <div class="flex d-flex flex-column align-items-center align-items-lg-start mb-16pt mb-lg-0 text-center text-lg-left">
-                                <h1 class="h2 mb-8pt">Tasks</h1>
-                        
+                            <span class="h5 mb-8pt">   Task Name: </span>
+                            <h2 class="h2 mb-8pt"> {{ $task->task_name }}</h2>
+                               <div >
+                                    <!-- <span class="chip chip-outline-secondary d-inline-flex align-items-center"> -->
+                                        <!-- <i class="material-icons icon--left">schedule</i>
+                                        2h 46m -->
+                                    <span class="h5 mb-8pt">   Task : </span>
+                                    <div class="card" style="background-color:powderblue; width:1200px; height: 100px;">
+                                    <p style="color:black;font-size:20px;">
+                                        {{ $task->task_desc }}
+                                    </p>
+                                </div>
+                                </div>
                             </div>
-                            <div class="ml-lg-16pt">
-                            
-                                <a href="{{ route('taskLevel') }}"
-                                   class="btn btn-light">New task</a>
-                            </div>
+                            <!-- <div class="ml-lg-16pt">
+                                <a href=""
+                                   class="btn btn-light">
+                                    Questions
+                                    <span class="badge badge-notifications badge-accent icon--right"> {{ $task->NoOfQuestns }}</span>
+                                </a>
+                            </div> -->
                         </div>
 
                     </div>
                 </div>
-
-                <div class="page-section">
+                @foreach($question as $questions)
+                @if (is_null($questions) )
+                <div class="container page__container">
+                    <p style="color:red;font-size:20px;">No questions available for this task.</p>
+                </div>
+                @else
+                <div class="page-section border-bottom-2" style="background-color:white;">
                     <div class="container page__container">
 
                         <div class="row">
                             <div class="col-lg-8">
 
-                            
-                                @foreach($result as $task)
-                               
-                                <div class="page-separator">
-                                    <div class="page-separator__text">Task {{$task->task_id}} </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-left mr-24pt">
-                                                <!-- <a href="#"
-                                                   class="avatar avatar-sm"> -->
-                                                    <!-- <img src="../../public/images/people/110/guy-9.jpg" alt="Guy" class="avatar-img rounded-circle"> -->
-                                                    <!-- <span class="avatar-title rounded-circle">LB</span>
-                                                </a> -->
-                                            </div>
-                                            <div class="media-body d-flex flex-column">
-                                                <div class="d-flex align-items-center">
-                                                    <!-- <a href="profile.html"
-                                                       class="card-title">Laza Bogdan</a>
-                                                    <small class="ml-auto text-muted">27 min ago</small><br> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="media-left mr-12pt">
-                                                <!-- <a href="#"
-                                                   class="avatar avatar-sm">
-                                                    <img src="../../public/images/people/110/guy-6.jpg" alt="Guy" class="avatar-img rounded-circle">
-                                                    <span class="avatar-title rounded-circle"></span>
-                                                </a> -->
-                                                <!-- <div class="d-flex align-items-center"> -->
-                                                    <a href="{{ url('taskdetails')}}/{{ $task->task_id }}"
-                                                       class="card-title">{{ $task->task_name}}</a>
-                                                    <small class="ml-auto text-muted"></small>
-                                                 <!-- </div> -->
-                                        </div>
-                                      <br>
-                                        <div class="media ml-sm-32pt mt-8 border">
-                                         
-                                            <div class="media-body">
-                                             
-                                            <div  style=" font-weight:bold;"> Task Description :
-                                            <span style="font: size 15px;">
-                                                {{ $task->task_desc }}
-                                            </span>
-                                            </div>
-                                            <div  style="font-weight:bold;"> Number of questions :
-                                            <span style="font: size 15px;">
-                                                {{ $task->NoOfQuestns }}
-                                            </span>
-                                            </div>
-                                            <div  style="font-weight:bold;"> Level :
-                                            <span>
-                                                {{ $task->level_name }}
-                                            </span>
-                                            </div>
-                                                <!-- <a href="#class="text-underline"></a>  -->
-                                                
-                                            </div>
-                                        </div>
+                                <div class="row" style="color:black;font-size:20px;"> {{ $questions->id }}. {!! $questions->question !!}</div>
+                             
+                                <div class="form-group">
+                                    <div class="custom-control ">
+                    
+                                        <label> a. {{ $questions->optionA }}</label>
                                     </div>
-                                  
                                 </div>
-                                
-                                @endforeach
+                                <div class="form-group">
+                                    <div class="custom-control ">
+                    
+                                        <label> b. {{ $questions->optionB }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control ">
+                    
+                                        <label> c. {{ $questions->optionC }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control ">
+                    
+                                        <label> d. {{ $questions->optionD }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control " style="background-color:#ddd;">
+                    
+                                        <label> anwer. {{ $questions->answer }}</label>
+                                    </div>
+                                </div>
+                                <!-- <p class="text-50 mb-0">Note: There can be multiple correct answers to this question.</p> -->
 
                             </div>
-                         
+                            <!-- <div class="col-lg-4">
+
+                                <div class="d-flex flex-column mb-24pt">
+                                    <a href="student-quiz-result-details.html"
+                                       class="btn justify-content-center btn-outline-secondary mb-16pt">Skip Quiz</a>
+                                    <a href="student-take-lesson.html"
+                                       class="btn justify-content-center btn-outline-secondary mb-16pt">Review Video</a>
+                                    <a href="student-quiz-result-details.html"
+                                       class="btn justify-content-center btn-accent ">Next Question <i class="material-icons icon--right">keyboard_arrow_right</i></a>
+                                </div>
+
+                                <div class="page-separator">
+                                    <div class="page-separator__text">Course</div>
+                                </div>
+
+                                <a href="student-course.html"
+                                   class="d-flex flex-nowrap mb-24pt">
+                                    <span class="mr-16pt">
+                                        <img src="../../public/images/paths/angular_64x64.png"
+                                             width="40"
+                                             alt="Angular"
+                                             class="rounded">
+                                    </span>
+                                    <span class="flex d-flex flex-column align-items-start">
+                                        <span class="card-title">Angular Fundamentals</span>
+                                        <span class="card-subtitle text-50">16 Lessons</span>
+                                    </span>
+                                </a>
+
+                            </div> -->
                         </div>
 
                     </div>
                 </div>
 
             </div>
+            @endif
             <!-- // END Header Layout Content -->
-
-        <!-- // END Header Layout -->
-
-        <!-- // END Drawer -->
-        
+            @endforeach
+            @endforeach
             <!-- Footer -->
 
             <div class="bg-dark border-top-2 mt-auto">
@@ -562,69 +572,323 @@
 <p class="text-white-50 small mt-n1 mb-0">Copyright 2019 &copy; All rights reserved.</p>
 </div>
 </div>
+
             <!-- // END Footer -->
 
         </div>
+        <!-- // END Header Layout -->
+
+        <!-- Drawer -->
+
+        <div class="mdk-drawer js-mdk-drawer"
+             id="default-drawer">
+            <div class="mdk-drawer__content">
+                <div class="sidebar sidebar-light sidebar-light-dodger-blue sidebar-left"
+                     data-perfect-scrollbar>
+
+                    <!-- Sidebar Content -->
+
+                    <a href="index.html"
+                       class="sidebar-brand ">
+                        <!-- <img class="sidebar-brand-icon" src="../../public/images/illustration/student/128/white.svg" alt="Luma"> -->
+
+                        <span class="avatar avatar-xl sidebar-brand-icon h-auto">
+
+                            <span class="avatar-title rounded bg-primary"><img src="../../public/images/illustration/student/128/white.svg"
+                                     class="img-fluid"
+                                     alt="logo" /></span>
+
+                        </span>
+
+                        <span>Luma</span>
+                    </a>
+
+                    <div class="sidebar-heading">Student</div>
+                    <ul class="sidebar-menu">
+
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="index.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">home</span>
+                                <span class="sidebar-menu-text">Home</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="courses.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">local_library</span>
+                                <span class="sidebar-menu-text">Browse Courses</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="paths.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">style</span>
+                                <span class="sidebar-menu-text">Browse Paths</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-dashboard.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">account_box</span>
+                                <span class="sidebar-menu-text">Student Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-my-courses.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">search</span>
+                                <span class="sidebar-menu-text">My Courses</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-paths.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">timeline</span>
+                                <span class="sidebar-menu-text">My Paths</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-path.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">change_history</span>
+                                <span class="sidebar-menu-text">Path Details</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-course.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">face</span>
+                                <span class="sidebar-menu-text">Course Preview</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-lesson.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">panorama_fish_eye</span>
+                                <span class="sidebar-menu-text">Lesson Preview</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-take-course.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
+                                <span class="sidebar-menu-text">Take Course</span>
+                                <span class="sidebar-menu-badge badge badge-accent badge-notifications ml-auto">PRO</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-take-lesson.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">import_contacts</span>
+                                <span class="sidebar-menu-text">Take Lesson</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item active">
+                            <a class="sidebar-menu-button"
+                               href="student-take-quiz.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">dvr</span>
+                                <span class="sidebar-menu-text">Take Quiz</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-quiz-results.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">poll</span>
+                                <span class="sidebar-menu-text">My Quizzes</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-quiz-result-details.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">live_help</span>
+                                <span class="sidebar-menu-text">Quiz Result</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-path-assessment.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">layers</span>
+                                <span class="sidebar-menu-text">Skill Assessment</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="student-path-assessment-result.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">assignment_turned_in</span>
+                                <span class="sidebar-menu-text">Skill Result</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <div class="sidebar-heading">Instructor</div>
+                    <ul class="sidebar-menu">
+
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="instructor-dashboard.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">school</span>
+                                <span class="sidebar-menu-text">Instructor Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="instructor-courses.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">import_contacts</span>
+                                <span class="sidebar-menu-text">Manage Courses</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="instructor-quizzes.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">help</span>
+                                <span class="sidebar-menu-text">Manage Quizzes</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="instructor-earnings.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">trending_up</span>
+                                <span class="sidebar-menu-text">Earnings</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="instructor-statement.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">receipt</span>
+                                <span class="sidebar-menu-text">Statement</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="instructor-edit-course.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">post_add</span>
+                                <span class="sidebar-menu-text">Edit Course</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               href="instructor-edit-quiz.html">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">format_shapes</span>
+                                <span class="sidebar-menu-text">Edit Quiz</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <div class="sidebar-heading">Applications</div>
+                    <ul class="sidebar-menu">
+
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                               data-toggle="collapse"
+                               href="#community_menu">
+                                <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">people_outline</span>
+                                Community
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                            </a>
+                            <ul class="sidebar-submenu collapse sm-indent"
+                                id="community_menu">
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="teachers.html">
+
+                                        <span class="sidebar-menu-text">Browse Teachers</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="student-profile.html">
+
+                                        <span class="sidebar-menu-text">Student Profile</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="teacher-profile.html">
+
+                                        <span class="sidebar-menu-text">Teacher Profile</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="blog.html">
+
+                                        <span class="sidebar-menu-text">Blog</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="blog-post.html">
+
+                                        <span class="sidebar-menu-text">Blog Post</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="faq.html">
+                                        <span class="sidebar-menu-text">FAQ</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="help-center.html">
+                                        <!--  -->
+                                        <span class="sidebar-menu-text">Help Center</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="discussions.html">
+                                        <span class="sidebar-menu-text">Discussions</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="discussion.html">
+                                        <span class="sidebar-menu-text">Discussion Details</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       href="discussions-ask.html">
+                                        <span class="sidebar-menu-text">Ask Question</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- // END Sidebar Content -->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- // END Drawer -->
+
         <!-- jQuery -->
-        <!-- <script src="../../public/vendor/jquery.min.js"></script> -->
         <script src="{{asset('vendor/jquery.min.js')}}"></script>
 
         <!-- Bootstrap -->
-        <!-- <script src="../../public/vendor/popper.min.js"></script>
-        <script src="../../public/vendor/bootstrap.min.js"></script> -->
         <script src="{{asset('vendor/popper.min.js')}}"></script>
         <script src="{{asset('vendor/bootstrap.min.js')}}"></script>
 
         <!-- Perfect Scrollbar -->
-        <!-- <script src="../../public/vendor/perfect-scrollbar.min.js"></script> -->
         <script src="{{asset('vendor/perfect-scrollbar.min.js')}}"></script>
 
         <!-- DOM Factory -->
-        <!-- <script src="../../public/vendor/dom-factory.js"></script> -->
         <script src="{{asset('vendor/dom-factory.js')}}"></script>
 
         <!-- MDK -->
-        <!-- <script src="../../public/vendor/material-design-kit.js"></script> -->
         <script src="{{asset('vendor/material-design-kit.js')}}"></script>
 
         <!-- App JS -->
-        <!-- <script src="../../public/js/app.js"></script> -->
         <script src="{{asset('js/app.js')}}"></script>
 
         <!-- Preloader -->
-        <!-- <script src="../../public/js/preloader.js"></script> -->
         <script src="{{asset('js/preloader.js')}}"></script>
-
-        <!-- Global Settings -->
-        <!-- <script src="../../public/js/settings.js"></script> -->
-        <script src="{{asset('js/settings.js')}}"></script>
-
-        <!-- Moment.js -->
-        <!-- <script src="../../public/vendor/moment.min.js"></script>
-        <script src="../../public/vendor/moment-range.js"></script> -->
-        <script src="{{asset('vendor/moment.min.js')}}"></script>
-        <script src="{{asset('vendor/moment-range.js')}}"></script>
-
-        <!-- Chart.js -->
-        <!-- <script src="../../public/vendor/Chart.min.js"></script> -->
-        <script src="{{asset('vendor/Chart.min.js')}}"></script>
-
-        <!-- UI Charts Page JS -->
-        <!-- <script src="../../public/js/chartjs-rounded-bar.js"></script>
-        <script src="../../public/js/chartjs.js"></script> -->
-        <script src="{{asset('js/chartjs-rounded-bar.js')}}"></script>
-        <script src="{{asset('js/chartjs.js')}}"></script>
-
-        <!-- Chart.js Samples -->
-        <!-- <script src="../../public/js/page.instructor-dashboard.js"></script> -->
-        <script src="{{asset('js/page.instructor-dashboard.js')}}"></script>
-
-        <!-- List.js -->
-        <!-- <script src="../../public/vendor/list.min.js"></script>
-        <script src="../../public/js/list.js"></script> -->
-        <script src="{{asset('vendor/list.min.js')}}"></script>
-        <script src="{{asset('js/list.js')}}"></script>
-
+      
     </body>
 
 </html>
