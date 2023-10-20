@@ -8,6 +8,9 @@ use Validator;
 use DB;
 use Session;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+
 
 class TaskController extends Controller
 {
@@ -51,7 +54,7 @@ class TaskController extends Controller
           $is_active = 1;
           $NoOfQuestns = $request->NoOfQuestns ? $request->NoOfQuestns:null;
           $NofQstnsAns = $request->NofQstnsAns ? $request->NofQstnsAns:null;
-       //  $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
+          $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
         //  $save_template = $request->save_template ? $request->save_template:null;
           //$token = $request->token;
        
@@ -63,9 +66,9 @@ class TaskController extends Controller
             'is_active' => $is_active,
             'NoOfQuestns' => $NoOfQuestns,
             'NofQstnsAns' => $NofQstnsAns,
-            'difficulty_level' => $task_level,
+            'difficulty_level' => $difficulty_level,
             'save_template' => '1',
-            'created_date' => date('Y-m-d h:m:s'),
+            'created_at' => date('Y-m-d h:m:s'),
             'question_limit' => $NoOfQuestns
         ]);
             if($result == true){
@@ -160,10 +163,12 @@ class TaskController extends Controller
       
         $result = Task::leftjoin('levels','tasks.task_level','=','levels.id')
                         ->select('tasks.*', 'levels.level_name')
-                        ->get();
-
+                        ->orderby('tasks.created_at', 'asc')
+                        ->paginate(10);
+                        // ->get();
+        
         if($result == true){
-           return view('task', ['result' => $result]);
+           return view('task', ['result' => array($result)]);
            return response()->json(['status' => true, 'message' => "Data retrieved", 'data' => $result]);
         } else {
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
@@ -257,7 +262,7 @@ public function SaveQuestions(Request $request, $task_id){
                     'optionE' => $optionE,
                     'answer' => $answer,
                     'created_by' => $created_by,
-                    'created_at' => date('Y-m-d h:m:s')
+                    'created_at' => date('Y-m-d')
             ]);
    
             if($result == true) {
@@ -315,4 +320,6 @@ public function AddAnswers(Request $request, $qid){
     }
     
 }
+
+
 }

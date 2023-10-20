@@ -60,7 +60,7 @@ class StudentController extends Controller
                'phone' => $request->phone,
                'password' => $password,
                'is_student' => 1,
-               'created_at' => date('Y-m-d h:m:s')
+               'created_at' => date('Y-m-d')
         ]); // eloquent creation of data
 
         $success['user'] = $user;
@@ -126,7 +126,7 @@ class StudentController extends Controller
                 'institute' => $institute,
                 'board' => $board,
                 'total_marks' => $total_marks,
-                'created_at' => date('Y-m-d h:m:s')
+                'created_at' => date('Y-m-d')
         ]);
 
         if($result = true){
@@ -169,6 +169,8 @@ class StudentController extends Controller
         $result = User::leftjoin('student_profiles','users.id', '=','student_profiles.student_id')
                         ->leftjoin('courses','student_profiles.course_id','=','courses.id')
                         ->where('users.is_student', '1')
+                        ->orderby('tasks.created_at', 'asc')
+                        ->paginate(10)
                         ->get(['users.*','student_profiles.*','courses.course_name']);
         
         if(!empty($result)){

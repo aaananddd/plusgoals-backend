@@ -268,7 +268,7 @@
                                          
                                 </div>
                                 <div class="col-lg-8">
-                                    <h1 class="h2 mb-0">Add New Task Template</h1><br>
+                                    <h1 class="h2 mb-0">Add New Task</h1><br>
                                    
                                     <div>
                                        
@@ -303,7 +303,7 @@
                             </div> -->
                     </div>
                 </div>
-              
+          
                 <div class="page-section">
                     <div class="container page__container">
                         <div class="row">
@@ -328,16 +328,26 @@
                                   </div>
                                   <div class="form-group">
                                     <div class="list-group-item">
-                                        <div role="group" aria-labelledby="label-question" class="m-0 form-group">
+                                    <div role="group" aria-labelledby="label-question" class="m-0 form-group">
+                                            <div class="form-row">
+                                                <label id="label-question" for="task_desc" class="col-md-3 col-form-label form-label">Question</label>
+                                                    <div class="col-md-9">
+                                                    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+                                                    <textarea id="editor" name="question" class="col-md-12" rows="10"></textarea>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div role="group" aria-labelledby="label-question" class="m-0 form-group">
                                             <div class="form-row">
                                                 <label id="label-question" for="task_desc" class="col-md-3 col-form-label form-label">Task Description</label>
                                                     <div class="col-md-9">
                                                         <textarea id="task_desc" placeholder="Describe your question in detail ..." rows="4" class="form-control" name="task_desc"></textarea> 
                                                     </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                   </div>
+                                  
                                   <div class="form-group">
                                   <div class="list-group-item">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-topic">
@@ -347,8 +357,8 @@
                                                             
                                                         <select class="form-control custom-select w-auto" name="task_level" id="task_level" >
                                                             <option value="option_select" disabled selected>Task level</option>
-                                                                 @foreach($level as $task_level)      
-                                                                    <option value="{{ $task_level->id }}" {{$task_level->id == $task_level->id  ? 'selected' : ''}}>{{ $task_level->level_name}}</option> 
+                                                                 @foreach($level as $taskLevel)      
+                                                                   {<option value="{{ $taskLevel->id }}" {{$taskLevel->id == $taskLevel->id  ? 'selected' : ''}}>{{ $taskLevel->level_name}}</option> 
                                                                  @endforeach
                                                          </select>
                                                     </div>
@@ -356,22 +366,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <div class="list-group-item">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-topic">
                                             <div class="form-row align-items-center">
-                                                <label id="label-topic" for="difficulty_level" class="col-md-3 col-form-label form-label">Difficulty</label>
-                                                    <div class="col-md-9">
-                                                        <select id="difficulty_level" class="form-control custom-select w-auto">
-                                                            <option value="Easy">Easy</option>
-                                                            <option value="Medium">Medium</option>
-                                                            <option value="Difficult">Difficult</option>
-                                                        </select>
-                                                    </div>
+                                                <label id="label-topic" for="difficulty_level" class="col-md-3 col-form-label form-label">Difficulty Level</label>
+                                                 <div class="col-md-9">
+                                                         <select class="form-control custom-select w-auto" name="task_level" id="task_level" >
+                                                            <option value="option_select" disabled selected>Task level</option>
+                                                                 @foreach($difficultylevel as $task_level)      
+                                                                    <option value="{{ $task_level->id }}" {{$task_level->id == $task_level->id  ? 'selected' : ''}}>{{ $task_level->level_name}}</option> 
+                                                                 @endforeach
+                                                         </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="form-group">
                                         <div class="card-body table--elevated">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-title">
@@ -395,6 +406,16 @@
                                                 </div>
                                             </div>
                                         </div>   
+                                </div>
+                                <div class="form-group">
+                                        <div class="card-body table--elevated">
+                                            <div role="group" aria-labelledby="label-question" class="m-0 form-group">
+                                                <label id="label-question" for="file-upload" class="col-md-3 col-form-label form-label">File Upload</label>
+                                                    <div class="col-md-9">
+                                                        <input type="file" id="file-upload" name="file" class="form-control-file">
+                                                    </div>
+                                            </div>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                         <div class="list-group-item">

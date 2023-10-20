@@ -18,7 +18,7 @@ class CourseController extends Controller
             'course_name'=>$course_name,
             'course_desc'=>$course_desc,
             'mode'=>$mode,
-            'created_at'=>date('Y-m-d h:m:s')
+            'created_at'=>date('Y-m-d')
             ]);
         
             if($result == TRUE) {

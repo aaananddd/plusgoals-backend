@@ -1,5 +1,9 @@
 
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>  
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>  
 <html lang="en"
       dir="ltr">
 
@@ -460,87 +464,60 @@
 
                     </div>
                 </div>
+                <div class="container">  
+    <input class="date form-control" type="text">  
+</div>           
+                <div class="mdk-header-layout__content page-content ">
+<div class="page-section">
+<div class="container page__container">
+<div class="row">
 
-                <div class="page-section">
-                    <div class="container page__container">
+<div class="col-lg-12">
+<!-- <div class="scrollit"> -->
+<table class="table align-middle table-nowrap" id="customerTable">
+<thead class="table-light">
+<tr>
+<th>Sl.No</th>
+<th>Task Name</th>
+<!-- <th>Task Description</th> -->
+<th>Level</th>
+<th>Difficulty level</th>
+<th>Created Date</th>
+</tr>
+</thead>
+<tbody class="list form-check-all">
+@foreach($result as $task)
+@for ($i = 0; $i < count($task); $i++)
+<tr>
+<!-- <td colspan="2"> -->
 
-                        <div class="row">
-                            <div class="col-lg-8">
+<td>{{ $task[$i]->task_id }}</td>
+<td>{{ $task[$i]->task_name }}</td>
+<!-- <td>{{ $task[$i]->task_desc }}</td> -->
+<td>{{ $task[$i]->task_level }}</td>
+<td>{{ $task[$i]->difficulty_level }}</td>
+<td>{{ $task[$i]->created_at }}</td>
+<td> <button class="btn btn-light"> View</button></td>
 
-                            
-                                @foreach($result as $task)
-                               
-                                <div class="page-separator">
-                                    <div class="page-separator__text">Task {{$task->task_id}} </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-left mr-24pt">
-                                                <!-- <a href="#"
-                                                   class="avatar avatar-sm"> -->
-                                                    <!-- <img src="../../public/images/people/110/guy-9.jpg" alt="Guy" class="avatar-img rounded-circle"> -->
-                                                    <!-- <span class="avatar-title rounded-circle">LB</span>
-                                                </a> -->
-                                            </div>
-                                            <div class="media-body d-flex flex-column">
-                                                <div class="d-flex align-items-center">
-                                                    <!-- <a href="profile.html"
-                                                       class="card-title">Laza Bogdan</a>
-                                                    <small class="ml-auto text-muted">27 min ago</small><br> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="media-left mr-12pt">
-                                                <!-- <a href="#"
-                                                   class="avatar avatar-sm">
-                                                    <img src="../../public/images/people/110/guy-6.jpg" alt="Guy" class="avatar-img rounded-circle">
-                                                    <span class="avatar-title rounded-circle"></span>
-                                                </a> -->
-                                                <!-- <div class="d-flex align-items-center"> -->
-                                                    <a href="{{ url('taskdetails')}}/{{ $task->task_id }}"
-                                                       class="card-title">{{ $task->task_name}}</a>
-                                                    <small class="ml-auto text-muted"></small>
-                                                 <!-- </div> -->
-                                        </div>
-                                      <br>
-                                        <div class="media ml-sm-32pt mt-8 border">
-                                         
-                                            <div class="media-body">
-                                             
-                                            <div  style=" font-weight:bold;"> Task Description :
-                                            <span style="font: size 15px;">
-                                                {{ $task->task_desc }}
-                                            </span>
-                                            </div>
-                                            <div  style="font-weight:bold;"> Number of questions :
-                                            <span style="font: size 15px;">
-                                                {{ $task->NoOfQuestns }}
-                                            </span>
-                                            </div>
-                                            <div  style="font-weight:bold;"> Level :
-                                            <span>
-                                                {{ $task->level_name }}
-                                            </span>
-                                            </div>
-                                                <!-- <a href="#class="text-underline"></a>  -->
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                  
-                                </div>
-                                
-                                @endforeach
+<!-- </td> -->
+</tr>
+@endfor
+@endforeach
+</tbody>
+</table>
+{!! $task->withQueryString()->links('pagination::bootstrap-5') !!}
+<!-- </div> -->
+</div>
+</div>
+</div>
+</div>
 
-                            </div>
-                         
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
+ <style>
+    .scrollit {
+    overflow:scroll;
+    height:100px;
+} 
+ </style>             
             <!-- // END Header Layout Content -->
 
         <!-- // END Header Layout -->

@@ -28,7 +28,7 @@ Route::get('/add_task', function() {return view('add_task');});
 Route::get('/assign_task', function() {return view('assign_task');});
 Route::get('/add_questions/{id}', function() {return view('add_Questions');});
 Route::get('/task', function() {return view('task');});
-Route::get('/assigntask', function() {return view('assign_task');});
+
 
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -48,3 +48,5 @@ Route::get('/unpaidStudents', [StudentController::class, 'getUnPaidStudents'])->
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/taskdetails/{id}',[TaskController::class, 'GetTaskbyId'])->name('taskdetails'); 
+Route::get('/difficultylevels', [LevelController::class, 'GetDifficultyLevels'])->name('difficultylevels');
+Route::post('/insertdifficultylevels', [LevelController::class, 'InsertDiffciultyLevel'])->name('insertdifficultylevels');

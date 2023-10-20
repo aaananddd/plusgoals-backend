@@ -271,7 +271,7 @@ class AdminController extends Controller
                 'role_description' => $role_desc,
                 'is_active' => $is_active,
                 'created_by' => $created_by,
-                'created_at' => date('Y-m-d h:m:s')
+                'created_at' => date('Y-m-d')
             ]);
 
                   if($result == true) {

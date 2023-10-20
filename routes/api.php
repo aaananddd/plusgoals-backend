@@ -79,3 +79,7 @@ Route::get('/unpaidStudents', [StudentController::class, 'getUnPaidStudents']);
 // Dahsboard
 Route::get('/dashboard', [HomeController::class, 'dashboard']);
 
+
+//Difficulty level
+Route::post('/insertdiffiultylevel', [LevelController::class, 'InsertDiffciultyLevel']);
+Route::get('/difficultylevels', [LevelController::class, 'GetDifficultyLevels']);

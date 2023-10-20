@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\DifficultyLevel;
 use App\Models\Level;
 use Illuminate\Support\Facades\Hash;
 use Validator;
@@ -54,7 +55,7 @@ class LevelController extends Controller
         $token = $request->token;
 
         if($role_id == '1'){
-            $result = Level::insert([
+            $result = DifficultyLevel::insert([
                 'level_name' => $levelName,
                 'mode' => $levelMode,
                 'easy_task' => $easyTask,
@@ -88,9 +89,9 @@ class LevelController extends Controller
         if($validator->fails()){
             return $this->sendError($validator->errors(), 'Validation Error', 422);
         }
-        if(Level::where('id', $id)->exists()){
+        if(DifficultyLevel::where('id', $id)->exists()){
         $level_name = $request->level_name;
-        $values = Level::where('level_name', $level_name)->get();
+        $values = DifficultyLevel::where('level_name', $level_name)->get();
         $OldMode = $values[0]->mode;
         $OldEasy_task = $values[0]->easy_task;
         $OldMedium_task = $values[0]->medium_task;
@@ -105,10 +106,10 @@ class LevelController extends Controller
         $token = $request->token;
 
         if($role_id == '1'){
-            $LevelCheck = Level::select('*')->where('level_name', $level_name)->get();
+            $LevelCheck = DifficultyLevel::select('*')->where('level_name', $level_name)->get();
 
             if($LevelCheck != null){
-                $result = Level::where('level_name', $level_name)->update([
+                $result = DifficultyLevel::where('level_name', $level_name)->update([
                     'mode' => $levelMode,
                     'easy_task' => $easyTask,
                     'medium_task' => $mediumTask,
@@ -152,7 +153,7 @@ class LevelController extends Controller
        // $token = $request->token;
 
         if($role == '1'){
-                $result = Level::where('id', $id)->delete();
+                $result = DifficultyLevel::where('id', $id)->delete();
                 if($result == true){
                     return response()->json(['status' => true, 'message'=> "Deleted level successfully"]);
                 } else {
@@ -169,7 +170,7 @@ class LevelController extends Controller
     //Get levels
     public function GetLevels(){
            
-        $result = Level::select('*')->get();
+        $result = DifiicultyLevel::select('*')->get();
        
         if($result == true){
             return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
@@ -189,8 +190,8 @@ class LevelController extends Controller
         // }
         
        //  $level_id = $request->level_id;
-       if(Level::where('id', $id)->exists()){
-        $result = Level::where('id', $id)->first();
+       if(DifficultyLevel::where('id', $id)->exists()){
+        $result = DifficultyLevel::where('id', $id)->first();
 
         if($result == true){
             return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
@@ -202,4 +203,47 @@ class LevelController extends Controller
         return response()->json(['status' => false, 'message' => "No such found"]);
     }
  }
+
+ //Insert difficulty level
+public function InsertDiffciultyLevel(Request $request){
+
+    // $validator = Validator::make($request->all(), [
+    //    'level_name' => 'required',
+    //    'updatedBy' => 'required',
+    //    'token' => 'required'
+    // ]);
+
+    // if($validator->fails()){
+    //     return $this->sendError($validator->errors(), 'Validation Error', 422);
+    // }
+
+    $levelName = $request->level_name;
+    $levelMode = $request->mode ? $request->mode:null;
+  
+        $result = Level::insert([
+            'level_name' => $levelName,
+            'mode' => $levelMode,
+            'created_at' => date('Y-m-d'),
+            'created_by' => 1
+        ]);
+
+         if($result == true){
+            return response()->json(['status' => 'true', 'message' => "Level added succesfully"]);
+         }else{
+            return response()->json(['status' => 'false', 'message' => "Failed to add level"]);
+         }    
+}
+
+ ////Difficulty level
+ public function GetDifficultyLevels(){
+           
+    $result = Level::select('*')->get();
+
+    if($result == true){
+        return view('assign_task', ['level' => $result]);
+        return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
+    } else {
+        return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
+    }
+}
 }
