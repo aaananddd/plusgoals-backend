@@ -464,12 +464,22 @@
 
                     </div>
                 </div>
-                <div class="container">  
-    <input class="date form-control" type="text">  
-</div>           
-                <div class="mdk-header-layout__content page-content ">
+                <div class="container page__container">
+                <div class="row">
+              
+                <div class="col-md-2 " id="scroll-horizontal_length" >
+                    <span> From date</span>
+                    <input type="date" class="form-control" id="fdate" name="from_date" value="" required>
+                </div>
+                <div class="col-md-2 " id="scroll-horizontal_length" >
+                    <span> To Date</span>
+                    <input type="date" class="form-control" id="fdate" name="from_date" value="" required>
+                </div>
+            </div>
+            <div class="mdk-header-layout__content page-content ">
+                    
 <div class="page-section">
-<div class="container page__container">
+
 <div class="row">
 
 <div class="col-lg-12">
@@ -506,11 +516,11 @@
 </tbody>
 </table>
 {!! $task->withQueryString()->links('pagination::bootstrap-5') !!}
+</div>
+</div>
+</div>
+</div>
 <!-- </div> -->
-</div>
-</div>
-</div>
-</div>
 
  <style>
     .scrollit {

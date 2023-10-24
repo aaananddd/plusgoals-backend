@@ -231,6 +231,29 @@ class StudentController extends Controller
         } else {
             return response()->json(['status'=>false, 'message'=>"Failed to retreive"]);
         }
-        
+   }
+
+ //student profile details
+ public function studentProfile(Request $request, $id){
+   
+    if(User::where('id', $id)->exists()){
+       
+        $user_access_token  = $request->token;
+        $TokenCheck = User::where('id', $id)->first();
+        $DB_token = $TokenCheck->remember_token;
+        if($DB_token == $user_access_token){
+         $result = User::select('*')->where('id', $id)->first();
+         if($result == true){
+            return response()->json(['status' => true, 'message' => "Data retreived successfully", 'data' => $result]);
+         }else {
+            return response()->json(['status' => false, 'message' => "Failed to retreive data"]);
+         }
+       }else {
+         return response()->json(['status'=>false,'message'=>'Invalid token']);
+       }
+    } else {
+        return response()->json(['status'=>false, 'message'=>"No such user"]);
     }
+ }
+  
 }
