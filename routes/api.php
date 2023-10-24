@@ -76,6 +76,7 @@ Route::get('/student/{id}', [StudentController::class, 'getStudentDetailById']);
 Route::get('/paidStudents', [StudentController::class, 'getPaidStudents']);
 Route::get('/unpaidStudents', [StudentController::class, 'getUnPaidStudents']);
 Route::get('/studentDetails/{id}', [StudentController::class, 'studentProfile']);
+Route::get('/studentEductaional/{id}', [StudentController::class, 'studentEducationalDetails']);
 
 // Dahsboard
 Route::get('/dashboard', [HomeController::class, 'dashboard']);
