@@ -134,7 +134,7 @@
                                     <div class="dropdown-menu">
                                         <a href="{{ route('courselist') }}"
                                            class="dropdown-item">Browse Courses</a>
-                                        <a href="{{ route('courselist') }}"
+                                        <!-- <a href="{{ route('courselist') }}"
                                            class="dropdown-item">Preview Course</a>
                                         <a href="student-lesson.html"
                                            class="dropdown-item">Preview Lesson</a>
@@ -153,7 +153,7 @@
                                         <a href="student-quiz-results.html"
                                            class="dropdown-item">My Quizzes</a>
                                         <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a>
+                                           class="dropdown-item">Help Center</a> -->
                                     </div>
                                 </li>
                                 <!-- <li class="nav-item dropdown">
@@ -186,7 +186,7 @@
                                     <div class="dropdown-menu">
                                         <a href="{{ route('teachers') }}"
                                            class="dropdown-item active">Teachers list</a>
-                                        <a href="instructor-courses.html"
+                                        <!-- <a href="instructor-courses.html"
                                            class="dropdown-item">Manage Courses</a>
                                         <a href="instructor-quizzes.html"
                                            class="dropdown-item">Manage Quizzes</a>
@@ -197,7 +197,7 @@
                                         <a href="instructor-edit-course.html"
                                            class="dropdown-item">Edit Course</a>
                                         <a href="instructor-edit-quiz.html"
-                                           class="dropdown-item">Edit Quiz</a>
+                                           class="dropdown-item">Edit Quiz</a> -->
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown active">
@@ -206,14 +206,15 @@
                                        data-toggle="dropdown"
                                        data-caret="false">Students</a>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('paidStudents') }}"
-                                           class="dropdown-item active">Paid Students</a>
-                                        <a href="{{ route('unpaidStudents') }}"
-                                           class="dropdown-item">Unpaid Students</a>
+                                        <!-- <a href="{{ route('paidStudents') }}" -->
+                                        <a href="{{ route('students') }}" 
+                                           class="dropdown-item active">Student list</a>
+                                        <!-- <a href="{{ route('unpaidStudents') }}"
+                                           class="dropdown-item">Unpaid Students</a> -->
                                        
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown"
+                                <!-- <li class="nav-item dropdown"
                                     data-toggle="tooltip"
                                     data-title="Community"
                                     data-placement="bottom"
@@ -224,7 +225,7 @@
                                        data-caret="false">
                                         <i class="material-icons">people_outline</i>
                                     </a>
-                                    <div class="dropdown-menu">
+                                     <div class="dropdown-menu">
                                         <a href="teachers.html"
                                            class="dropdown-item">Browse Teachers</a>
                                         <a href="student-profile.html"
@@ -245,19 +246,10 @@
                                            class="dropdown-item">Discussion Details</a>
                                         <a href="discussions-ask.html"
                                            class="dropdown-item">Ask Question</a>
-                                    </div>
-                                </li>
+                                    </div> -->
+                                <!-- </li> --> 
                             </ul>
-
-                            <form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-16pt"
-                                  action="index.html"
-                                  style="max-width: 230px">
-                                <button class="btn"
-                                        type="submit"><i class="material-icons">search</i></button>
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Search ...">
-                            </form>
+                            
 
                             <div class="nav navbar-nav ml-auto mr-0 flex-nowrap d-flex">
 
@@ -455,6 +447,15 @@
                                 <h1 class="h2 mb-8pt">Tasks</h1>
                         
                             </div>
+                            <form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-16pt"
+                                  action="index.html"
+                                  style="max-width: 230px">
+                                <button class="btn"
+                                        type="submit"><i class="material-icons">search</i></button>
+                                <input type="text"
+                                       class="form-control" id="input"
+                                       placeholder="Search ...">
+                            </form>
                             <div class="ml-lg-16pt">
                             
                                 <a href="{{ route('taskLevel') }}"
@@ -489,13 +490,13 @@
 <tr>
 <th>Sl.No</th>
 <th>Task Name</th>
-<!-- <th>Task Description</th> -->
+<th>Course</th> 
 <th>Level</th>
 <th>Difficulty level</th>
 <th>Created Date</th>
 </tr>
 </thead>
-<tbody class="list form-check-all">
+<tbody class="list form-check-all" id="myTable">
 @foreach($result as $task)
 @for ($i = 0; $i < count($task); $i++)
 <tr>
@@ -503,7 +504,7 @@
 
 <td>{{ $task[$i]->task_id }}</td>
 <td>{{ $task[$i]->task_name }}</td>
-<!-- <td>{{ $task[$i]->task_desc }}</td> -->
+<td>{{ $task[$i]->course_name }}</td> 
 <td>{{ $task[$i]->task_level }}</td>
 <td>{{ $task[$i]->difficulty_level }}</td>
 <td>{{ $task[$i]->created_at }}</td>
@@ -613,5 +614,15 @@
         <script src="{{asset('js/list.js')}}"></script>
 
     </body>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#input").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+});
+</script>
 </html>

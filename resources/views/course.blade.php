@@ -128,7 +128,7 @@
                                     <div class="dropdown-menu">
                                         <a href="{{ route('courselist') }}"
                                            class="dropdown-item">Browse Courses</a>
-                                        <a href="{{ route('courselist') }}"
+                                        <!-- <a href="{{ route('courselist') }}"
                                            class="dropdown-item">Preview Course</a>
                                         <a href="student-lesson.html"
                                            class="dropdown-item">Preview Lesson</a>
@@ -147,7 +147,7 @@
                                         <a href="student-quiz-results.html"
                                            class="dropdown-item">My Quizzes</a>
                                         <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a>
+                                           class="dropdown-item">Help Center</a> -->
                                     </div>
                                 </li>
                                 <!-- <li class="nav-item dropdown">
@@ -180,7 +180,7 @@
                                     <div class="dropdown-menu">
                                         <a href="{{ route('teachers') }}"
                                            class="dropdown-item active">Teachers list</a>
-                                        <a href="instructor-courses.html"
+                                        <!-- <a href="instructor-courses.html"
                                            class="dropdown-item">Manage Courses</a>
                                         <a href="instructor-quizzes.html"
                                            class="dropdown-item">Manage Quizzes</a>
@@ -191,7 +191,7 @@
                                         <a href="instructor-edit-course.html"
                                            class="dropdown-item">Edit Course</a>
                                         <a href="instructor-edit-quiz.html"
-                                           class="dropdown-item">Edit Quiz</a>
+                                           class="dropdown-item">Edit Quiz</a> -->
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown active">
@@ -200,10 +200,11 @@
                                        data-toggle="dropdown"
                                        data-caret="false">Students</a>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('paidStudents') }}"
-                                           class="dropdown-item active">Paid Students</a>
-                                        <a href="{{ route('unpaidStudents') }}"
-                                           class="dropdown-item">Unpaid Students</a>
+                                        <!-- <a href="{{ route('paidStudents') }}" -->
+                                        <a href="{{ route('students') }}" 
+                                           class="dropdown-item active">Student list</a>
+                                        <!-- <a href="{{ route('unpaidStudents') }}"
+                                           class="dropdown-item">Unpaid Students</a> -->
                                        
                                     </div>
                                 </li>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Question;
+use App\Models\Student;
+use App\Models\StudentDetail;
 use Validator;
 use DB;
 
@@ -63,8 +65,9 @@ class TaskController extends Controller
           $NoOfQuestns = $request->NoOfQuestns ? $request->NoOfQuestns:null;
           $NofQstnsAns = $request->NofQstnsAns ? $request->NofQstnsAns:null;
           $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
+          $course_id = $request->course? $request->course:null;
           $save_template = $request->save_template ? $request->save_template:null;
-          //$token = $request->token;
+          $file = $request->file ? $request->file:null;
 
         $result = Task::insert([
             'task_name' => $task_name,
@@ -76,6 +79,8 @@ class TaskController extends Controller
             'NofQstnsAns' => $NofQstnsAns,
             'difficulty_level' => $difficulty_level,
             'save_template' => $save_template,
+            'course' => $course,
+            'file' => $file,
             'created_date' => date('Y-m-d h:m:s')
         ]);
             if($result == true){
@@ -236,20 +241,68 @@ class TaskController extends Controller
     }
 }
 
-// Add questions
-public function Task(Request $request){
-    // $validator=Validator::make($request->all, [
-    //     'task_id'=>'required'
-    // ]);
-    // if($validator->fails()){
-    //     $msg = $validator->messages()->first();
-    //     return response()->json(['response_code' => false, 'message' => $msg]);
-    // }
-   
-   // $res = Task::lastInsertId();
-  
-
+// Asssign tasks to students
+public function assignTask(Request $request, $id){
     
-}
+    if(Student::where('id', $id)->exists()){
+        $userDetails = StudentDetail::select('*')->where('student_id', $id)->get();
+        $mode = $userDetails[0]->mode;
+        $level = $userDetails[0]->level_id;
+        $course_id = $userDetails[0]->course_id;
+        $status = $userDetails[0]->level_status;
+        $difficulty_level = $userDetails[0]->difficulty_level;
+        $level_status = $userDetails[0]->level_status;
+        $task_id = $userDetails[0]->task_id;
+
+        if($status = "start"){
+            if(($mode == "free") && ($level == 1) && ($course_id == 1)){
+                $task = Task::select('*')->where(['course_id'=> $course_id, 'task_level'=>$level, 'difficulty_level'=>$difficulty_level])->first();
+                $task_id = $task->task_id;
+                $questions = Question::select('*')->where('task_id',$task->task_id)->get();
+                
+                // $updateStudentDetails = StudentDetail::where('student_id', $id)->update([
+                //             'task_id' => $task_id
+                // ]);
+             
+                return response()->json(['status'=>true, 'message'=>'Task retreived', 'tasks'=>$task, 'questions'=>$questions]);
+           } else {
+               return response()->json(['status' => false, 'message' => "failed to retreive"]);
+           }
+        }                         
+        else if($status = "pending"){
+            if( $mode == "free"){
+                $task = Task::select('*')->where(['task_id'=>$task_id])->first();
+         
+                $questions = Question::select('*')->where('task_id',$task->task_id)->get();
+                
+                return response()->json(['status'=>true, 'message'=>'Task retreived', 'tasks'=>$task, 'questions'=>$questions]);
+            } else {
+                return response()->json(['status' => false, 'message' => "failed to retreive"]);
+            }
+           
+        }
+        else if($status = "failed") {
+            $task = Task::select('*')->where(['course_id'=> $course_id, 'task_level'=>$level, 'difficulty_level'=>$difficulty_level])->first();
+         
+            $questions = Question::select('*')->where('task_id',$task->task_id)->get();
+            
+            return response()->json(['status'=>true, 'message'=>'Task retreived', 'tasks'=>$task, 'questions'=>$questions]);
+        } 
+        else if($status = "completed"){
+            if( $mode == "free"){
+                $task = Task::select('*')->where(['course_id'=> $course_id, 'task_level'=>$level, 'difficulty_level'=>$difficulty_level])->first();
+         
+                $questions = Question::select('*')->where('task_id',$task->task_id)->get();
+                
+                return response()->json(['status'=>true, 'message'=>'Task retreived', 'tasks'=>$task, 'questions'=>$questions]);
+            } else {
+                return response()->json(['status' => false, 'message' => "failed to retreive"]);
+            }
+    
+        } else{
+            return response()->json(['status' => false, 'message' => "No such user found"]);
+        }
+    }
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
 }

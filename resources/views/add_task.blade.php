@@ -202,10 +202,11 @@
                                        data-toggle="dropdown"
                                        data-caret="false">Students</a>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('paidStudents') }}"
-                                           class="dropdown-item active">Paid Students</a>
-                                        <a href="{{ route('unpaidStudents') }}"
-                                           class="dropdown-item">Unpaid Students</a>
+                                        <!-- <a href="{{ route('paidStudents') }}" -->
+                                        <a href="{{ route('students') }}" 
+                                           class="dropdown-item active">Student list</a>
+                                        <!-- <a href="{{ route('unpaidStudents') }}"
+                                           class="dropdown-item">Unpaid Students</a> -->
                                        
                                     </div>
                                 </li>

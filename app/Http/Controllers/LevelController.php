@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Level;
+use App\Models\Course;
 use App\Models\DifficultyLevel;
 use Illuminate\Support\Facades\Hash;
 use Validator;
@@ -149,9 +150,10 @@ class LevelController extends Controller
            
         $result = DifficultyLevel::select('*')->get();
         $levelResult = Level::select('*')->get();
+        $course = Course::select('*')->get();
 
         if($result == true){
-            return view('assign_task', ['difficultylevel' => $result, 'level' => $levelResult]);
+            return view('assign_task', ['difficultylevel' => $result, 'level' => $levelResult, 'course' => $course]);
             return response()->json(['status' => true, 'message' => "Data retreived", 'data' => $result]);
         } else {
             return response()->json(['status' => false, 'message' => "Failed to retreive data"]);

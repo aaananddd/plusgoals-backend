@@ -37,7 +37,7 @@ class TaskController extends Controller
 
     /// Insert Task
     public function InsertTask(Request $request){
-    
+ 
      $user = Session::get('user'); 
      $user_id = $user->id;
      $user_access_token  = $user->remember_token;
@@ -56,8 +56,9 @@ class TaskController extends Controller
           $NofQstnsAns = $request->NofQstnsAns ? $request->NofQstnsAns:null;
           $difficulty_level = $request->difficulty_level ? $request->difficulty_level:null;
         //  $save_template = $request->save_template ? $request->save_template:null;
-          //$token = $request->token;
-       
+          $course_id = $request->course ? $request->course:null;
+          $file = make($request->file ? $request->file:null);
+     
         $result = Task::insert([
             'task_name' => $task_name,
             'task_desc' => $task_desc,
@@ -69,7 +70,9 @@ class TaskController extends Controller
             'difficulty_level' => $difficulty_level,
             'save_template' => '1',
             'created_at' => date('Y-m-d h:m:s'),
-            'question_limit' => $NoOfQuestns
+            'question_limit' => $NoOfQuestns,
+            'course_id' => $course_id,
+            'file' => $file
         ]);
             if($result == true){
                 $GetlastId = Task::select('task_id')->where('task_name', $task_name)->get();
@@ -162,8 +165,9 @@ class TaskController extends Controller
     public function GetTask(){
       
         $result = Task::leftjoin('levels','tasks.task_level','=','levels.id')
-                        ->select('tasks.*', 'levels.level_name')
-                        ->orderby('tasks.created_at', 'asc')
+                        ->leftjoin('courses', 'tasks.course_id','=','courses.id')
+                        ->select('tasks.*', 'levels.level_name', 'courses.course_name')
+                        ->orderby('tasks.task_id', 'asc')
                         ->paginate(10);
                         // ->get();
         

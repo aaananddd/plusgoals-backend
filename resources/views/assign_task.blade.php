@@ -202,10 +202,11 @@
                                        data-toggle="dropdown"
                                        data-caret="false">Students</a>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('paidStudents') }}"
-                                           class="dropdown-item active">Paid Students</a>
-                                        <a href="{{ route('unpaidStudents') }}"
-                                           class="dropdown-item">Unpaid Students</a>
+                                        <!-- <a href="{{ route('paidStudents') }}" -->
+                                        <a href="{{ route('students') }}" 
+                                           class="dropdown-item active">Student list</a>
+                                        <!-- <a href="{{ route('unpaidStudents') }}"
+                                           class="dropdown-item">Unpaid Students</a> -->
                                        
                                     </div>
                                 </li>
@@ -327,26 +328,36 @@
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <div class="list-group-item">
-                                    <div role="group" aria-labelledby="label-question" class="m-0 form-group">
-                                            <div class="form-row">
-                                                <label id="label-question" for="task_desc" class="col-md-3 col-form-label form-label">Question</label>
-                                                    <div class="col-md-9">
-                                                    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-                                                    <textarea id="editor" name="question" class="col-md-12" rows="10"></textarea>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div role="group" aria-labelledby="label-question" class="m-0 form-group">
+                                     <div class="card-body table--elevated">
+                                        <div role="group" aria-labelledby="label-question" class="m-0 form-group">
                                             <div class="form-row">
                                                 <label id="label-question" for="task_desc" class="col-md-3 col-form-label form-label">Task Description</label>
                                                     <div class="col-md-9">
                                                         <textarea id="task_desc" placeholder="Describe your question in detail ..." rows="4" class="form-control" name="task_desc"></textarea> 
                                                     </div>
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </div>
                                   </div>
+
+                                  <div class="form-group">
+                                  <div class="list-group-item">
+                                        <div class="form-group m-0" role="group" aria-labelledby="label-topic">
+                                            <div class="form-row align-items-center">
+                                                <label id="label-topic" for="course_id" class="col-md-3 col-form-label form-label">Course</label>
+                                                    <div class="col-md-9">
+                                                            
+                                                        <select class="form-control custom-select w-auto" name="course" id="course" >
+                                                            <option value="option_select" disabled selected>Course</option>
+                                                                 @foreach($course as $courses)      
+                                                                   <option value="{{ $courses->id }}" {{$courses->id == $courses->id  ? 'selected' : ''}}>{{ $courses->course_name}}</option> 
+                                                                 @endforeach
+                                                         </select>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                   
                                   <div class="form-group">
                                   <div class="list-group-item">
@@ -372,7 +383,7 @@
                                             <div class="form-row align-items-center">
                                                 <label id="label-topic" for="difficulty_level" class="col-md-3 col-form-label form-label">Difficulty Level</label>
                                                  <div class="col-md-9">
-                                                         <select class="form-control custom-select w-auto" name="task_level" id="task_level" >
+                                                         <select class="form-control custom-select w-auto" name="difficulty_level" id="difficulty_level" >
                                                             <option value="option_select" disabled selected>Task level</option>
                                                                  @foreach($difficultylevel as $task_level)      
                                                                     <option value="{{ $task_level->id }}" {{$task_level->id == $task_level->id  ? 'selected' : ''}}>{{ $task_level->level_name}}</option> 

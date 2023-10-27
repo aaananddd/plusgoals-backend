@@ -52,6 +52,7 @@ Route::put('/task/{id}', [TaskController::class, 'UpdateTask']);
 Route::delete('/task/{id}', [TaskController::class, 'DeleteTask']);
 Route::get('/task', [TaskController::class, 'GetTask']);
 Route::get('/task/{id}', [TaskController::class, 'GetTaskbyId']);
+Route::get('/assignTask/{id}', [TaskController::class, 'assignTask']);
 
 //Questions
 Route::post('/questions/{id}', [TaskController::class, 'AddQuestions']);
@@ -69,8 +70,11 @@ Route::get('/teachers', [AdminController::class, 'ListTeachers']);
 //Students
 Route::post('/student_register', [StudentController::class, 'register']);
 Route::get('/student_login', [StudentController::class, 'login']);
+Route::post('/student_profile/{id}', [StudentController::class, 'updateProfile']);
+Route::post('/student/{id}', [StudentController::class, 'insertStudentProfile']);
 Route::put('/student/{id}', [StudentController::class, 'updateStudentProfile']);
 Route::post('/applyCourse/{id}', [StudentController::class, 'applyCourse']);
+Route::post('/updateDetails/{id}', [StudentController::class, 'updateStudentDetails']);
 Route::get('/student', [StudentController::class, 'getStudentDetails']);
 Route::get('/student/{id}', [StudentController::class, 'getStudentDetailById']);
 Route::get('/paidStudents', [StudentController::class, 'getPaidStudents']);
