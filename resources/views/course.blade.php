@@ -2,266 +2,123 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible"
-              content="IE=edge">
-        <meta name="viewport"
-              content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Course List</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Course List</title>
 
-        <!-- Prevent the demo from appearing in search engines -->
-        <meta name="robots"
-              content="noindex">
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap" rel="stylesheet">
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
-              rel="stylesheet">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/spinkit.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
-        <!-- Perfect Scrollbar -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/perfect-scrollbar.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Material Design Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/material-icons.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Font Awesome Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/fontawesome.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/css/preloader.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- App CSS -->
-        <!-- <link type="text/css"
-              href="../../public/css/app.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
 
-    </head>
 
-    <body class="layout-sticky-subnav layout-learnly ">
+<link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
 
-        <div class="preloader">
-            <div class="sk-chase">
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-            </div>
 
-            <!-- <div class="sk-bounce">
-    <div class="sk-bounce-dot"></div>
-    <div class="sk-bounce-dot"></div>
-  </div> -->
+<link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
 
-            <!-- More spinner examples at https://github.com/tobiasahlin/SpinKit/blob/master/examples.html -->
-        </div>
 
-        <!-- Header Layout -->
-        <div class="mdk-header-layout js-mdk-header-layout">
+<link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+<style>
+   button{
+      width : 40px;
+      height :30px;
+   }
+</style>
+</head>
+<body class="layout-sticky-subnav layout-learnly ">
+<div class="preloader">
+<div class="sk-chase">
+<div class="sk-chase-dot"></div>
+<div class="sk-chase-dot"></div>
+<div class="sk-chase-dot"></div>
+<div class="sk-chase-dot"></div>
+<div class="sk-chase-dot"></div>
+<div class="sk-chase-dot"></div>
+</div>
 
-            <!-- Header -->
 
-            <div id="header"
-                 class="mdk-header js-mdk-header mb-0"
-                 data-fixed
-                 data-effects="waterfall">
-                <div class="mdk-header__content">
+</div>
 
-                    <div class="navbar navbar-expand navbar-light bg-white border-bottom"
-                         id="default-navbar"
-                         data-primary>
-                        <div class="container page__container">
+<div class="mdk-header-layout js-mdk-header-layout">
 
-                            <!-- Navbar Brand -->
-                            <a href="index.html"
-                               class="navbar-brand mr-16pt">
+<div id="header" class="mdk-header js-mdk-header mb-0" data-fixed data-effects="waterfall">
+<div class="mdk-header__content">
+<div class="navbar navbar-expand navbar-light bg-white border-bottom" id="default-navbar" data-primary>
+<div class="container page__container">
 
-                                <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
+<a href="index.html" class="navbar-brand mr-16pt">
+<span><img src="{{asset('images/plus-goal-logo.svg')}}" width="150" height="100"></span>
 
-                                    <span class="avatar-title rounded bg-primary"><img src="images/white.svg"
-                                             alt="logo"
-                                             class="img-fluid" /></span>
+</a>
 
-                                </span>
 
-                                <span class="d-none d-lg-block">Plus Goals</span>
-                            </a>
-
-                            <!-- Navbar toggler -->
-                            <button class="navbar-toggler w-auto mr-16pt d-block rounded-0"
-                                    type="button"
-                                    data-toggle="sidebar">
-                                <span class="material-icons">short_text</span>
-                            </button>
-
-                            <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
-                                <li class="nav-item">
-                                    <a href="{{ route('home') }}"
-                                       class="nav-link">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('taskDetails') }}"
-                                       class="nav-link">Task</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Courses</a>
-                                    <div class="dropdown-menu">
-                                        <a href="{{ route('courselist') }}"
-                                           class="dropdown-item">Browse Courses</a>
-                                        <!-- <a href="{{ route('courselist') }}"
-                                           class="dropdown-item">Preview Course</a>
-                                        <a href="student-lesson.html"
-                                           class="dropdown-item">Preview Lesson</a>
-                                        <a href="student-take-course.html"
-                                           class="dropdown-item"><span class="mr-16pt">Take Course</span> <span class="badge badge-notifications badge-accent text-uppercase ml-auto">Pro</span></a>
-                                        <a href="student-take-lesson.html"
-                                           class="dropdown-item">Take Lesson</a>
-                                        <a href="student-take-quiz.html"
-                                           class="dropdown-item">Take Quiz</a>
-                                        <a href="student-quiz-result-details.html"
-                                           class="dropdown-item">Quiz Result</a>
-                                        <a href="student-dashboard.html"
-                                           class="dropdown-item">Student Dashboard</a>
-                                        <a href="student-my-courses.html"
-                                           class="dropdown-item">My Courses</a>
-                                        <a href="student-quiz-results.html"
-                                           class="dropdown-item">My Quizzes</a>
-                                        <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a> -->
-                                    </div>
-                                </li>
-                                <!-- <li class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Paths</a>
-                                    <div class="dropdown-menu">
-                                        <a href="paths.html"
-                                           class="dropdown-item">Browse Paths</a>
-                                        <a href="student-path.html"
-                                           class="dropdown-item">Path Details</a>
-                                        <a href="student-path-assessment.html"
-                                           class="dropdown-item">Skill Assessment</a>
-                                        <a href="student-path-assessment-result.html"
-                                           class="dropdown-item">Skill Result</a>
-                                        <a href="student-paths.html"
-                                           class="dropdown-item">My Paths</a>
-                                    </div>
-                                </li> -->
-                                <!-- <li class="nav-item">
-                                    <a href="pricing.html"
-                                       class="nav-link">Pricing</a>
-                                </li> -->
-                                <li class="nav-item dropdown active">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Teachers</a>
-                                    <div class="dropdown-menu">
-                                        <a href="{{ route('teachers') }}"
-                                           class="dropdown-item active">Teachers list</a>
-                                        <!-- <a href="instructor-courses.html"
-                                           class="dropdown-item">Manage Courses</a>
-                                        <a href="instructor-quizzes.html"
-                                           class="dropdown-item">Manage Quizzes</a>
-                                        <a href="instructor-earnings.html"
-                                           class="dropdown-item">Earnings</a>
-                                        <a href="instructor-statement.html"
-                                           class="dropdown-item">Statement</a>
-                                        <a href="instructor-edit-course.html"
-                                           class="dropdown-item">Edit Course</a>
-                                        <a href="instructor-edit-quiz.html"
-                                           class="dropdown-item">Edit Quiz</a> -->
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown active">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Students</a>
-                                    <div class="dropdown-menu">
-                                        <!-- <a href="{{ route('paidStudents') }}" -->
-                                        <a href="{{ route('students') }}" 
-                                           class="dropdown-item active">Student list</a>
-                                        <!-- <a href="{{ route('unpaidStudents') }}"
-                                           class="dropdown-item">Unpaid Students</a> -->
-                                       
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown"
-                                    data-toggle="tooltip"
-                                    data-title="Community"
-                                    data-placement="bottom"
-                                    data-boundary="window">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">
-                                        <i class="material-icons">people_outline</i>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <a href="teachers.html"
-                                           class="dropdown-item">Browse Teachers</a>
-                                        <a href="student-profile.html"
-                                           class="dropdown-item">Student Profile</a>
-                                        <a href="teacher-profile.html"
-                                           class="dropdown-item">Instructor Profile</a>
-                                        <a href="blog.html"
-                                           class="dropdown-item">Blog</a>
-                                        <a href="blog-post.html"
-                                           class="dropdown-item">Blog Post</a>
-                                        <a href="faq.html"
-                                           class="dropdown-item">FAQ</a>
-                                        <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a>
-                                        <a href="discussions.html"
-                                           class="dropdown-item">Discussions</a>
-                                        <a href="discussion.html"
-                                           class="dropdown-item">Discussion Details</a>
-                                        <a href="discussions-ask.html"
-                                           class="dropdown-item">Ask Question</a>
-                                    </div>
-                                </li>
-                            </ul>
-<form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-16pt" action="index.html" style="max-width: 230px">
-<button class="btn" type="submit"><i class="material-icons">search</i></button>
-<input type="text" class="form-control" placeholder="Search ...">
-</form>
-<ul class="nav navbar-nav ml-auto mr-0">
+<ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
 <li class="nav-item">
-<a href="login.html" class="nav-link" data-toggle="tooltip" data-title="Login" data-placement="bottom" data-boundary="window"><i class="material-icons">lock_open</i></a>
+<a href="{{ route('home') }}" class="nav-link">Home</a>
 </li>
 <li class="nav-item">
-<a href="signup.html" class="btn btn-outline-secondary">Get Started</a>
+<a href="{{ route('taskDetails') }}" class="nav-link">Task</a>
+</li>
+<li class="nav-item dropdown">
+<a href="{{ route('courselist') }}" class="nav-link">
+Course</a>
+
+
+</li>
+
+
+<li class="nav-item dropdown ">
+       @if(Session::get('role') == 1)
+<a href="{{ route('teachers') }}" class="nav-link">
+Teachers</a>
+@endif
+
+
+
+</li>
+<li class="nav-item dropdown ">
+       @if(Session::get('role') == 1)
+<a href="{{ route('students') }}" class="nav-link">
+Students</a>
+@endif
+
+
+
+
+
+
+</li>
+<li class="nav-item dropdown" data-toggle="tooltip" data-title="Community" data-placement="bottom" data-boundary="window">
+
+<div class="dropdown-menu">
+<a href="teachers.html" class="dropdown-item">Browse Teachers</a>
+<a href="student-profile.html" class="dropdown-item">Student Profile</a>
+<a href="teacher-profile.html" class="dropdown-item">Instructor Profile</a>
+<a href="blog.html" class="dropdown-item">Blog</a>
+<a href="blog-post.html" class="dropdown-item">Blog Post</a>
+<a href="faq.html" class="dropdown-item">FAQ</a>
+<a href="help-center.html" class="dropdown-item">Help Center</a>
+<a href="discussions.html" class="dropdown-item">Discussions</a>
+<a href="discussion.html" class="dropdown-item">Discussion Details</a>
+<a href="discussions-ask.html" class="dropdown-item">Ask Question</a>
+</div>
 </li>
 </ul>
-</div>
-</div>
-</div>
-</div>
 
+</div>
+</div>
+</div>
+</div>
 @csrf
-
 <div class="mdk-header-layout__content page-content ">
 <div class="page-section bg-alt border-bottom-2">
 <div class="container page__container">
@@ -272,6 +129,13 @@
 <div class="col-lg-8">
 <h1 class="h2 mb-0">Course List</h1><br>
 </div>
+<form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-16pt" style="max-width: 230px">
+<button class="btn" type="submit"><i class="material-icons">search</i></button>
+<input type="text" class="form-control" id="input" placeholder="Search ...">
+</form>
+</div>
+<div class="ml-lg-16pt">
+<a href="{{route('courseLevel')}}" class="btn btn-light">Add New Course</a>
 </div>
 </div>
 </div>
@@ -279,27 +143,32 @@
 <div class="page-section">
 <div class="container page__container">
 <div class="row">
-
 <div class="col-lg-12">
 <table class="table align-middle table-nowrap" id="customerTable">
 <thead class="table-light">
 <tr>
 <th>Sl.No</th>
 <th>Course Name</th>
-
+<th>Level</th>
 <th>Mode</th>
 <th>View</th>
+
 </tr>
 </thead>
-<tbody class="list form-check-all">
+<tbody class="list form-check-all" id="myTable">
 @foreach($data as $course)
 @for ($i = 0; $i < count($course); $i++)
 <tr>
 <td>{{ $course[$i]->id }}</td>
 <td>{{ $course[$i]->course_name }}</td>
+<td>{{ $course[$i]->level_name }}</td>
 <td>{{ $course[$i]->mode }}</td>
-<td> <button class="btn btn-light"> View
+<td> <button onClick="window.location.href = 'https://ayurware.in/plusgoals/course_view/<?php echo $course[$i]->id; ?>'"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+</svg>
 </button></td>
+
 </tr>
 @endfor
 @endforeach
@@ -310,14 +179,12 @@
 </div>
 </div>
 
-
-
 <div class="bg-dark border-top-2 mt-auto">
 <div class="container page__container page-section d-flex flex-column">
 <p class="text-white-70 brand mb-24pt">
-<img class="brand-icon" src="images/plus-goal-logo.svg" width="150" alt="Luma">
+<img class="brand-icon" src="{{asset('images/plus-goal-logo.svg')}}" width="150" alt="Plus Goals" style="margin-top:20px;">
 </p>
-<p class="measure-lead-max text-white-50 small mr-8pt">Luma is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
+<p class="measure-lead-max text-white-50 small mr-8pt">Plus Goals is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
 <p class="mb-8pt d-flex">
 <a href class="text-white-70 text-underline mr-8pt small">Terms</a>
 <a href class="text-white-70 text-underline small">Privacy policy</a>
@@ -327,14 +194,10 @@
 </div>
 
 </div>
-
-
 <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
 <div class="mdk-drawer__content">
 <div class="sidebar sidebar-light sidebar-light-dodger-blue sidebar-left" data-perfect-scrollbar>
-
 <a href="index.html" class="sidebar-brand ">
-
 <span class="avatar avatar-xl sidebar-brand-icon h-auto">
 <span class="avatar-title rounded bg-primary"><img src="images/white.svg" class="img-fluid" alt="logo" /></span>
 </span>
@@ -515,7 +378,6 @@ Community
 </li>
 <li class="sidebar-menu-item">
 <a class="sidebar-menu-button" href="help-center.html">
-
 <span class="sidebar-menu-text">Help Center</span>
 </a>
 </li>
@@ -537,41 +399,31 @@ Community
 </ul>
 </li>
 </ul>
-
 </div>
 </div>
 </div>
-<!-- footer -->
-
 
 <script src="{{asset('vendor/jquery.min.js')}}"></script>
-
-
 <script src="{{asset('vendor/popper.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap.min.js')}}"></script>
-
-
 <script src="{{asset('vendor/perfect-scrollbar.min.js')}}"></script>
-
-
 <script src="{{asset('vendor/dom-factory.js')}}"></script>
-
-
 <script src="{{asset('vendor/material-design-kit.js')}}"></script>
-
-
 <script src="{{asset('js/app.js')}}"></script>
-
-
 <script src="{{asset('js/preloader.js')}}"></script>
 </body>
 <link href="assets/css/jquery.cleditor.css" rel="stylesheet" type="text/css">
 <script src="assets/js/plugins/jquery.cleditor.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'), {})
-        .catch(error => {
-            console.log(error);
+$(document).ready(function() {
+    $("#input").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
+    });
+});
 </script>
+
 </html>

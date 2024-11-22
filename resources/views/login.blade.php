@@ -1,3 +1,5 @@
+<link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
 <!DOCTYPE html>
 <html lang="en"
@@ -18,40 +20,40 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
               rel="stylesheet">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="vendor/spinkit.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
-        <!-- Perfect Scrollbar -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/perfect-scrollbar.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
-        <!-- Material Design Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/material-icons.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
-        <!-- Font Awesome Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/fontawesome.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/css/preloader.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
-        <!-- App CSS -->
-        <!-- <link type="text/css"
-              href="{{asset('css/app.css')}}"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
+    
+        <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
+      
+        <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
+    
+        <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
+      
+        <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
+      
+        <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 
     </head>
 
     <body class="layout-default layout-login-centered-boxed">
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+    <style>
+        .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+</style>
         <div class="layout-login-centered-boxed__form card">
             <div class="d-flex flex-column justify-content-center align-items-center mt-2 mb-4 navbar-light">
                 <a href="index.html"
@@ -110,20 +112,10 @@
                     <button class="btn btn-block btn-primary mt-3 mb-3 "
                             type="submit">Login</button>
                 </div>
-                <!-- <div class="form-group text-center">
-                    <div class="custom-control custom-checkbox text-center">
-                        <input type="checkbox"
-                               class="custom-control-input"
-                               checked=""
-                               id="remember">
-                        <label class="custom-control-label"
-                               for="remember">Remember me for 30 days</label>
-                    </div>
-                </div> -->
+            
                 <div class="form-group text-center">
-                    <a href="{{url('reset_password')}}">Forgot password?</a> 
-                    <!-- <p class="mt-2"> Don't have an account? <a class="text-body text-underline"
-                       href="signup.html">Sign up!</a></p> -->
+                    <a href="{{route('forgotPassword')}}">Forgot password?</a> 
+                
                 </div>
             </form>
         </div>

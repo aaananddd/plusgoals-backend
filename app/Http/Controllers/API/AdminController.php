@@ -5,9 +5,12 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\StudentCategory;
+use App\Models\Qualification;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Support\Facades\Auth; 
+use Session;
 
 class AdminController extends Controller
 {
@@ -440,4 +443,34 @@ class AdminController extends Controller
             return response()->json(['status'=>false]);
         }
     }
+
+
+     //Add qualification for intern educational details
+     public function AddQualifications(Request $request){
+
+        $name = $request->name;
+        $result = Qualification::insert([
+            'name' => $name,
+            'created_at' => date('Y-m-d')
+        ]);
+
+        if($result = true){
+            return response()->json(['status'=>true, 'message'=>"Qualification added successfully"]);
+        } else {
+            return response()->json(['status'=>false, 'message'=>"Qualification not added"]);
+        }
+    }
+
+    //Get qualifications
+    public function GetQualifications(){
+        $result = Qualification::select('*')->get();
+
+        if($result = true){
+            return response()->json(['status'=>true, 'message'=>"Qualifications retreived", 'data'=>$result]);
+        } else {
+            return response()->json(['status'=>false, 'message'=>"Qualifications not retreived"]);
+        }
+    }
+	
+
 }

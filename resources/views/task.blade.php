@@ -1,628 +1,394 @@
-
 <!DOCTYPE html>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>  
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>  
-<html lang="en"
-      dir="ltr">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+    rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+<html lang="en" dir="ltr">
 
-      <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible"
-              content="IE=edge">
-        <meta name="viewport"
-              content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Task </title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Task </title>
 
-        <!-- Prevent the demo from appearing in search engines -->
-        <meta name="robots"
-              content="noindex">
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
-              rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
+        rel="stylesheet">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/spinkit.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
-        <!-- Perfect Scrollbar -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/perfect-scrollbar.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
+   
+    <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Material Design Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/material-icons.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Font Awesome Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/fontawesome.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/css/preloader.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
+  
+    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        button {
+            width: 40px;
+            height: 30px;
+        }
 
-        <!-- App CSS -->
-        <!-- <link type="text/css"
-              href="../../public/css/app.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+        .nav-item .nav-link.active-tab {
+        color:#1E90FF;
+        }
 
-    </head>
+    </style>
+</head>
 
-    <body class="layout-sticky-subnav layout-learnly ">
-
-        <div class="preloader">
-            <div class="sk-chase">
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-            </div>
-
-            <!-- <div class="sk-bounce">
-    <div class="sk-bounce-dot"></div>
-    <div class="sk-bounce-dot"></div>
-  </div> -->
-
-            <!-- More spinner examples at https://github.com/tobiasahlin/SpinKit/blob/master/examples.html -->
-        </div>
-
-        <!-- Header Layout -->
-        <div class="mdk-header-layout js-mdk-header-layout">
-
-            <!-- Header -->
-
-            <div id="header"
-                 class="mdk-header js-mdk-header mb-0"
-                 data-fixed
-                 data-effects="waterfall">
-                <div class="mdk-header__content">
-
-                    <div class="navbar navbar-expand navbar-light bg-white border-bottom"
-                         id="default-navbar"
-                         data-primary>
-                        <div class="container page__container">
-
-                            <!-- Navbar Brand -->
-                            <a href="index.html"
-                               class="navbar-brand mr-16pt">
-
-                                <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
-
-                                    <span class="avatar-title rounded bg-primary"><img src="images/white.svg"
-                                             alt="logo"
-                                             class="img-fluid" /></span>
-
-                                </span>
-
-                                <span class="d-none d-lg-block">Plus Goals</span>
-                            </a>
-
-                            <!-- Navbar toggler -->
-                            <button class="navbar-toggler w-auto mr-16pt d-block rounded-0"
-                                    type="button"
-                                    data-toggle="sidebar">
-                                <span class="material-icons">short_text</span>
-                            </button>
-
-                            <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
-                                <li class="nav-item">
-                                    <a href="{{ route('home') }}"
-                                       class="nav-link">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('taskDetails') }}"
-                                       class="nav-link">Task</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Courses</a>
-                                    <div class="dropdown-menu">
-                                        <a href="{{ route('courselist') }}"
-                                           class="dropdown-item">Browse Courses</a>
-                                        <!-- <a href="{{ route('courselist') }}"
-                                           class="dropdown-item">Preview Course</a>
-                                        <a href="student-lesson.html"
-                                           class="dropdown-item">Preview Lesson</a>
-                                        <a href="student-take-course.html"
-                                           class="dropdown-item"><span class="mr-16pt">Take Course</span> <span class="badge badge-notifications badge-accent text-uppercase ml-auto">Pro</span></a>
-                                        <a href="student-take-lesson.html"
-                                           class="dropdown-item">Take Lesson</a>
-                                        <a href="student-take-quiz.html"
-                                           class="dropdown-item">Take Quiz</a>
-                                        <a href="student-quiz-result-details.html"
-                                           class="dropdown-item">Quiz Result</a>
-                                        <a href="student-dashboard.html"
-                                           class="dropdown-item">Student Dashboard</a>
-                                        <a href="student-my-courses.html"
-                                           class="dropdown-item">My Courses</a>
-                                        <a href="student-quiz-results.html"
-                                           class="dropdown-item">My Quizzes</a>
-                                        <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a> -->
-                                    </div>
-                                </li>
-                                <!-- <li class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Paths</a>
-                                    <div class="dropdown-menu">
-                                        <a href="paths.html"
-                                           class="dropdown-item">Browse Paths</a>
-                                        <a href="student-path.html"
-                                           class="dropdown-item">Path Details</a>
-                                        <a href="student-path-assessment.html"
-                                           class="dropdown-item">Skill Assessment</a>
-                                        <a href="student-path-assessment-result.html"
-                                           class="dropdown-item">Skill Result</a>
-                                        <a href="student-paths.html"
-                                           class="dropdown-item">My Paths</a>
-                                    </div>
-                                </li> -->
-                                <!-- <li class="nav-item">
-                                    <a href="pricing.html"
-                                       class="nav-link">Pricing</a>
-                                </li> -->
-                                <li class="nav-item dropdown active">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Teachers</a>
-                                    <div class="dropdown-menu">
-                                        <a href="{{ route('teachers') }}"
-                                           class="dropdown-item active">Teachers list</a>
-                                        <!-- <a href="instructor-courses.html"
-                                           class="dropdown-item">Manage Courses</a>
-                                        <a href="instructor-quizzes.html"
-                                           class="dropdown-item">Manage Quizzes</a>
-                                        <a href="instructor-earnings.html"
-                                           class="dropdown-item">Earnings</a>
-                                        <a href="instructor-statement.html"
-                                           class="dropdown-item">Statement</a>
-                                        <a href="instructor-edit-course.html"
-                                           class="dropdown-item">Edit Course</a>
-                                        <a href="instructor-edit-quiz.html"
-                                           class="dropdown-item">Edit Quiz</a> -->
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown active">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Students</a>
-                                    <div class="dropdown-menu">
-                                        <!-- <a href="{{ route('paidStudents') }}" -->
-                                        <a href="{{ route('students') }}" 
-                                           class="dropdown-item active">Student list</a>
-                                        <!-- <a href="{{ route('unpaidStudents') }}"
-                                           class="dropdown-item">Unpaid Students</a> -->
-                                       
-                                    </div>
-                                </li>
-                                <!-- <li class="nav-item dropdown"
-                                    data-toggle="tooltip"
-                                    data-title="Community"
-                                    data-placement="bottom"
-                                    data-boundary="window">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">
-                                        <i class="material-icons">people_outline</i>
-                                    </a>
-                                     <div class="dropdown-menu">
-                                        <a href="teachers.html"
-                                           class="dropdown-item">Browse Teachers</a>
-                                        <a href="student-profile.html"
-                                           class="dropdown-item">Student Profile</a>
-                                        <a href="teacher-profile.html"
-                                           class="dropdown-item">Instructor Profile</a>
-                                        <a href="blog.html"
-                                           class="dropdown-item">Blog</a>
-                                        <a href="blog-post.html"
-                                           class="dropdown-item">Blog Post</a>
-                                        <a href="faq.html"
-                                           class="dropdown-item">FAQ</a>
-                                        <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a>
-                                        <a href="discussions.html"
-                                           class="dropdown-item">Discussions</a>
-                                        <a href="discussion.html"
-                                           class="dropdown-item">Discussion Details</a>
-                                        <a href="discussions-ask.html"
-                                           class="dropdown-item">Ask Question</a>
-                                    </div> -->
-                                <!-- </li> --> 
-                            </ul>
-                            
-
-                            <div class="nav navbar-nav ml-auto mr-0 flex-nowrap d-flex">
-
-                                <!-- Notifications dropdown -->
-                                <div class="nav-item dropdown dropdown-notifications dropdown-xs-down-full"
-                                     data-toggle="tooltip"
-                                     data-title="Messages"
-                                     data-placement="bottom"
-                                     data-boundary="window">
-                                    <button class="nav-link btn-flush dropdown-toggle"
-                                            type="button"
-                                            data-toggle="dropdown"
-                                            data-caret="false">
-                                        <i class="material-icons icon-24pt">mail_outline</i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <div data-perfect-scrollbar
-                                             class="position-relative">
-                                            <div class="dropdown-header"><strong>Messages</strong></div>
-                                            <div class="list-group list-group-flush mb-0">
-
-                                                <a href="javascript:void(0);"
-                                                   class="list-group-item list-group-item-action unread">
-                                                    <span class="d-flex align-items-center mb-1">
-                                                        <small class="text-black-50">5 minutes ago</small>
-
-                                                        <span class="ml-auto unread-indicator bg-accent"></span>
-
-                                                    </span>
-                                                    <span class="d-flex">
-                                                        <span class="avatar avatar-xs mr-2">
-                                                            <img src="../../public/images/people/110/woman-5.jpg"
-                                                                 alt="people"
-                                                                 class="avatar-img rounded-circle">
-                                                        </span>
-                                                        <span class="flex d-flex flex-column">
-                                                            <strong class="text-black-100">Michelle</strong>
-                                                            <span class="text-black-70">Clients loved the new design.</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-
-                                                <a href="javascript:void(0);"
-                                                   class="list-group-item list-group-item-action">
-                                                    <span class="d-flex align-items-center mb-1">
-                                                        <small class="text-black-50">5 minutes ago</small>
-
-                                                    </span>
-                                                    <span class="d-flex">
-                                                        <span class="avatar avatar-xs mr-2">
-                                                            <img src="../../public/images/people/110/woman-5.jpg"
-                                                                 alt="people"
-                                                                 class="avatar-img rounded-circle">
-                                                        </span>
-                                                        <span class="flex d-flex flex-column">
-                                                            <strong class="text-black-100">Michelle</strong>
-                                                            <span class="text-black-70">🔥 Superb job..</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- // END Notifications dropdown -->
-
-                                <!-- Notifications dropdown -->
-                                <div class="nav-item ml-16pt dropdown dropdown-notifications dropdown-xs-down-full"
-                                     data-toggle="tooltip"
-                                     data-title="Notifications"
-                                     data-placement="bottom"
-                                     data-boundary="window">
-                                    <button class="nav-link btn-flush dropdown-toggle"
-                                            type="button"
-                                            data-toggle="dropdown"
-                                            data-caret="false">
-                                        <i class="material-icons">notifications_none</i>
-                                        <span class="badge badge-notifications badge-accent">2</span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <div data-perfect-scrollbar
-                                             class="position-relative">
-                                            <div class="dropdown-header"><strong>System notifications</strong></div>
-                                            <div class="list-group list-group-flush mb-0">
-
-                                                <a href="javascript:void(0);"
-                                                   class="list-group-item list-group-item-action unread">
-                                                    <span class="d-flex align-items-center mb-1">
-                                                        <small class="text-black-50">3 minutes ago</small>
-
-                                                        <span class="ml-auto unread-indicator bg-accent"></span>
-
-                                                    </span>
-                                                    <span class="d-flex">
-                                                        <span class="avatar avatar-xs mr-2">
-                                                            <span class="avatar-title rounded-circle bg-light">
-                                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
-                                                            </span>
-                                                        </span>
-                                                        <span class="flex d-flex flex-column">
-
-                                                            <span class="text-black-70">Your profile information has not been synced correctly.</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-
-                                                <a href="javascript:void(0);"
-                                                   class="list-group-item list-group-item-action">
-                                                    <span class="d-flex align-items-center mb-1">
-                                                        <small class="text-black-50">5 hours ago</small>
-
-                                                    </span>
-                                                    <span class="d-flex">
-                                                        <span class="avatar avatar-xs mr-2">
-                                                            <span class="avatar-title rounded-circle bg-light">
-                                                                <i class="material-icons font-size-16pt text-primary">group_add</i>
-                                                            </span>
-                                                        </span>
-                                                        <span class="flex d-flex flex-column">
-                                                            <strong class="text-black-100">Adrian. D</strong>
-                                                            <span class="text-black-70">Wants to join your private group.</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-
-                                                <a href="javascript:void(0);"
-                                                   class="list-group-item list-group-item-action">
-                                                    <span class="d-flex align-items-center mb-1">
-                                                        <small class="text-black-50">1 day ago</small>
-
-                                                    </span>
-                                                    <span class="d-flex">
-                                                        <span class="avatar avatar-xs mr-2">
-                                                            <span class="avatar-title rounded-circle bg-light">
-                                                                <i class="material-icons font-size-16pt text-warning">storage</i>
-                                                            </span>
-                                                        </span>
-                                                        <span class="flex d-flex flex-column">
-
-                                                            <span class="text-black-70">Your deploy was successful.</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- // END Notifications dropdown -->
-
-                                <div class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link d-flex align-items-center dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">
-
-                                        <span class="avatar avatar-sm mr-8pt2">
-
-                                            <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
-
-                                        </span>
-
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <div class="dropdown-header"><strong>Account</strong></div>
-                                        <a class="dropdown-item"
-                                           href="edit-account.html">Edit Account</a>
-                                        <a class="dropdown-item"
-                                           href="billing.html">Billing</a>
-                                        <a class="dropdown-item"
-                                           href="billing-history.html">Payments</a>
-                                        <a class="dropdown-item"
-                                           href="login.html">Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- // END Header -->
-
-            <!-- Header Layout Content -->
-            <div class="mdk-header-layout__content page-content ">
-
+<body class="layout-sticky-subnav layout-learnly ">
+@if(session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
+   <!-- Header -->
+    @include('layouts.header')
+   <!-- END Header -->
+      
+        <!-- Header Layout Content -->
+        <div class="mdk-header-layout__content page-content">
                 <div class="page-section bg-alt border-bottom-2">
                     <div class="container page__container">
-
-                        <div class="d-flex flex-column flex-lg-row align-items-center">
-                            <div class="flex d-flex flex-column align-items-center align-items-lg-start mb-16pt mb-lg-0 text-center text-lg-left">
-                                <h1 class="h2 mb-8pt">Tasks</h1>
-                        
+                    <!-- <div class="col-lg-12" >
+                                <h1 class="h2 mb-0" >Tasks</h1>
                             </div>
-                            <form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-16pt"
-                                  action="index.html"
-                                  style="max-width: 230px">
-                                <button class="btn"
-                                        type="submit"><i class="material-icons">search</i></button>
-                                <input type="text"
-                                       class="form-control" id="input"
-                                       placeholder="Search ...">
-                            </form>
-                            <div class="ml-lg-16pt">
-                            
-                                <a href="{{ route('taskLevel') }}"
-                                   class="btn btn-light">New task</a>
+                            <br> -->
+                        <div class="d-flex flex-column flex-lg-row align-items-center">
+                            <div class="row align-items-center w-100">
+                          
+                                <form action="{{ url('task_date_filter') }}" method="get" class="col-md-6 form-inline">
+                                    <div class="form-group mr-md-2">
+                                        <label for="">Date From</label>
+                                        <input type="date" name="date_from" class="form-control">
+                                    </div>
+                                    <div class="form-group mr-md-2">
+                                        <label for="">Date To</label>
+                                        <input type="date" name="date_to" class="form-control">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" style="width: 100px;">Search</button>
+                                </form>
+                                <form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-6pt ml-auto"
+                                    style="max-width: 150px;">
+                                    <button class="btn" type="submit"><i class="material-icons">search</i></button>
+                                    <input type="text" class="form-control" id="input" placeholder="Search ...">
+                                </form>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container page__container">
+                        <div class="d-flex flex-column flex-lg-row align-items-center">
+                            <div class="row align-items-center w-100">
+                                <div>
+                                    <a href="{{ route('taskLevel') }}" class="btn btn-light ml-lg-2" style="color:#1E90FF;">New Task</a> 
+                                    <a href="{{ route('setSortOrder') }}" class="btn btn-light ml-lg-2" style="color:#1E90FF;">Set SortOrder</a> 
+                                </div>
+                                <!-- <form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-2pt ml-auto" style="max-width: 150px;" id="filterForm">
+                                    <input type="text" class="form-control" id="filter_text">
+                                    <div class="col-md-9">
+                                        <select class="form-control custom-select w-auto" name="filter_order" id="filter_order">
+                                            <option value="option_select" disabled selected>Filter order</option>
+                                            @foreach($order as $orders)
+                                                <option value="{{ $orders->id }}">{{ $orders->order }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span id="title-error" class="error text-danger" style="display:none; font-size: 16px;">Order is required.</span>
+                                    </div>
+                                </form> -->
+
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="container page__container">
-                <div class="row">
-              
-                <div class="col-md-2 " id="scroll-horizontal_length" >
-                    <span> From date</span>
-                    <input type="date" class="form-control" id="fdate" name="from_date" value="" required>
-                </div>
-                <div class="col-md-2 " id="scroll-horizontal_length" >
-                    <span> To Date</span>
-                    <input type="date" class="form-control" id="fdate" name="from_date" value="" required>
-                </div>
             </div>
-            <div class="mdk-header-layout__content page-content ">
-                    
-<div class="page-section">
 
-<div class="row">
+           
+            <div class="container page__container">
 
-<div class="col-lg-12">
-<!-- <div class="scrollit"> -->
-<table class="table align-middle table-nowrap" id="customerTable">
-<thead class="table-light">
-<tr>
-<th>Sl.No</th>
-<th>Task Name</th>
-<th>Course</th> 
-<th>Level</th>
-<th>Difficulty level</th>
-<th>Created Date</th>
-</tr>
-</thead>
-<tbody class="list form-check-all" id="myTable">
-@foreach($result as $task)
-@for ($i = 0; $i < count($task); $i++)
-<tr>
-<!-- <td colspan="2"> -->
+                <div class="mdk-header-layout__content page-content ">
 
-<td>{{ $task[$i]->task_id }}</td>
-<td>{{ $task[$i]->task_name }}</td>
-<td>{{ $task[$i]->course_name }}</td> 
-<td>{{ $task[$i]->task_level }}</td>
-<td>{{ $task[$i]->difficulty_level }}</td>
-<td>{{ $task[$i]->created_at }}</td>
-<td> <button class="btn btn-light"> View</button></td>
+                    <div class="page-section">
 
-<!-- </td> -->
-</tr>
-@endfor
-@endforeach
-</tbody>
-</table>
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                            
+    @foreach($result as $task)
+ 
+    <table class="table align-middle table-nowrap" id="customerTable">
+        <thead class="table-light">
+            <tr>
+                <th>Sl.No</th>
+                <th>Task Name</th>
+                <th>Level</th>
+                <th>Difficulty level</th>
+                <th>Order</th>
+                <th>Approved</th>
+                <th>Created By</th>
+                <th>Created Date</th>
+                <th>View</th>
+                @if( $user == 1 )
+                    <th>Edit</th>
+                @else
+                    <th>Request to edit</th>
+                @endif
+                <th style="text-align: center;">Delete</th>
+                @if($user == 1)
+                    <th>Enable</th>
+                @endif
+            </tr>
+        </thead>
+        <tbody class="list form-check-all" id="myTable">
+            @foreach($task as $index => $t)
+            @php
+                $currentPage = $task->currentPage(); 
+                $perPage = $task->perPage(); 
+                $startingIndex = ($currentPage - 1) * $perPage; 
+            @endphp
+            <tr>
+                <td>{{ $startingIndex + $index + 1 }}</td>
+                <td>{{ $t->task_name }}</td>
+                <td>{{ $t->level_name }}</td>
+                <td>{{ $t->difficulty }}</td>
+                <td>{{ $t->order }}</td>
+                <td style="align:center">
+                    @if( $t->is_admin_approved == 1 )
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="green">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                        </svg>
+                    @else
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="red">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+                        </svg>
+                    @endif
+                </td>
+                <td>{{ $t->first_name }} {{ $t->last_name }}</td>
+                <td>{{ Carbon\Carbon::parse($t->created_at)->format('Y-m-d') }}</td>
+                <td>
+                    <button style="border-color: white; border: none; color:#1E90FF" onClick="window.location.href = '{{ env('APP_URL') }}taskdetails/<?php echo $t->task_id; ?>'">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                </td>
+                <td class="text-center"> 
+                    @if( $user == 1 )
+                            <button style="border-color: white; border: none; color:#1E90FF" onClick="window.location.href = '{{ env('APP_URL') }}task_edit/<?php echo $t->task_id; ?>'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                </svg>
+                            </button>
+                    @else
+		     @if($t->is_admin_approved == 0)
+			   <button style="border-color: white; border: none; color:#1E90FF" onClick="window.location.href = '{{ env('APP_URL') }}task_edit/<?php echo $t->task_id; ?>'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                </svg>
+                            </button>
+		     @else
+                        @if($t->request_sent == 0)
+                            <button type="button" data-user-id="{{ $t->created_by }}" data-id="{{ $t->task_id }}" name="submit" id="submit" onClick="sendRequest('{{ $t->task_id }}', '{{ $t->created_by }}')" class="btn btn-primary me-sm-3 me-1 data-submit" style=" width: 100px;">Send request</button>
+                        @elseif($t->request_sent == 1) 
+                            @if($t->is_request_approved == 0)
+                                <button type="button"  class="btn btn-success me-sm-3 me-1 data-submit" style=" width: 100px;">Request sent</button>
+                            @else
+                                <button type="button"  class="btn btn-success me-sm-3 me-1 data-submit" onClick="window.location.href = '{{ env('APP_URL') }}task_edit/<?php echo $t->task_id; ?>'" style=" width: 130px;">Request approved</button>
+                            @endif
+                        @else
+                        @if($t->is_request_approved == 0)
+                                <button type="button"  class="btn btn-success me-sm-3 me-1 data-submit" style=" width: 100px;">Request sent</button>
+                            @else
+                                <button type="button"  class="btn btn-success me-sm-3 me-1 data-submit" onClick="window.location.href = '{{ env('APP_URL') }}task_edit/<?php echo $t->task_id; ?>'" style=" width: 130px;">Request approved</button>
+                            @endif
+                        @endif   
+                      @endif  
+                    @endif
+                </td>
+                <td>
+                    <button style="border-color: white; border: none; color:#1E90FF" onClick="window.location.href = '{{ env('APP_URL') }}delete_task/<?php echo $t->task_id; ?>'">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="20" height="20" align="center" color="#1E90FF">
+                            <path d="M3 2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H3Z" />
+                            <path fill-rule="evenodd" d="M3 6h10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Zm3 2.75A.75.75 0 0 1 6.75 8h2.5a.75.75 0 0 1 0 1.5h-2.5A.75.75 0 0 1 6 8.75Z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </td>
+                <td>
+                @if($user == 1)
+                @if($t->is_active == 1)
+                    <button title="click to disable task" style="border-color: white; border: none; color:#1E90FF" onClick="window.location.href = '{{ env('APP_URL') }}toggle_task/<?php echo $t->task_id; ?>'">
+                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" id="toggle"><circle cx="16.5" cy="12" r="2.5" fill="#b2b1ff"></circle>
+                        <path fill="#6563ff" d="M16.5 6.5h-9a5.5 5.5 0 0 0 0 11h9a5.5 5.5 0 0 0 0-11zm0 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z">
+                        </path>
+                    </svg>
+                    </button>
+                @else 
+                <button title="click to enable task" style="border-color: white; border: none; color:#1E90FF" onClick="window.location.href = '{{ env('APP_URL') }}toggle_task/<?php echo $t->task_id; ?>'">
+                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" id="toggle">
+                        <path fill="#b2b1ff" d="M16.5 17.5h-9a5.5 5.5 0 1 1 0-11h9a5.5 5.5 0 1 1 0 11z"></path><circle cx="7.5" cy="12" r="2.5" fill="#6563ff"></circle>
+                    </svg>
+                    </button>
+
+                @endif
+                @endif
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @endforeach
+</div>
 {!! $task->withQueryString()->links('pagination::bootstrap-5') !!}
-</div>
-</div>
-</div>
-</div>
-<!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
 
- <style>
-    .scrollit {
-    overflow:scroll;
-    height:100px;
-} 
- </style>             
-            <!-- // END Header Layout Content -->
+                <style>
+                    .scrollit {
+                        overflow: scroll;
+                        height: 100px;
+                    }
+                </style>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
 
-        <!-- // END Header Layout -->
-
-        <!-- // END Drawer -->
+                    //Delete task 
+                         $(document).ready(function() {
+                            $('.delete-file').click(function(event) {
+                                event.preventDefault(); // Prevent default form submission
         
-            <!-- Footer -->
+                            var fileId = $(this).data('file-id');
+      
+                            $.ajax({
+                                url: '/delete_task/' + fileId,
+                                type: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function(data) {
+                                    console.log(data);
+                                    if(data.status === true) {
+                                        Swal.fire("File deleted", "", "success").then((result) => {
+                                           
+                                            document.getElementById("redirectForm").submit();
+                                        });
+                                    } else {
+                                        Swal.fire("Failed to delete file", "", "error");
+                                    }   
+                                },
+                                error: function(xhr, status, error) {
+                                    Swal.fire("Failed to delete file", "", "error");
+                                    console.error(xhr.responseText);
+                                }
+                            });
+                        });
+                    });
 
-            <div class="bg-dark border-top-2 mt-auto">
-<div class="container page__container page-section d-flex flex-column">
-<p class="text-white-70 brand mb-24pt">
-<img class="brand-icon" src="images/plus-goal-logo.svg" width="150" alt="Luma">
-</p>
-<p class="measure-lead-max text-white-50 small mr-8pt">Luma is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
-<p class="mb-8pt d-flex">
-<a href class="text-white-70 text-underline mr-8pt small">Terms</a>
-<a href class="text-white-70 text-underline small">Privacy policy</a>
-</p>
-<p class="text-white-50 small mt-n1 mb-0">Copyright 2019 &copy; All rights reserved.</p>
-</div>
-</div>
-            <!-- // END Footer -->
+                    // Request to edit
+			        function sendRequest(task_id, created_by){
+                                 
+                                $.ajax({
+                                        type: "POST",
+                                        url: "{{ env('APP_URL') }}request_to_edit/" + task_id + "/" + created_by, 
+                                    
+                                        data: {
+                                        'task_id' : task_id,
+                                        'user_id' : created_by,
+                                        '_token': '{{ csrf_token() }}'
+                                        
+                                        },
+                                       
+                                    success: function(data) {
+                                        
+                                        if(data.status === true){
+                                            Swal.fire("Request sent successfully", "", "success").then((result) => {
+                                                if (result.isConfirmed) {
+                                                window.location.href="{{ route('taskDetails')}}";
+                                            } else {
+                                                window.location.href="{{ route('taskDetails')}}";
+                                            }
+                                        });
 
-        </div>
-        <!-- jQuery -->
-        <!-- <script src="../../public/vendor/jquery.min.js"></script> -->
-        <script src="{{asset('vendor/jquery.min.js')}}"></script>
+                                        } else {
+                                            Swal.fire("Failed to sent request", "", "danger").then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.href="{{ route('taskDetails')}}";
+                                            } else {
+                                                window.location.href="{{ route('taskDetails')}}";
+                                            }
+                                           });
+                                        }   
+                                    },
+                                    error: function(xhr, status, error) {
+                                        var errorMessage = xhr.responseText;
+                                        Swal.fire("Error", errorMessage, "error");
+                                        }
+                                    });
+				        }
+                        
+                        $(document).ready(function() {
+                        $('#filter_order').change(function() {
+                            var filter = $(this).val();
 
-        <!-- Bootstrap -->
-        <!-- <script src="../../public/vendor/popper.min.js"></script>
-        <script src="../../public/vendor/bootstrap.min.js"></script> -->
-        <script src="{{asset('vendor/popper.min.js')}}"></script>
-        <script src="{{asset('vendor/bootstrap.min.js')}}"></script>
+                            $.ajax({
+                                url: '/taskDetails', // Update with the correct URL if necessary
+                                type: 'GET',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: {
+                                    'filter': filter
+                                },
+                                success: function(data) {
+                                    console.log(data);
+                                    if(data){
+                                        
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    Swal.fire("Error", "An error occurred while processing your request", "error");
+                                    console.error(xhr.responseText);
+                                }
+                            });
+                        });
+                    });
 
-        <!-- Perfect Scrollbar -->
-        <!-- <script src="../../public/vendor/perfect-scrollbar.min.js"></script> -->
-        <script src="{{asset('vendor/perfect-scrollbar.min.js')}}"></script>
 
-        <!-- DOM Factory -->
-        <!-- <script src="../../public/vendor/dom-factory.js"></script> -->
-        <script src="{{asset('vendor/dom-factory.js')}}"></script>
+                   
+                    </script>
+                <!-- // END Header Layout Content -->
 
-        <!-- MDK -->
-        <!-- <script src="../../public/vendor/material-design-kit.js"></script> -->
-        <script src="{{asset('vendor/material-design-kit.js')}}"></script>
-
-        <!-- App JS -->
-        <!-- <script src="../../public/js/app.js"></script> -->
-        <script src="{{asset('js/app.js')}}"></script>
-
-        <!-- Preloader -->
-        <!-- <script src="../../public/js/preloader.js"></script> -->
-        <script src="{{asset('js/preloader.js')}}"></script>
-
-        <!-- Global Settings -->
-        <!-- <script src="../../public/js/settings.js"></script> -->
-        <script src="{{asset('js/settings.js')}}"></script>
-
-        <!-- Moment.js -->
-        <!-- <script src="../../public/vendor/moment.min.js"></script>
-        <script src="../../public/vendor/moment-range.js"></script> -->
-        <script src="{{asset('vendor/moment.min.js')}}"></script>
-        <script src="{{asset('vendor/moment-range.js')}}"></script>
-
-        <!-- Chart.js -->
-        <!-- <script src="../../public/vendor/Chart.min.js"></script> -->
-        <script src="{{asset('vendor/Chart.min.js')}}"></script>
-
-        <!-- UI Charts Page JS -->
-        <!-- <script src="../../public/js/chartjs-rounded-bar.js"></script>
-        <script src="../../public/js/chartjs.js"></script> -->
-        <script src="{{asset('js/chartjs-rounded-bar.js')}}"></script>
-        <script src="{{asset('js/chartjs.js')}}"></script>
-
-        <!-- Chart.js Samples -->
-        <!-- <script src="../../public/js/page.instructor-dashboard.js"></script> -->
-        <script src="{{asset('js/page.instructor-dashboard.js')}}"></script>
-
-        <!-- List.js -->
-        <!-- <script src="../../public/vendor/list.min.js"></script>
-        <script src="../../public/js/list.js"></script> -->
-        <script src="{{asset('vendor/list.min.js')}}"></script>
-        <script src="{{asset('js/list.js')}}"></script>
-
-    </body>
+@include('layouts.footer')
+</body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    $("#input").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+   ClassicEditor
+      .create(document.querySelector('#editor'), {})
+      .catch(error => {
+         console.log(error);
+      });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#input").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
         });
     });
-});
 </script>
+
 </html>

@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /subdirectory
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule . /index.html [L]
+</IfModule>
+
+
+
+
+
+
+#RewriteEngine on
+#RewriteBase /
+
+# Add this block for React client-side routing
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ https://ayurware.in/student_plusgoals/index.html [L,QSA]
+
+# Continue with your existing rules below
+#RewriteRule ^(application|system|\.svn) index.php/$1 [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ index.php?/$1 [QSA,L]

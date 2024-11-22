@@ -18,43 +18,24 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
               rel="stylesheet">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/spinkit.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
-        <!-- Perfect Scrollbar -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/perfect-scrollbar.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
+ 
+        <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Material Design Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/material-icons.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Font Awesome Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/fontawesome.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/css/preloader.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- App CSS -->
-        <!-- <link type="text/css"
-              href="../../public/css/app.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 
     </head>
-
+    <style>
+           .nav-item .nav-link.active-tab {
+        color:#1E90FF;
+      }
+    </style>
     <body class="layout-sticky-subnav layout-learnly ">
 
         <div class="preloader">
@@ -67,12 +48,6 @@
                 <div class="sk-chase-dot"></div>
             </div>
 
-            <!-- <div class="sk-bounce">
-    <div class="sk-bounce-dot"></div>
-    <div class="sk-bounce-dot"></div>
-  </div> -->
-
-            <!-- More spinner examples at https://github.com/tobiasahlin/SpinKit/blob/master/examples.html -->
         </div>
 
         <!-- Header Layout -->
@@ -114,137 +89,40 @@
                             </button>
 
                             <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
-                                <li class="nav-item">
-                                    <a href="{{ route('home') }}"
-                                       class="nav-link">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('taskDetails') }}"
-                                       class="nav-link">Task</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Courses</a>
-                                    <div class="dropdown-menu">
-                                        <a href="{{ route('courselist') }}"
-                                           class="dropdown-item">Browse Courses</a>
-                                        <a href="{{ route('courselist') }}"
-                                           class="dropdown-item">Preview Course</a>
-                                        <a href="student-lesson.html"
-                                           class="dropdown-item">Preview Lesson</a>
-                                        <a href="student-take-course.html"
-                                           class="dropdown-item"><span class="mr-16pt">Take Course</span> <span class="badge badge-notifications badge-accent text-uppercase ml-auto">Pro</span></a>
-                                        <a href="student-take-lesson.html"
-                                           class="dropdown-item">Take Lesson</a>
-                                        <a href="student-take-quiz.html"
-                                           class="dropdown-item">Take Quiz</a>
-                                        <a href="student-quiz-result-details.html"
-                                           class="dropdown-item">Quiz Result</a>
-                                        <a href="student-dashboard.html"
-                                           class="dropdown-item">Student Dashboard</a>
-                                        <a href="student-my-courses.html"
-                                           class="dropdown-item">My Courses</a>
-                                        <a href="student-quiz-results.html"
-                                           class="dropdown-item">My Quizzes</a>
-                                        <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a>
-                                    </div>
-                                </li>
-                                <!-- <li class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Paths</a>
-                                    <div class="dropdown-menu">
-                                        <a href="paths.html"
-                                           class="dropdown-item">Browse Paths</a>
-                                        <a href="student-path.html"
-                                           class="dropdown-item">Path Details</a>
-                                        <a href="student-path-assessment.html"
-                                           class="dropdown-item">Skill Assessment</a>
-                                        <a href="student-path-assessment-result.html"
-                                           class="dropdown-item">Skill Result</a>
-                                        <a href="student-paths.html"
-                                           class="dropdown-item">My Paths</a>
-                                    </div>
-                                </li> -->
-                                <!-- <li class="nav-item">
-                                    <a href="pricing.html"
-                                       class="nav-link">Pricing</a>
-                                </li> -->
-                                <li class="nav-item dropdown active">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Teachers</a>
-                                    <div class="dropdown-menu">
-                                        <a href="{{ route('teachers') }}"
-                                           class="dropdown-item active">Teachers list</a>
-                                        <a href="instructor-courses.html"
-                                           class="dropdown-item">Manage Courses</a>
-                                        <a href="instructor-quizzes.html"
-                                           class="dropdown-item">Manage Quizzes</a>
-                                        <a href="instructor-earnings.html"
-                                           class="dropdown-item">Earnings</a>
-                                        <a href="instructor-statement.html"
-                                           class="dropdown-item">Statement</a>
-                                        <a href="instructor-edit-course.html"
-                                           class="dropdown-item">Edit Course</a>
-                                        <a href="instructor-edit-quiz.html"
-                                           class="dropdown-item">Edit Quiz</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown active">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Students</a>
-                                    <div class="dropdown-menu">
-                                        <!-- <a href="{{ route('paidStudents') }}" -->
-                                        <a href="{{ route('students') }}" 
-                                           class="dropdown-item active">Student list</a>
-                                        <!-- <a href="{{ route('unpaidStudents') }}"
-                                           class="dropdown-item">Unpaid Students</a> -->
-                                       
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown"
-                                    data-toggle="tooltip"
-                                    data-title="Community"
-                                    data-placement="bottom"
-                                    data-boundary="window">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">
-                                        <i class="material-icons">people_outline</i>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <a href="teachers.html"
-                                           class="dropdown-item">Browse Teachers</a>
-                                        <a href="student-profile.html"
-                                           class="dropdown-item">Student Profile</a>
-                                        <a href="teacher-profile.html"
-                                           class="dropdown-item">Instructor Profile</a>
-                                        <a href="blog.html"
-                                           class="dropdown-item">Blog</a>
-                                        <a href="blog-post.html"
-                                           class="dropdown-item">Blog Post</a>
-                                        <a href="faq.html"
-                                           class="dropdown-item">FAQ</a>
-                                        <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a>
-                                        <a href="discussions.html"
-                                           class="dropdown-item">Discussions</a>
-                                        <a href="discussion.html"
-                                           class="dropdown-item">Discussion Details</a>
-                                        <a href="discussions-ask.html"
-                                           class="dropdown-item">Ask Question</a>
-                                    </div>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a href="{{ route('home') }}" class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('taskDetails') }}" class="nav-link {{ Request::route()->getName() == 'taskDetails' ? 'active-tab' : '' }}">Task</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            @if(Session::get('role') == 1)
+                            <a href="{{ route('teachers') }}" class="nav-link {{ Request::route()->getName() == 'teachers' ? 'active' : '' }}">Instructors</a>
+                            @endif
+                        </li>
+                        <li class="nav-item dropdown ">
+                          
+                            <a href="{{ route('students') }}" class="nav-link {{ Request::route()->getName() == 'students' ? 'active' : '' }}">Interns</a>
+                        
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a href="{{ route('GetEmployersList') }}" class="nav-link {{ Request::route()->getName() == 'GetEmployersList' ? 'active' : '' }}">Employers</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            @if(Session::get('role') == 1)
+                            <a href="{{ route('tasksPendingForApproval') }}" class="nav-link {{ Request::route()->getName() == 'tasksPendingForApproval' ? 'active' : '' }}">Pending Approval</a>
+                            @endif
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a href="{{ route('CountAssignedTasks') }}" class="nav-link {{ Request::route()->getName() == 'CountAssignedTasks' ? 'active' : '' }}">Frequent Tasks</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            
+                            <a href="{{ route('GetDescriptiveAnswer') }}" title="Descriptive task evaluation" class="nav-link {{ Request::route()->getName() == 'GetDescriptiveAnswer' ? 'active' : '' }}">Descriptive </a>
+                          
+                        </li>
+                    </ul>
+
 
                             <form class="search-form form-control-rounded navbar-search d-none d-lg-flex mr-16pt"
                                   action="index.html"
@@ -288,10 +166,7 @@
                         <div class="d-flex flex-column flex-lg-row align-items-center">
                             <div class="d-flex flex-column flex-md-row align-items-center flex mb-16pt mb-lg-0 text-center text-md-left">
                                 <div class="mb-16pt mb-md-0 mr-md-24pt">
-                                    <!-- <img src="images/256_rsz_james-gillespie-714755-unsplash.jpg"
-                                         width="104" alt="images/vector-sign-of-user-icon.jpg"
-                                         > -->
-                                         
+                               
                                 </div>
                                 <div class="col-lg-8">
                                     <h1 class="h2 mb-0">Add Task</h1><br>
@@ -299,34 +174,12 @@
                                     <div>
                                        
                                     </div>
-                                    <!-- <div class="rating mb-16pt d-inline-flex">
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star_border</i></div>
-                                    </div> -->
-                                    <!-- <div>
-                                        <span class="chip chip-outline-secondary d-inline-flex align-items-center"
-                                              data-toggle="tooltip"
-                                              data-title="Experience IQ"
-                                              data-placement="bottom">
-                                            <i class="material-icons icon--left">opacity</i> 2,300 points
-                                        </span>
-                                    </div> -->
+                                
                                 </div>
                             </div>
-                            <!-- <div class="col-mg-4">
-                            <h6 class="h6 mb-0">Email : lazabogdan@gmail.com</h6><br>
-                            <h6 class="h6 mb-0">Contact : 8907653421</h6> -->
-                                <!-- <a href=""
-                                   class="btn btn-light">Follow</a> -->
-                            <!-- </div> -->
+                        
                         </div>
-                        <!-- <div class="col-lg-4">
-                                    <a href=""
-                                   class="btn btn-light">Follow</a>
-                            </div> -->
+                    
                     </div>
                 </div>
 
@@ -347,13 +200,11 @@
                                                  aria-labelledby="label-question"
                                                  class="m-0 form-group">
                                                 <div class="form-row">
-                                                    <label id="label-question"
-                                                           for="question"
-                                                           class="col-md-3 col-form-label form-label">Task Name</label>
+                                                    <label id="label-question" for="question" class="col-md-3 col-form-label form-label">Task Name</label>
                                                     <div class="col-md-9">
-                                                   
-                                                            <input id="title"  type="text" class="form-control">
-                                                    
+                                                        <input id="title" type="text" class="form-control" required>
+                                                        <!-- Add a span element to display validation message -->
+                                                        <span id="title-error" class="error text-danger" style="display:none;">Task name is required.</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -370,11 +221,9 @@
                                                            class="col-md-3 col-form-label form-label">Task Description</label>
                                                     <div class="col-md-9">
                                                     <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-                                                    <textarea id="editor" name="task_desc" class="col-md-12" rows="5"></textarea>
-                                                        <!-- <textarea id="question"
-                                                                  placeholder="Enter the Question ..."
-                                                                  rows="4"
-                                                                  class="form-control"></textarea> -->
+                                                    <textarea id="editor" name="task_desc" class="col-md-12" rows="5" required></textarea>
+                                                    <span id="title-error" class="error text-danger" style="display:none;">Task description is required.</span>
+                                                      
                                                     </div>
                                                 </div>
                                             </div>

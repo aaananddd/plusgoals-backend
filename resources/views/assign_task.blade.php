@@ -18,43 +18,38 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
               rel="stylesheet">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/spinkit.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
-        <!-- Perfect Scrollbar -->
-        <!-- <link type="text/css"
-              href="../../public/vendor/perfect-scrollbar.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('vendor/spinkit.css')}}" rel="stylesheet" type="text/css">
+    
+        <link href="{{asset('vendor/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Material Design Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/material-icons.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/material-icons.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Font Awesome Icons -->
-        <!-- <link type="text/css"
-              href="../../public/css/fontawesome.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- Preloader -->
-        <!-- <link type="text/css"
-              href="../../public/css/preloader.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/preloader.css')}}" rel="stylesheet" type="text/css">
 
-        <!-- App CSS -->
-        <!-- <link type="text/css"
-              href="../../public/css/app.css"
-              rel="stylesheet"> -->
-              <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 
+	    <link href="https://www.emojibase.com/emoji/1f4ce/paperclip">
     </head>
-
+    <style>
+           .nav-item .nav-link.active-tab {
+        color:#1E90FF;
+      }
+      #container {
+                width: 1000px;
+                margin: 20px auto;
+            }
+            .ck-editor__editable[role="textbox"] {
+                /* Editing area */
+                min-height: 200px;
+            }
+            .ck-content .image {
+                /* Block images */
+                max-width: 80%;
+                margin: 20px auto;
+            }
+    </style>
     <body class="layout-sticky-subnav layout-learnly ">
 
         <div class="preloader">
@@ -67,12 +62,6 @@
                 <div class="sk-chase-dot"></div>
             </div>
 
-            <!-- <div class="sk-bounce">
-    <div class="sk-bounce-dot"></div>
-    <div class="sk-bounce-dot"></div>
-  </div> -->
-
-            <!-- More spinner examples at https://github.com/tobiasahlin/SpinKit/blob/master/examples.html -->
         </div>
 
         <!-- Header Layout -->
@@ -95,15 +84,8 @@
                             <a href="index.html"
                                class="navbar-brand mr-16pt">
 
-                                <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
-
-                                    <span class="avatar-title rounded bg-primary"><img src="images/white.svg"
-                                             alt="logo"
-                                             class="img-fluid" /></span>
-
-                                </span>
-
-                                <span class="d-none d-lg-block">Plus Goals</span>
+                               <span ><img src="{{asset('images/plus-goal-logo.svg')}}"
+                                    width="150" height="100"></span>
                             </a>
 
                             <!-- Navbar toggler -->
@@ -114,144 +96,67 @@
                             </button>
 
                             <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
-                                <li class="nav-item">
-                                    <a href="{{ route('home') }}"
-                                       class="nav-link">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('taskDetails') }}"
-                                       class="nav-link">Task</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Courses</a>
-                                    <div class="dropdown-menu">
-                                        <a href="{{ route('courselist') }}"
-                                           class="dropdown-item">Browse Courses</a>
-                                        <a href="{{ route('courselist') }}"
-                                           class="dropdown-item">Preview Course</a>
-                                        <a href="student-lesson.html"
-                                           class="dropdown-item">Preview Lesson</a>
-                                        <a href="student-take-course.html"
-                                           class="dropdown-item"><span class="mr-16pt">Take Course</span> <span class="badge badge-notifications badge-accent text-uppercase ml-auto">Pro</span></a>
-                                        <a href="student-take-lesson.html"
-                                           class="dropdown-item">Take Lesson</a>
-                                        <a href="student-take-quiz.html"
-                                           class="dropdown-item">Take Quiz</a>
-                                        <a href="student-quiz-result-details.html"
-                                           class="dropdown-item">Quiz Result</a>
-                                        <a href="student-dashboard.html"
-                                           class="dropdown-item">Student Dashboard</a>
-                                        <a href="student-my-courses.html"
-                                           class="dropdown-item">My Courses</a>
-                                        <a href="student-quiz-results.html"
-                                           class="dropdown-item">My Quizzes</a>
-                                        <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a>
-                                    </div>
-                                </li>
-                                <!-- <li class="nav-item dropdown">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Paths</a>
-                                    <div class="dropdown-menu">
-                                        <a href="paths.html"
-                                           class="dropdown-item">Browse Paths</a>
-                                        <a href="student-path.html"
-                                           class="dropdown-item">Path Details</a>
-                                        <a href="student-path-assessment.html"
-                                           class="dropdown-item">Skill Assessment</a>
-                                        <a href="student-path-assessment-result.html"
-                                           class="dropdown-item">Skill Result</a>
-                                        <a href="student-paths.html"
-                                           class="dropdown-item">My Paths</a>
-                                    </div>
-                                </li> -->
-                                <!-- <li class="nav-item">
-                                    <a href="pricing.html"
-                                       class="nav-link">Pricing</a>
-                                </li> -->
-                                <li class="nav-item dropdown active">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Teachers</a>
-                                    <div class="dropdown-menu">
-                                        <a href="{{ route('teachers') }}"
-                                           class="dropdown-item active">Teachers list</a>
-                                        <a href="instructor-courses.html"
-                                           class="dropdown-item">Manage Courses</a>
-                                        <a href="instructor-quizzes.html"
-                                           class="dropdown-item">Manage Quizzes</a>
-                                        <a href="instructor-earnings.html"
-                                           class="dropdown-item">Earnings</a>
-                                        <a href="instructor-statement.html"
-                                           class="dropdown-item">Statement</a>
-                                        <a href="instructor-edit-course.html"
-                                           class="dropdown-item">Edit Course</a>
-                                        <a href="instructor-edit-quiz.html"
-                                           class="dropdown-item">Edit Quiz</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown active">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">Students</a>
-                                    <div class="dropdown-menu">
-                                        <!-- <a href="{{ route('paidStudents') }}" -->
-                                        <a href="{{ route('students') }}" 
-                                           class="dropdown-item active">Student list</a>
-                                        <!-- <a href="{{ route('unpaidStudents') }}"
-                                           class="dropdown-item">Unpaid Students</a> -->
-                                       
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown"
-                                    data-toggle="tooltip"
-                                    data-title="Community"
-                                    data-placement="bottom"
-                                    data-boundary="window">
-                                    <a href="#"
-                                       class="nav-link dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       data-caret="false">
-                                        <i class="material-icons">people_outline</i>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <a href="teachers.html"
-                                           class="dropdown-item">Browse Teachers</a>
-                                        <a href="student-profile.html"
-                                           class="dropdown-item">Student Profile</a>
-                                        <a href="teacher-profile.html"
-                                           class="dropdown-item">Instructor Profile</a>
-                                        <a href="blog.html"
-                                           class="dropdown-item">Blog</a>
-                                        <a href="blog-post.html"
-                                           class="dropdown-item">Blog Post</a>
-                                        <a href="faq.html"
-                                           class="dropdown-item">FAQ</a>
-                                        <a href="help-center.html"
-                                           class="dropdown-item">Help Center</a>
-                                        <a href="discussions.html"
-                                           class="dropdown-item">Discussions</a>
-                                        <a href="discussion.html"
-                                           class="dropdown-item">Discussion Details</a>
-                                        <a href="discussions-ask.html"
-                                           class="dropdown-item">Ask Question</a>
-                                    </div>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a href="{{ route('home') }}" class="nav-link {{ Request::route()->getName() == 'home' ? 'active-tab' : '' }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('taskDetails') }}" class="nav-link {{ Request::route()->getName() == 'taskDetails' ? 'active' : '' }}">Task</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            @if(Session::get('role') == 1)
+                            <a href="{{ route('teachers') }}" class="nav-link {{ Request::route()->getName() == 'teachers' ? 'active' : '' }}">Instructors</a>
+                            @endif
+                        </li>
+                        <li class="nav-item dropdown ">
+                       
+                            <a href="{{ route('students') }}" class="nav-link {{ Request::route()->getName() == 'students' ? 'active' : '' }}">Interns</a>
+                       
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a href="{{ route('GetEmployersList') }}" class="nav-link {{ Request::route()->getName() == 'GetEmployersList' ? 'active' : '' }}">Employers</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            @if(Session::get('role') == 1)
+                            <a href="{{ route('tasksPendingForApproval') }}" class="nav-link {{ Request::route()->getName() == 'tasksPendingForApproval' ? 'active' : '' }}">Pending Approval</a>
+                            @endif
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a href="{{ route('CountAssignedTasks') }}" class="nav-link {{ Request::route()->getName() == 'CountAssignedTasks' ? 'active' : '' }}">Frequent Tasks</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            
+                            <a href="{{ route('GetDescriptiveAnswer') }}" title="Descriptive task evaluation" class="nav-link {{ Request::route()->getName() == 'GetDescriptiveAnswer' ? 'active' : '' }}">Descriptive </a>
+                          
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a href="{{ route('Others') }}" class="nav-link {{ Request::route()->getName() == 'Others' ? 'active' : '' }}">Others</a>
+                        </li>
+                    </ul>
 
+
+                            <div class="nav-item dropdown">
+                <a href="#" class="nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown"
+                    data-caret="false">
+
+                    <span class="avatar avatar-sm mr-8pt2">
+
+                        <span class="avatar-title rounded-circle bg-primary"><i
+                                class="material-icons">account_box</i></span>
+
+                    </span>
+
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-header"><strong>Account</strong></div>
+                    <a class="dropdown-item" href="{{route('profileView')}}"> <strong>{{ Session::get('user.first_name') }}</strong></a>
+                     <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+                </div>
+            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-
             <!-- // END Header -->
 
             <!-- Header Layout Content -->
@@ -263,45 +168,16 @@
                         <div class="d-flex flex-column flex-lg-row align-items-center">
                             <div class="d-flex flex-column flex-md-row align-items-center flex mb-16pt mb-lg-0 text-center text-md-left">
                                 <div class="mb-16pt mb-md-0 mr-md-24pt">
-                                    <!-- <img src="images/256_rsz_james-gillespie-714755-unsplash.jpg"
-                                         width="104" alt="images/vector-sign-of-user-icon.jpg"
-                                         > -->
-                                         
+                             
                                 </div>
                                 <div class="col-lg-8">
                                     <h1 class="h2 mb-0">Add New Task</h1><br>
-                                   
-                                    <div>
-                                       
-                                    </div>
-                                    <!-- <div class="rating mb-16pt d-inline-flex">
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star</i></div>
-                                        <div class="rating__item"><i class="material-icons">star_border</i></div>
-                                    </div> -->
-                                    <!-- <div>
-                                        <span class="chip chip-outline-secondary d-inline-flex align-items-center"
-                                              data-toggle="tooltip"
-                                              data-title="Experience IQ"
-                                              data-placement="bottom">
-                                            <i class="material-icons icon--left">opacity</i> 2,300 points
-                                        </span>
-                                    </div> -->
+                                 
                                 </div>
                             </div>
-                            <!-- <div class="col-mg-4">
-                            <h6 class="h6 mb-0">Email : lazabogdan@gmail.com</h6><br>
-                            <h6 class="h6 mb-0">Contact : 8907653421</h6> -->
-                                <!-- <a href=""
-                                   class="btn btn-light">Follow</a> -->
-                            <!-- </div> -->
+                          
                         </div>
-                        <!-- <div class="col-lg-4">
-                                    <a href=""
-                                   class="btn btn-light">Follow</a>
-                            </div> -->
+                      
                     </div>
                 </div>
           
@@ -312,7 +188,7 @@
                                 <div class="row card-group-row mb-8pt">
                                 </div> 
                                 <div class="card">  
-                                <form method="POST" action="{{ route('addTask')}}">
+                                <form method="POST" action="{{ route('addTask')}}" enctype="multipart/form-data">
                                      <!-- < class="card-body"> -->
                                  {{ csrf_field() }}
                                   <div class="form-group">
@@ -321,7 +197,8 @@
                                             <div class="form-row align-items-center">
                                                 <label id="label-title" for="task_name" class="col-md-3 col-form-label form-label">Task name</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control" id="task_name" placeholder="Enter task name ..." name="task_name"> 
+                                                        <input type="text" class="form-control" id="task_name" placeholder="Enter task name ..." name="task_name" required>
+							                                <span id="title-error" class="error text-danger" style="display:none;">Task name is required.</span> 
                                                     </div>
                                             </div>
                                         </div>
@@ -332,33 +209,18 @@
                                         <div role="group" aria-labelledby="label-question" class="m-0 form-group">
                                             <div class="form-row">
                                                 <label id="label-question" for="task_desc" class="col-md-3 col-form-label form-label">Task Description</label>
-                                                    <div class="col-md-9">
+                                                    <div id="container" class="col-md-9">
+                                                    <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+                                                        <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script> -->
+                                                        <!-- <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script> -->
                                                         <textarea id="task_desc" placeholder="Describe your question in detail ..." rows="4" class="form-control" name="task_desc"></textarea> 
-                                                    </div>
+                                                	<span id="title-error" class="error text-danger" style="display:none;">Task description is required.</span>   
+						                        </div>
                                             </div>
                                         </div>
                                     </div>
                                   </div>
-
-                                  <div class="form-group">
-                                  <div class="list-group-item">
-                                        <div class="form-group m-0" role="group" aria-labelledby="label-topic">
-                                            <div class="form-row align-items-center">
-                                                <label id="label-topic" for="course_id" class="col-md-3 col-form-label form-label">Course</label>
-                                                    <div class="col-md-9">
-                                                            
-                                                        <select class="form-control custom-select w-auto" name="course" id="course" >
-                                                            <option value="option_select" disabled selected>Course</option>
-                                                                 @foreach($course as $courses)      
-                                                                   <option value="{{ $courses->id }}" {{$courses->id == $courses->id  ? 'selected' : ''}}>{{ $courses->course_name}}</option> 
-                                                                 @endforeach
-                                                         </select>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  
+ 
                                   <div class="form-group">
                                   <div class="list-group-item">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-topic">
@@ -372,6 +234,8 @@
                                                                    {<option value="{{ $taskLevel->id }}" {{$taskLevel->id == $taskLevel->id  ? 'selected' : ''}}>{{ $taskLevel->level_name}}</option> 
                                                                  @endforeach
                                                          </select>
+							                            <span id="title-error" class="error text-danger" style="display:none;">Level is required.</span>   
+
                                                     </div>
                                             </div>
                                         </div>
@@ -389,6 +253,46 @@
                                                                     <option value="{{ $task_level->id }}" {{$task_level->id == $task_level->id  ? 'selected' : ''}}>{{ $task_level->level_name}}</option> 
                                                                  @endforeach
                                                          </select>
+							                            <span id="title-error" class="error text-danger" style="display:none;">Difficulty level is required.</span>   
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="list-group-item">
+                                        <div class="form-group m-0" role="group" aria-labelledby="label-topic">
+                                            <div class="form-row align-items-center">
+                                                <label id="label-topic" for="taskCategory" class="col-md-3 col-form-label form-label">Task Category </label>
+                                                 <div class="col-md-9">
+                                                         <select class="form-control custom-select w-auto" name="taskCategory" id="taskCategory" >
+                                                            <option value="option_select" disabled selected>Task category</option>
+                                                                 @foreach($taskCategory as $taskCategories)      
+                                                                    <option value="{{ $taskCategories->id }}" {{$taskCategories->id == $taskCategories->id  ? 'selected' : ''}}>{{ $taskCategories->category_name}}</option> 
+                                                                 @endforeach
+                                                         </select>
+							                            <span id="title-error" class="error text-danger" style="display:none;">Task Category is required.</span>   
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="list-group-item">
+                                        <div class="form-group m-0" role="group" aria-labelledby="label-topic">
+                                            <div class="form-row align-items-center">
+                                                <label id="label-topic" for="module" class="col-md-3 col-form-label form-label">Module</label>
+                                                 <div class="col-md-9">
+                                                         <select class="form-control custom-select w-auto" name="module" id="module" >
+                                                            <option value="option_select" disabled selected>Module</option>
+                                                                 @foreach($module as $modules)      
+                                                                    <option value="{{ $modules->id }}" {{$modules->id == $modules->id  ? 'selected' : ''}}>{{ $modules->category_name}}</option> 
+                                                                 @endforeach
+                                                         </select>
+							                            <span id="title-error" class="error text-danger" style="display:none;">Module is required.</span>   
+
                                                 </div>
                                             </div>
                                         </div>
@@ -398,94 +302,164 @@
                                         <div class="card-body table--elevated">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                                 <div class="form-row align-items-center">
-                                                <label id="label-title" for="NoOfQuestns" class="col-md-3 col-form-label form-label">No of Questions</label>
+                                                    <label id="label-title" for="NoOfQuestns" class="col-md-3 col-form-label form-label">No of Questions</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control" id="NoOfQuestns" placeholder="Enter task name ..." name="NoOfQuestns"> 
+                                                        <input type="text" class="form-control" id="NoOfQuestns" placeholder="Enter number of questions ..." name="NoOfQuestns" required>
+                                                        <span id="title-error" class="error text-danger" style="display:none;">Please enter a valid number of questions</span>
+                                                        <span id="non-numeric-error" class="error text-danger" style="display:none;">Please enter a valid number</span>
                                                     </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("NoOfQuestns").addEventListener("input", function () {
+            var inputValue = this.value.trim();
+
+            // Check if the input is empty
+            if (inputValue === "") {
+                document.getElementById("title-error").style.display = "block";
+                document.getElementById("non-numeric-error").style.display = "none";
+                return;
+            }
+
+            // Check if the input contains only integers
+            if (!/^\d+$/.test(inputValue)) {
+                document.getElementById("title-error").style.display = "none";
+                document.getElementById("non-numeric-error").style.display = "block";
+            } else {
+                document.getElementById("title-error").style.display = "none";
+                document.getElementById("non-numeric-error").style.display = "none";
+            }
+        });
+    });
+</script>
                                                 </div>
                                             </div>
                                         </div>   
+                                    </div>
+                                <div class="form-group">
+                                        <div class="card-body table--elevated">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                                <div class="form-row align-items-center">
+                                               <label id="label-title" for="NofQstnsAns" class="col-md-3 col-form-label form-label">No of Questions to be Answered</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="NofQstnsAns" placeholder="Enter number of questions to be answered ..." name="NofQstnsAns" required>
+                                                    <span id="ans-error" class="error text-danger" style="display:none;">Enter a valid number of questions to be answered</span>
+                                                </div>
+
+<script>
+    document.getElementById("NofQstnsAns").addEventListener("input", function () {
+        var inputValue = this.value.trim();
+
+        // Check if the input is empty
+        if (inputValue === "") {
+            document.getElementById("ans-error").style.display = "block";
+            return;
+        }
+
+        // Check if the input contains only integers
+        if (!/^\d+$/.test(inputValue)) {
+            document.getElementById("ans-error").style.display = "block";
+        } else {
+            document.getElementById("ans-error").style.display = "none";
+        }
+    });
+</script>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                </div>
+                                <div class="form-group">
+                                    <div class="list-group-item">
+                                        <div class="form-group m-0" role="group" aria-labelledby="label-topic">
+                                            <div class="form-row align-items-center">
+                                                <label id="label-topic" for="order" class="col-md-3 col-form-label form-label">Order</label>
+                                                 <div class="col-md-9">
+                                                         <select class="form-control custom-select w-auto" name="order" id="order" >
+                                                            <option value="option_select" disabled selected>Order</option>
+                                                                 @foreach($order as $orders)      
+                                                                    <option value="{{ $orders->id }}" {{$orders->id == $orders->id  ? 'selected' : ''}}>{{ $orders->order}}</option> 
+                                                                 @endforeach
+                                                         </select>
+							                          
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              <div class="form-group">
+                                    <div class="card-body table--elevated">
+                                        <div role="group" aria-labelledby="label-question" class="m-0 form-group">
+                                            <div class="form-row align-items-center">
+						                        <label id="label-question" for="file" class="col-md-3 col-form-label form-label">File Upload</label>
+							                        <div class="col-md-9">
+                                                        <input type="file" id="file" name="file[]" class="form-control-file" multiple>
+                                                        <ul id="file-list"></ul>
+							                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                         <div class="card-body table--elevated">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                                 <div class="form-row align-items-center">
-                                                <label id="label-title" for="NofQstnsAns" class="col-md-3 col-form-label form-label">No of Questions to be Answered</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" id="NofQstnsAns" placeholder="Enter task name ..." name="NofQstnsAns"> 
-                                                    </div>
+                                           
+						                            <label id="label-title" for="timelimit" class="col-md-3 col-form-label form-label">Time Limit</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" id="time" placeholder="Enter the time limit (hh:mm:ss)..." name="time" pattern="(?:[01]\d|2[0123]):(?:[0-5]\d):(?:[0-5]\d)" title="Please enter time in hh:mm:ss format" required>
+                                                            <span id="title-error" class="error text-danger" style="display:none;">Enter time in h:m:s format</span>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>   
                                 </div>
                                 <div class="form-group">
-                                        <div class="card-body table--elevated">
-                                            <div role="group" aria-labelledby="label-question" class="m-0 form-group">
-                                                <label id="label-question" for="file-upload" class="col-md-3 col-form-label form-label">File Upload</label>
-                                                    <div class="col-md-9">
-                                                        <input type="file" id="file-upload" name="file" class="form-control-file">
-                                                    </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                <div class="form-group">
                                         <div class="list-group-item">
                                             <div class="text-right">
-                                            <button type="submit" style="cursor:pointer" class="btn btn-accent">Save</button>
-                                            <!-- <button  type="submit" class="btn btn-primary">Submit</button>  -->
-                                            <!-- <button type="button" class="btn btn-accent">Next</button> -->
+                                                <button type="submit" style="cursor:pointer" class="btn btn-accent">Save</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>  
                             </div>  
                      </form>
-                               
-
-                                <div class="card">
-                                    
-                                  
-<!--    
-                                        <div class="list-group-item">
-                                            <div class="text-right">
-                                                <button type="button" class="btn btn-accent">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <button type="button" class="btn btn-accent">Next</button>
-                                            </div>
-                                        </div> -->
-
-                            </div>
+        
+                                <!-- <div class="card">
+                     
+                            </div> -->
                             
                         </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myForm').submit(function(event) {
+            var taskLevel = $('#task_level').val();
+            if (!taskLevel) {
+                $('#task-level-error').show(); // Display error message
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    });
+</script>  
 
-                                                               
-                                <ul class="pagination justify-content-start pagination-xsm m-0">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true" class="material-icons">chevron_left</span>                         
-                                                <span>Prev</span>                           
-                                        </a>                           
-                                    </li>                          
-                                    <li class="page-item">
-                                        <a class="page-link" href="#"  aria-label="Page 1">
-                                            <span>1</span>                          
-                                        </a>                          
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link"  href="#" aria-label="Page 2">                            
-                                            <span>2</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link"  href="#" aria-label="Next">
-                                            <span>Next</span>
-                                                <span aria-hidden="true" class="material-icons">chevron_right</span>
-                                        </a>
-                                    </li>
-                                </ul>                        
                             </div>
                         </div>
                     </div>        
-            
+            <script>
+		document.getElementById('file').addEventListener('change', function() {
+    var fileList = document.getElementById('file').files;
+    var fileListContainer = document.getElementById('file-list');
+    fileListContainer.innerHTML = ''; // Clear previous list
+
+    for (var i = 0; i < fileList.length; i++) {
+        var listItem = document.createElement('li');
+        var attachmentIcon = document.createElement('span');
+        attachmentIcon.textContent = '\uD83D\uDCCE '; // Unicode character for attachment symbol (paperclip)
+        listItem.appendChild(attachmentIcon);
+        listItem.appendChild(document.createTextNode(fileList[i].name));
+        fileListContainer.appendChild(listItem);
+    }
+});	  </script>
 
             <!-- // END Header Layout Content -->
 
@@ -494,9 +468,9 @@
             <div class="bg-dark border-top-2 mt-auto">
 <div class="container page__container page-section d-flex flex-column">
 <p class="text-white-70 brand mb-24pt">
-<img class="brand-icon" src="images/plus-goal-logo.svg" width="150" alt="Luma">
+<img class="brand-icon" src="{{asset('images/plus-goal-logo.svg')}}" width="150" alt="Luma">
 </p>
-<p class="measure-lead-max text-white-50 small mr-8pt">Luma is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
+<p class="measure-lead-max text-white-50 small mr-8pt">Plus Goals is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
 <p class="mb-8pt d-flex">
 <a href class="text-white-70 text-underline mr-8pt small">Terms</a>
 <a href class="text-white-70 text-underline small">Privacy policy</a>
@@ -852,5 +826,13 @@
 
 
     </body>
-
+    <link href="assets/css/jquery.cleditor.css" rel="stylesheet" type="text/css">
+<script src="assets/js/plugins/jquery.cleditor.js" type="text/javascript"></script>
+<script>
+     ClassicEditor
+        .create(document.querySelector('#task_desc'), {})
+        .catch(error => {
+            console.log(error);
+        }); 
+</script>
 </html>
